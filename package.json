@@ -28,7 +28,8 @@
   "homepage": "https://github.com/runeunhjem/semester-project-2#readme",
   "dependencies": {
     "bootstrap": "^5.3.2",
-    "bootstrap-icons": "^1.11.1"
+    "bootstrap-icons": "^1.11.1",
+    "sass": "^1.69.5"
   },
   "devDependencies": {
     "@babel/core": "^7.23.3",
