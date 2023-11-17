@@ -175,13 +175,17 @@ Project Link: [https://github.com/runeunhjem/semester-project-2](https://github.
 Portfolio: [https://portfolio1-ca.netlify.app/index.html](https://portfolio1-ca.netlify.app/index.html)
 
 Call me - [+47 93 26 76 11](tel:+4793267611)
+
 Mail - runeunhjem@gmail.com
 
 ##### Social media
 
 LinkedIn - [Rune Unhjem](https://www.linkedin.com/in/runeunhjem/)
+
 Facebook - [Rune Unhjem](https://www.facebook.com/runeunhjem/)
+
 Instagram - [@runeunhjem](https://www.instagram.com/runeunhjem/)
+
 GitHub - [runeunhjem](https://github.com/runeunhjem)
 
 ##### Other projects
@@ -207,13 +211,13 @@ My music project on Spotify - [Rune Unhjem | -=ThE rUnIcOrN=-](https://open.spot
 
 [contributors-shield]: https://img.shields.io/github/contributors/runeunhjem/semester-project-2.svg?style=for-the-badge
 [contributors-url]: https://github.com/runeunhjem/semester-project-2/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/runeunhjem/semester-project-2=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/runeunhjem/semester-project-2
 [forks-url]: https://github.com/runeunhjem/semester-project-2/network/members
-[stars-shield]: https://img.shields.io/github/stars/runeunhjem/semester-project-2=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/runeunhjem/semester-project-2
 [stars-url]: https://github.com/runeunhjem/semester-project-2/stargazers
-[issues-shield]: https://img.shields.io/github/issues/runeunhjem/semester-project-2=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/runeunhjem/semester-project-2
 [issues-url]: https://github.com/runeunhjem/semester-project-2/issues
-[license-shield]: https://img.shields.io/github/license/runeunhjem/semester-project-2=for-the-badge
+[license-shield]: https://img.shields.io/github/license/runeunhjem/semester-project-2
 [license-url]: https://github.com/runeunhjem/semester-project-2/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/runeunhjem
