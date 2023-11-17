@@ -170,23 +170,18 @@ Don't forget to give the project a star! Thanks again!
 
 ## Contact
 
-Project Link: [https://github.com/runeunhjem/semester-project-2](https://github.com/runeunhjem/semester-project-2)
+- Project Link: [https://github.com/runeunhjem/semester-project-2](https://github.com/runeunhjem/semester-project-2)
+- Portfolio: [https://portfolio1-ca.netlify.app/index.html](https://portfolio1-ca.netlify.app/index.html)
 
-Portfolio: [https://portfolio1-ca.netlify.app/index.html](https://portfolio1-ca.netlify.app/index.html)
-
-Call me - [+47 93 26 76 11](tel:+4793267611)
-
-Mail - runeunhjem@gmail.com
+- Call me - [+47 93 26 76 11](tel:+4793267611)
+- Mail - runeunhjem@gmail.com
 
 ##### Social media
 
-LinkedIn - [Rune Unhjem](https://www.linkedin.com/in/runeunhjem/)
-
-Facebook - [Rune Unhjem](https://www.facebook.com/runeunhjem/)
-
-Instagram - [@runeunhjem](https://www.instagram.com/runeunhjem/)
-
-GitHub - [runeunhjem](https://github.com/runeunhjem)
+- LinkedIn - [Rune Unhjem](https://www.linkedin.com/in/runeunhjem/)
+- Facebook - [Rune Unhjem](https://www.facebook.com/runeunhjem/)
+- Instagram - [@runeunhjem](https://www.instagram.com/runeunhjem/)
+- GitHub - [runeunhjem](https://github.com/runeunhjem)
 
 ##### Other projects
 
@@ -209,7 +204,7 @@ My music project on Spotify - [Rune Unhjem | -=ThE rUnIcOrN=-](https://open.spot
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/runeunhjem/semester-project-2.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/runeunhjem/semester-project-2.svg
 [contributors-url]: https://github.com/runeunhjem/semester-project-2/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/runeunhjem/semester-project-2
 [forks-url]: https://github.com/runeunhjem/semester-project-2/network/members
