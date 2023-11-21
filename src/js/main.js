@@ -5,6 +5,9 @@ import { toTopButton } from "./utils/back-to-top-button.mjs";
  */
 toTopButton();
 
+/**
+ * Add Bootstrap validation styles to forms.
+ */
 (() => {
   "use strict";
 
