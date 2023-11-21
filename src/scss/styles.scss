@@ -1,20 +1,28 @@
 @import "variables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css2?family=Iceberg&display=swap");
-@import "../../node_modules/bootstrap-icons/font/bootstrap-icons";
 
 body {
   font-family: "Arial", sans-serif;
-  // font-family: "Iceberg", sans-serif;
   min-height: 2000px;
 }
 
 .text-logo {
   font-family: "Iceberg", sans-serif;
 }
+
 .header-logo {
   width: 100%;
   height: 108px;
+}
+
+.icons {
+  transition: transform all 0.3s ease-in-out !important;
+}
+
+.bi:hover {
+  color: #0400ff !important;
+  transform: scale(1.2) !important;
 }
 
 .header-profile-image {
@@ -35,10 +43,6 @@ body {
   width: 100%;
 }
 
-.invalid-feedback {
-  font-size: 16px;
-  font-weight: bold;
-}
 .form-header {
   font-size: 20px;
   font-weight: bold;
@@ -61,7 +65,7 @@ body {
   content: "\25B2";
 }
 .back-to-top-button:hover {
-  background-color: rgb(94, 67, 32) !important;
+  background-color: #0400ff !important;
   color: white !important;
 }
 
