@@ -3,7 +3,7 @@
  */
 export function validateLoginForm() {
   const registerForm = document.getElementById("signup-form");
-  const registerButton = document.getElementById("register-button");
+  const registerButton = document.getElementById("registerButton");
   const userName = document.getElementById("registerName");
   const registerNameError = document.getElementById("name-input-error");
   const registerEmail = document.getElementById("registerEmail");
@@ -45,6 +45,7 @@ export function validateLoginForm() {
    */
   // eslint-disable-next-line no-unused-vars
   function validateForm(event) {
+    event.preventDefault();
     if (checkLength(userName.value, 1)) {
       userName.classList.add("was-validated");
       userName.classList.add("needs-validation");
@@ -165,8 +166,8 @@ export function validateLoginForm() {
    * @returns {boolean} True if the email is valid; otherwise, false.
    */
   function validateEmail(email) {
-    const noroffPattern = /@noroff\.no$/;
+    // const noroffPattern = /@noroff\.no$/;
     const studNoroffPattern = /@stud\.noroff\.no$/;
-    return noroffPattern.test(email) || studNoroffPattern.test(email);
+    return studNoroffPattern.test(email);
   }
 }
