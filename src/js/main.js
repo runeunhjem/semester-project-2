@@ -6,6 +6,14 @@ import { toTopButton } from "./utils/back-to-top-button.mjs";
 toTopButton();
 
 /**
+ * Toggle "Search" in mobileview.
+ */
+document.getElementById("searchIcon").addEventListener("click", function () {
+  var searchSection = document.getElementById("mobile-search");
+  searchSection.classList.toggle("d-none");
+});
+
+/**
  * Add Bootstrap validation styles to forms.
  */
 (() => {
@@ -30,3 +38,13 @@ toTopButton();
     );
   });
 })();
+
+const logoutLinks = document.querySelectorAll(".logout-link");
+logoutLinks.forEach(function (logoutLink) {
+  logoutLink.addEventListener("click", function (logout) {
+    logout.preventDefault();
+    localStorage.clear();
+
+    window.location.href = "../index.html";
+  });
+});

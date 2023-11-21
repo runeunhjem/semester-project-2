@@ -49,6 +49,28 @@ a {
   padding: 5px 20px;
 }
 
+.dropdown-toggle::after {
+  display: none;
+}
+
+.dropdown,
+.search {
+  cursor: pointer !important;
+}
+
+.dropdown-menu {
+  background-color: #ecf8ff; // Light blue background
+  a:hover {
+    background-color: #cbe5ff; // Light blue background
+    color: #000000; /* Optional: Change text color if needed */
+  }
+}
+
+.mobile-search {
+  width: 100%;
+  background-color: #ecf8ff; // Light blue background
+}
+
 .back-to-top-button {
   position: fixed;
   bottom: 100px;
