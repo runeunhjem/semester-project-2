@@ -32,8 +32,6 @@
 
   <p align="left">All API functionality is managed by an existing application. This project only covers the front-end application for the API.</p>
 
-
-
   <p align="left">A finished project fulfils the requirements below with an easy to use and error-free user interface.</p>
     <br />
     <a href="https://github.com/runeunhjem/semester-project-2"><strong>Explore the docs on GitHub »</strong></a>
@@ -194,6 +192,7 @@ My music project on Spotify - [Rune Unhjem | -=ThE rUnIcOrN=-](https://open.spot
 ## Acknowledgments
 
 - [Unsplash.com](https://unsplash.com/)
+- [SVG Repo](svgrepo.com)
 - [Iconfinder.com](https://www.iconfinder.com/)
 - [Othneil Drew | README.md template](https://github.com/othneildrew)
 - [Bootstrap Icons](https://icons.getbootstrap.com/)
