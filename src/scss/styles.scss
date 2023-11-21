@@ -1,6 +1,6 @@
 @import "variables";
 @import "../../node_modules/bootstrap/scss/bootstrap";
-@import url("https://fonts.googleapis.com/css2?family=Iceberg&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gorditas&family=Iceberg&display=swap");
 
 body {
   font-family: "Arial", sans-serif;
@@ -97,4 +97,20 @@ a {
 .out-of-view-menu-text {
   position: absolute;
   left: -10000px;
+}
+
+.card {
+  width: 300px;
+}
+
+.bids {
+  font-size: 16px;
+  // font-weight: bold;
+  font-family: "Gorditas", serif;
+}
+
+.listing-title {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: garamond, serif;
 }

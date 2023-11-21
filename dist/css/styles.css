@@ -4,7 +4,7 @@
  * Copyright 2011-2023 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url("https://fonts.googleapis.com/css2?family=Iceberg&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gorditas&family=Iceberg&display=swap");
 :root,
 [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
@@ -12618,4 +12618,19 @@ a {
 .out-of-view-menu-text {
   position: absolute;
   left: -10000px;
+}
+
+.card {
+  width: 300px;
+}
+
+.bids {
+  font-size: 16px;
+  font-family: "Gorditas", serif;
+}
+
+.listing-title {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: garamond, serif;
 } /*# sourceMappingURL=styles.css.map */
