@@ -4,7 +4,7 @@
  * Copyright 2011-2023 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url("https://fonts.googleapis.com/css2?family=Gorditas&family=Iceberg&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Iceberg&display=swap");
 :root,
 [data-bs-theme="light"] {
   --bs-blue: #0d6efd;
@@ -12626,11 +12626,29 @@ a {
 
 .bids {
   font-size: 16px;
-  font-family: "Gorditas", serif;
+  font-weight: bold;
 }
 
 .listing-title {
   font-size: 20px;
   font-weight: bold;
   font-family: garamond, serif;
+}
+
+#listingCarouselSlidesOnly {
+  position: relative;
+}
+
+.overlay-icon {
+  position: absolute;
+  bottom: 10px; /* Position as per your design */
+  right: 10px; /* Position as per your design */
+  background-color: #1684d8;
+  color: white;
+  padding: 5px;
+  border-radius: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
 } /*# sourceMappingURL=styles.css.map */
