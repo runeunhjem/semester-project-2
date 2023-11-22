@@ -32,10 +32,22 @@ a {
   max-width: 1200px;
 }
 .max-width-800 {
-  max-width: 800px;
+  @media screen and (min-width: 768px) {
+    max-width: 800px;
+  }
 }
+.max-width-500 {
+  @media screen and (min-width: 500px) {
+    margin: 0 auto !important;
+  }
+}
+
 .max-width-300 {
-  max-width: 300px;
+  @media screen and (max-width: 547px) {
+    padding: 10px;
+    max-width: 95%;
+  }
+  // max-width: 300px;
 }
 
 .auth-form {
