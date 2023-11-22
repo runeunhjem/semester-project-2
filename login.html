@@ -63,9 +63,9 @@
                     <i class="bi fs-3 bi-list me-2 my-2 dropdown-toggle icon-link icon-link-hover" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></i><span class="dropdown-toggle d-none d-md-inline-flex" data-bs-toggle="dropdown">Menu</span>
                     <ul class="dropdown-menu border-primary" aria-labelledby="dropdownMenuButton">
                       <li class=" menu-home"><a class="dropdown-item" href="/index.html">Home</a></li>
-                      <li class=" menu-profile"><a class="dropdown-item" href="/index.html">Profile</a></li>
-                      <li class=" menu-contact"><a class="dropdown-item" href="/login.html">Contact</a></li>
-                      <li class=" menu-about"><a class="dropdown-item" href="/index.html">About</a></li>
+                      <li class=" menu-profile"><a class="dropdown-item" href="/src/html/profile/index.html">Profile</a></li>
+                      <li class=" menu-contact"><a class="dropdown-item" href="/contact.html">Contact</a></li>
+                      <li class=" menu-about"><a class="dropdown-item" href="/about.html">About</a></li>
                       <li class=" menu-login"><a class="dropdown-item" href="/login.html">Log in</a></li>
                       <li class=" menu-logout"><a class="dropdown-item logout-link" href="/index.html">Log out</a></li>
                     </ul>
@@ -221,14 +221,41 @@
       <div class="back-to-top-button bg-primary text-white px-3 py-2"></div>
     </a>
   </main>
-  <footer class="border-top border-secondary">
-    <div class="container my-2 pb-0">
-      <div class="row">
-        <div class="col">
-          <p class="text-center m-0 fs-5">© 2023 <span class="text-logo fs-5">Dream</span><span class="text-primary text-logo fs-5">Bids</span></p>
+  <footer class="border-top border-primary">
+      <div class="container my-2 pb-0 max-width-300 mx-auto">
+        <div class="row border-primary pb-1 d-flex justify-content-between align-items-top">
+          <div class="col-6">
+            <ul class="nav flex-column border-primary footer-nav">
+              <h6 class="text-black mb-2">Site navigation</h6>
+              <li class="my-0 nav-item menu-home"><a class="px-1 ms-2 py-0 nav-link active" href="/index.html">Home</a></li>
+              <li class="my-0 nav-item menu-profile"><a class="px-1 ms-2 py-0 nav-link" href="/src/html/profile/index.html">Profile</a></li>
+              <li class="my-0 nav-item menu-contact"><a class="px-1 ms-2 py-0 nav-link" href="/contact.html">Contact</a></li>
+              <li class="my-0 nav-item menu-about"><a class="px-1 ms-2 py-0 nav-link" href="/about.html">About</a></li>
+              <li class="my-0 nav-item menu-login"><a class="px-1 ms-2 py-0 nav-link" href="/login.html">Log in</a></li>
+              <li class="my-0 nav-item menu-logout"><a class="px-1 ms-2 py-0 nav-link logout-link" href="/index.html">Log out</a></li>
+            </ul>
+          </div>
+          <div class="col-6">
+            <div class="row">
+              <a href="/index.html" alt="Home" aria-labelledby="Home" class=" align-items-center">
+                <span class="out-of-view-menu-text">Home</span>
+                <img src="/images/db-logo.svg" class="header-logo" alt="DreamBids Logo">
+              </a>
+            </div>
+            <div class="row mt-3">
+              <div class="col text-primary text-center fs-3 d-flex justify-content-around mt-2">
+                <a href="https://www.facebook.com"><i class="bi bi-facebook"></i><span class="out-of-view-menu-text">Find us on Facebook</span></a>
+                <a href="https://www.instagram.com"><i class="bi bi-instagram"></i><span class="out-of-view-menu-text">Find us on Instagram</span></a>
+                <a href="https://github.com/runeunhjem/semester-project-2"><i class="bi bi-github"></i><span class="out-of-view-menu-text">DreamBids on GitHub</span></a>
+              </div>
+          </div>
+        </div>
+        <div class="row-fluid border-top mt-4 mx-auto">
+          <div class="col">
+            <p class="text-center m-0 fs-6">Copyright © 2023 <span class="text-logo fs-5">Dream</span><span class="text-primary text-logo fs-5">Bids</span></p>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
   </body>
 </html>

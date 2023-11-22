@@ -120,14 +120,25 @@ a {
 
 .overlay-icon {
   position: absolute;
-  bottom: 10px; /* Position as per your design */
-  right: 10px; /* Position as per your design */
+  bottom: 10px;
+  right: 10px;
   background-color: #1684d8;
   color: white;
   padding: 5px;
-  border-radius: 20%;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1em;
+}
+
+.footer-nav {
+  li:hover {
+    background-color: #1684d8; // Light blue background
+    color: #ffffff !important;
+    border-radius: 12px;
+  }
+  a:hover {
+    color: #ffffff !important;
+  }
 }
