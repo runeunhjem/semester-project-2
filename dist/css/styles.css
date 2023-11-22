@@ -12563,8 +12563,8 @@ a {
 
 @media screen and (max-width: 547px) {
   .max-width-300 {
-    padding: 10px;
-    max-width: 95%;
+    padding: 10px 0;
+    max-width: 90%;
   }
 }
 

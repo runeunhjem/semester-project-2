@@ -44,8 +44,8 @@ a {
 
 .max-width-300 {
   @media screen and (max-width: 547px) {
-    padding: 10px;
-    max-width: 95%;
+    padding: 10px 0;
+    max-width: 90%;
   }
   // max-width: 300px;
 }
