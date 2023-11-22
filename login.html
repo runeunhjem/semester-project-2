@@ -25,25 +25,17 @@
             <img src="/images/db-logo.svg" class="header-logo" alt="DreamBids Logo">
           </a>
         </div>
-        <div class="col-md-2 col-lg-3 spacer-col d-none">Test</div>
         <div class="col-7 col-md-8 col-lg-7 d-flex justify-content-between p-0">
           <div class="container d-flex flex-column justify-content-between p-0">
-            <div class="row">
-              <div class="col-9 col-md-10 col-lg-10 fs-6 d-flex">
+            <div class="row-fluid">
+              <div class="col-fluid fs-6 d-flex justify-content-between">
                 <div class="col col-md-8 d-none d-md-flex p-3 ps-0">
                   <form class="d-flex mt-1" role="search" id="searchForm">
                     <input class="form-control me-2 max-width-300" id="searchInput" type="search" name="searchQuery" placeholder="Search" aria-label="Search">
                     <button class="btn btn-primary" type="submit"><i class="bi text-white ps-1 bi-search me-2"></i><span class="visually-hidden">Search</span></button>
                   </form>
                 </div>
-                <div class="col col-md-4 ms-md-2 text-md-end">
-                  <p class="p-0 m-0 profile-name">Profile name</p>
-                  <p class="p-0 m-0 profile-listings">Listings: 0</p>
-                  <p class="p-0 m-0 profile-credits">Balance: <i class="bi bi-currency-dollar"></i>0</p>
-                </div>
-              </div>
-              <div class="col-3 col-md-2 col-lg-2 d-flex justify-content-end">
-                <img class="header-profile-image rounded-circle shadow" src="/images/profile.svg" alt="Profile image of [User's Name]">
+                <div id="profileContainer" class="col-fluid d-flex justify-content-between w-100">
               </div>
             </div>
             <div class="row py-1 px-0 icons">
