@@ -98,15 +98,37 @@ a {
   left: -10000px;
 }
 
-.categories-container {
+.categories-container,
+.latest-auctions {
+  margin: 1em;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
-  overflow-x: scroll;
-  white-space: nowrap;
+  // overflow-x: scroll;
+  // white-space: nowrap;
 }
 
-.categories-container::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+.categories-container::-webkit-scrollbar,
+.latest-auctions::-webkit-scrollbar {
+  display: none; /* Hide scrollbar by default in Safari and Chrome */
+}
+
+/* Show scrollbar on hover in WebKit browsers */
+.categories-container:hover::-webkit-scrollbar,
+.latest-auctions:hover::-webkit-scrollbar {
+  display: block;
+}
+
+/* Show scrollbar on hover in Firefox */
+.categories-container:hover,
+.latest-auctions:hover {
+  scrollbar-width: auto;
+}
+
+/* Optional: Add styles for the scrollbar thumb for better visibility */
+.categories-container::-webkit-scrollbar-thumb,
+.latest-auctions::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  border-radius: 10px;
 }
 
 .listings {
@@ -116,6 +138,10 @@ a {
 .bids {
   font-size: 16px;
   font-weight: bold;
+}
+
+#toggleLatestAuctions {
+  cursor: pointer;
 }
 
 .listing-title {

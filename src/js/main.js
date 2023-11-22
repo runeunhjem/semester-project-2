@@ -1,7 +1,7 @@
 import { toTopButton } from "./utils/back-to-top-button.mjs";
 import { attachLogoutEvent } from "./logout.js";
 import { applyBootstrapValidation } from "./utils/validation.mjs";
-import { toggleSearchSection } from "./utils/toggleMobileSearch.mjs";
+import { toggleSearchSection } from "./utils/togglemobilesearch.mjs";
 
 /**
  * Apply Bootstrap validation to forms.

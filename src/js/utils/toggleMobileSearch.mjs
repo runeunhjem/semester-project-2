@@ -3,7 +3,7 @@ export function toggleSearchSection() {
   if (!searchIcon) return; // Safeguard in case the element is not found
 
   searchIcon.addEventListener("click", function () {
-    var searchSection = document.getElementById("mobile-search");
+    const searchSection = document.getElementById("mobile-search");
     if (searchSection) {
       searchSection.classList.toggle("d-none");
     }
