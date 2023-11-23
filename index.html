@@ -51,7 +51,6 @@
                 </div>
                 <nav class="text-primary">
                   <div class="dropdown d-flex align-items-center">
-                    <!-- <i class="bi fs-3 bi-list me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Menu</span> -->
                     <i class="bi fs-3 bi-list me-2 my-2 dropdown-toggle icon-link icon-link-hover" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></i><span class="dropdown-toggle d-none d-md-inline-flex" data-bs-toggle="dropdown">Menu</span>
                     <ul class="dropdown-menu border-primary" aria-labelledby="dropdownMenuButton">
                       <li class=" menu-home"><a class="dropdown-item" href="/index.html">Home</a></li>
@@ -90,7 +89,7 @@
       <!-- End Back-to-top -->
 
       <!-- Categories -->
-      <div class="categories-container container d-flex flex-nowrap mb-3 justify-content-start mx-md-auto justify-content-md-center gap-3 overflow-x-auto max-width-300">
+      <div class="categories-container container d-flex flex-nowrap pb-3 justify-content-start mx-md-auto justify-content-md-center gap-3 overflow-x-auto max-width-300">
         <button class="category-button bg-white rounded border text-center btn btn-group">Accessories</button>
         <button class="category-button bg-white rounded border text-center btn btn-group">Art</button>
         <button class="category-button bg-white rounded border text-center btn btn-group">Gaming</button>
@@ -111,18 +110,19 @@
 
           </div>
         </div>
-        <div class="row-fluid d-flex flex-nowrap overflow-scroll latest-auctions bg-info rounded shadow-sm py-3 px-0">
+        <div class="row-fluid d-flex flex-nowrap overflow-scroll latest-auctions bg-info rounded shadow-sm py-3 px-0" id="latest-auctions">
           <!-- Spinner - Hide when loaded -->
-          <div class="d-none justify-content-center">
+          <!-- <div class="d-none justify-content-center">
             <div class="spinner-border" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
-          </div>
-          <div class="col ms-1 p-0">
+          </div> -->
+          <!-- End of spinner -->
+          <!-- <div class="latest-auctions" id="latest-auctions"></div> -->
+          <div class="col ms-1 p-0 latest-auctions-card">
             <div class="container listings">
               <div class="row">
                 <div class="col">
-
                   <div class="card mx-auto shadow-sm">
                     <div class="row">
                       <div class="col">
@@ -139,7 +139,7 @@
                             </div>
                           </div>
                           <div class="overlay-icon px-2 shadow">
-                            <i class="bi bi-star pe-2"></i><span class="favorited"> 1234</span>
+                            <i class="bi bi-star"></i>
                           </div>
                         </div>
                       </div>
@@ -173,12 +173,11 @@
                       </div>
                     </div>
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
-          <div class="col ms-1 p-0">
+          <div class="col ms-1 p-0 latest-auctions-card">
             <div class="container listings">
               <div class="row">
                 <div class="col">
@@ -199,7 +198,7 @@
                             </div>
                           </div>
                           <div class="overlay-icon px-2 shadow">
-                            <i class="bi bi-star pe-2"></i><span class="favorited"> 1234</span>
+                            <i class="bi bi-star"></i>
                           </div>
                         </div>
                       </div>
@@ -238,7 +237,7 @@
               </div>
             </div>
           </div>
-          <div class="col ms-1 p-0">
+          <div class="col ms-1 p-0 latest-auctions-card">
             <div class="container listings">
               <div class="row">
                 <div class="col">
@@ -259,7 +258,7 @@
                             </div>
                           </div>
                           <div class="overlay-icon px-2 shadow">
-                            <i class="bi bi-star pe-2"></i><span class="favorited"> 1234</span>
+                            <i class="bi bi-star"></i>
                           </div>
                         </div>
                       </div>
@@ -298,7 +297,7 @@
               </div>
             </div>
           </div>
-          <div class="col ms-1 p-0">
+          <div class="col ms-1 p-0 latest-auctions-card">
             <div class="container listings">
               <div class="row">
                 <div class="col">
@@ -319,7 +318,7 @@
                             </div>
                           </div>
                           <div class="overlay-icon px-2 shadow">
-                            <i class="bi bi-star pe-2"></i><span class="favorited"> 1234</span>
+                            <i class="bi bi-star"></i>
                           </div>
                         </div>
                       </div>
