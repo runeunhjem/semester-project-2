@@ -1,4 +1,4 @@
-import { API_BASE_URL, loginUrl } from "./api/apiUrls.mjs";
+import { API_BASE_URL, loginUrl } from "./api/apiurls.mjs";
 import { preFillFormFields, loginUser } from "./utils/login.mjs";
 
 /**
