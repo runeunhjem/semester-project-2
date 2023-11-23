@@ -3,6 +3,7 @@ import { fetchAllListingsWithMedia } from "./api/listings-all-with-media.mjs";
 import { fetchSingleListingById } from "./api/listings-singel-id.mjs";
 import { latestListings } from "./api/listings-latest.mjs";
 import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
+import { fetchProfileListings } from "./api/get-profile.mjs";
 
 /**
  * Fetch all listings
@@ -28,3 +29,8 @@ latestListings();
  * 12 Listings that ends soon
  */
 listingsEndsSoon();
+
+/**
+ * Fetch profile listings
+ */
+fetchProfileListings();
