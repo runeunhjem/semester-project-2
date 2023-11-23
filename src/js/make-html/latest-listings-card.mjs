@@ -117,7 +117,7 @@ export function createListingCard(listing) {
 
   const currentBidP = document.createElement("p");
   currentBidP.className = "text-primary text-start ps-2 mb-0 current-bid";
-  currentBidP.innerHTML = `Current Bid: <span class="current-bid">${listing.currentBid}</span>`; // Use listing current bid
+  currentBidP.innerHTML = `Current Bid: <span class="current-bid">${listing.currentBid}</span>`; // Use listings newest bid
   currentBidColDiv.appendChild(currentBidP);
 
   // Number of bids
@@ -127,7 +127,7 @@ export function createListingCard(listing) {
 
   const numberOfBidsP = document.createElement("p");
   numberOfBidsP.className = "text-primary text-end pe-2 mb-0";
-  numberOfBidsP.innerHTML = `Bids: <span class="number-of-bids">${listing.bids.length}</span>`; // Use listing bids length
+  numberOfBidsP.innerHTML = `Bids: <span class="number-of-bids">${listing.bids.length}</span>`; // Use listings bids length
   numberOfBidsColDiv.appendChild(numberOfBidsP);
 
   // Second row for ends and listing ID
@@ -144,7 +144,7 @@ export function createListingCard(listing) {
   const shortEndsAt = convertToShortDateFormat(endsAt);
   const endsP = document.createElement("p");
   endsP.className = "text-black text-start ps-2 mb-1";
-  endsP.innerHTML = `Ends: <span class="end-time">${shortEndsAt}</span>`; // Use listing endsAt
+  endsP.innerHTML = `Ends: <span class="end-time">${shortEndsAt}</span>`; // Use listings endsAt
   endsColDiv.appendChild(endsP);
 
   // Listing ID

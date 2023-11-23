@@ -35,6 +35,6 @@ export async function fetchAllListingsWithMedia() {
     listing => listing.media && listing.media.length > 0
   );
 
-  console.log("All active Listings with Media", listingsWithMedia);
+  // console.log("All active Listings with Media", listingsWithMedia);
   return listingsWithMedia;
 }
