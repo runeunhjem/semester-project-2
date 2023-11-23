@@ -7,7 +7,7 @@ import {
 } from "./apiUrls.mjs";
 import { doApiFetch } from "./doFetch.mjs";
 
-export async function fetchAllListings() {
+export async function fetchAllListingsWithMedia() {
   let allListingsArray = [];
   const limit = 100;
   let offset = 0;
@@ -19,7 +19,7 @@ export async function fetchAllListings() {
       "GET"
     );
 
-    const listings = await response;
+    const listings = await response; // Assuming response returns JSON
 
     if (listings.length === 0 || listings.length < limit) {
       allListingsArray = [...allListingsArray, ...listings];
@@ -30,6 +30,11 @@ export async function fetchAllListings() {
     offset += limit;
   }
 
-  console.log("All active Listings", allListingsArray);
-  return allListingsArray;
+  // Filter listings to include only those with media
+  const listingsWithMedia = allListingsArray.filter(
+    listing => listing.media && listing.media.length > 0
+  );
+
+  console.log("All active Listings with Media", listingsWithMedia);
+  return listingsWithMedia;
 }

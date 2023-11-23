@@ -12603,6 +12603,12 @@ a {
   text-indent: 10px;
 }
 
+.carousel-item {
+  min-width: 100%;
+  max-width: 100%;
+  height: 200px;
+}
+
 .back-to-top-button {
   position: fixed;
   bottom: 100px;
