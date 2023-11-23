@@ -28,8 +28,8 @@ export function createListingCard(listing) {
 
   // Create the carousel
   const carouselDiv = document.createElement("div");
-  carouselDiv.className = "carousel slide";
   carouselDiv.id = listing.id; // Use listing ID
+  carouselDiv.className = "carousel slide";
   carouselDiv.setAttribute("data-bs-ride", "carousel");
   cardDiv.appendChild(carouselDiv);
 
@@ -67,7 +67,7 @@ export function createListingCard(listing) {
   cardDiv.appendChild(titleRowDiv);
 
   const titleColDiv = document.createElement("div");
-  titleColDiv.className = "col";
+  titleColDiv.className = "col title-listing";
   titleRowDiv.appendChild(titleColDiv);
 
   const titleH1 = document.createElement("h1");
@@ -116,7 +116,7 @@ export function createListingCard(listing) {
   }
 
   const currentBidP = document.createElement("p");
-  currentBidP.className = "text-primary text-start ps-2 mb-0";
+  currentBidP.className = "text-primary text-start ps-2 mb-0 current-bid";
   currentBidP.innerHTML = `Current Bid: <span class="current-bid">${listing.currentBid}</span>`; // Use listing current bid
   currentBidColDiv.appendChild(currentBidP);
 
