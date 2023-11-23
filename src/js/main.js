@@ -5,7 +5,7 @@ import { toggleSearchSection } from "./utils/togglemobilesearch.mjs";
 import { updateProfileDisplay } from "./make-html/profile-info.mjs";
 
 /**
- * Update the profile display depending if user is logged in.
+ * Update the header profile info depending on if user is logged in.
  */
 document.addEventListener("DOMContentLoaded", () => {
   updateProfileDisplay();

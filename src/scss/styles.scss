@@ -80,6 +80,9 @@ a {
 .mobile-search {
   width: 100%;
   background-color: #ecf8ff; // Light blue background
+  input {
+    text-indent: 10px;
+  }
 }
 
 // #profileContainer {

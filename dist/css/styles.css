@@ -12599,6 +12599,9 @@ a {
   width: 100%;
   background-color: #ecf8ff;
 }
+.mobile-search input {
+  text-indent: 10px;
+}
 
 .back-to-top-button {
   position: fixed;
