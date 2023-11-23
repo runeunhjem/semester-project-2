@@ -22,11 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   toggleSearchSection();
   applyBootstrapValidation();
-  displayLatestListings();
-  setTimeout(() => {
-    // Wait for images to load
-    initializeAllCarousels();
-  }, 2000);
+
+  if (!window.location.href.includes("login")) {
+    displayLatestListings();
+
+    setTimeout(() => {
+      // Wait for images to load
+      initializeAllCarousels();
+    }, 2000);
+  }
 });
 
 /**
