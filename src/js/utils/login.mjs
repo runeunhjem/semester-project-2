@@ -34,19 +34,12 @@ export async function loginUser(url, userData) {
 
     if (response.status >= 200 && response.status <= 299) {
       // Needed for smooth sailing after login
-      const accessToken = json.accessToken;
-      localStorage.setItem("accessToken", accessToken);
+      // const accessToken = json.accessToken;
+      localStorage.setItem("accessToken", json.accessToken);
       localStorage.setItem("loggedInUser", json.name);
       localStorage.setItem("currentProfileName", json.name);
-      localStorage.setItem("authorName", json.name);
       localStorage.setItem("URLProfilename", json.name);
-      localStorage.setItem("isFollowing", false);
       localStorage.setItem("isLoggedIn", true);
-
-      // const URLProfilename = json.name;
-      // const currentProfileURL = `/src/profile/index.html?name=${encodeURIComponent(
-      //   URLProfilename
-      // )}`;
 
       if (document.getElementById("remember").checked) {
         localStorage.setItem("rememberMe", "true");
@@ -63,7 +56,8 @@ export async function loginUser(url, userData) {
         window.location.href = "/index.html";
       }, 300);
     } else {
-      console.log("Login failed!");
+      console.error("Login failed!");
+      alert("Login failed! Check info and try later.");
     }
     return json;
   } catch (error) {

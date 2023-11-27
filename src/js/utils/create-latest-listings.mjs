@@ -7,7 +7,7 @@ export async function displayLatestListings() {
 
     // Get the container where the listings should be displayed
     const latestAuctionsContainer = document.getElementById("latest-auctions");
-
+    if (!latestAuctionsContainer) return; // Exit if the container is not found
     // Clear previous content (if necessary)
     // latestAuctionsContainer.innerHTML = "";
 

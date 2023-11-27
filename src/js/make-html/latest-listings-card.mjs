@@ -5,7 +5,15 @@ export function createListingCard(listing) {
   // Create the main column div
   const colDiv = document.createElement("div");
   colDiv.className = "col ms-1 p-0 latest-auctions-card";
-
+  colDiv.setAttribute("data-post-id", listing.id);
+  colDiv.setAttribute("data-post-sellerName", listing.seller.name);
+  colDiv.setAttribute("data-post-sellerAvatar", listing.seller.avatar);
+  colDiv.setAttribute("data-post-sellerWins", listing.seller.wins.length);
+  colDiv.setAttribute("data-post-listingBids", listing._count.bids);
+  colDiv.addEventListener("mouseover", handlePostCardClick);
+  colDiv.addEventListener("click", () => {
+    window.location.href = `/src/html/auction/listing.html?id=${listing.id}`;
+  });
   // Create container div
   const containerDiv = document.createElement("div");
   containerDiv.className = "container listings";
@@ -46,9 +54,13 @@ export function createListingCard(listing) {
     carouselInnerDiv.appendChild(carouselItemDiv);
 
     const img = document.createElement("img");
+
     img.src = mediaUrl;
     img.className = "d-block w-100 carousel-image";
     img.alt = `Carousel image ${index + 1}`;
+    // img.addEventListener("click", () => {
+    //   window.location.href = `/src/html/auction/listing.html?id=${listing.id}`;
+    // });
     carouselItemDiv.appendChild(img);
   });
 
@@ -112,7 +124,7 @@ export function createListingCard(listing) {
     listing.currentBid = currentBid.amount;
   } else {
     listing.currentBid = 0;
-    console.log("No bids available");
+    // console.log("No bids available");
   }
 
   const currentBidP = document.createElement("p");
@@ -159,4 +171,27 @@ export function createListingCard(listing) {
   idColDiv.appendChild(idP);
 
   return colDiv;
+}
+
+// Sets the post ID and author name in localStorage and checks if it is the logged in user when a post card is clicked
+export async function handlePostCardClick(event) {
+  const card = event.currentTarget;
+
+  const listingId = card.getAttribute("data-post-id");
+  const listingBids = card.getAttribute("data-post-listingBids");
+  const sellerName = card.getAttribute("data-post-sellerName");
+  const sellerAvatar = card.getAttribute("data-post-sellerAvatar");
+  const sellerWins = card.getAttribute("data-post-sellerWins");
+
+  localStorage.setItem("listingId", listingId);
+  localStorage.setItem("listingBids", listingBids);
+  localStorage.setItem("sellerName", sellerName);
+  localStorage.setItem("sellerAvatar", sellerAvatar);
+  localStorage.setItem("sellerWins", sellerWins);
+
+  // if (authorName !== loggedInUser) {
+  //   localStorage.setItem("isLoggedIn", false);
+  // } else if (authorName === loggedInUser) {
+  //   localStorage.setItem("isLoggedIn", true);
+  // }
 }

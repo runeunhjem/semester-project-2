@@ -12684,6 +12684,11 @@ a {
   width: 280px;
   max-height: 403px;
 }
+.latest-auctions-card:hover {
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.03);
+  cursor: pointer;
+}
 
 .listings {
   width: 280px;

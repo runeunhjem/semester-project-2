@@ -5,6 +5,7 @@ import { toggleSearchSection } from "./utils/togglemobilesearch.mjs";
 import { updateProfileDisplay } from "./make-html/profile-info.mjs";
 import { displayLatestListings } from "./utils/create-latest-listings.mjs";
 import { initializeAllCarousels } from "./utils/initialize-carousel.mjs";
+import { displayListingDetails } from "./utils/create-listing-details.mjs";
 
 /**
  * Update the header profile info depending on if user is logged in.
@@ -42,3 +43,8 @@ toTopButton();
  * Attach logout event to logout links.
  */
 attachLogoutEvent();
+
+/**
+ * Create single listing details.
+ */
+displayListingDetails();

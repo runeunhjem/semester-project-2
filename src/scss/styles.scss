@@ -166,8 +166,11 @@ a {
   height: 403px;
   width: 280px;
   max-height: 403px;
-  // display: flex;
-  // align-items: flex-start;
+  &:hover {
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1.03);
+    cursor: pointer;
+  }
 }
 
 .listings {

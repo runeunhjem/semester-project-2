@@ -14,6 +14,12 @@ export async function latestListings() {
     const listingsWithValidMedia = allListingsArray.filter(listing => {
       if (listing.media.length === 0) return false;
 
+      // Exclude Unsplash URLs without proper file extensions
+      const hasInvalidUnsplashUrl = listing.media.some(url => {
+        return url.includes("unsplash.com") && !url.match(/\.[0-9a-z]+$/i);
+      });
+
+      if (hasInvalidUnsplashUrl) return false;
       // Keep only media URLs with valid endings
       listing.media = listing.media.filter(url => {
         return validFileEndings.some(ending =>
