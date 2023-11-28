@@ -1,61 +1,44 @@
-export function createBidContainer() {
+// make-html/create-bid-container.mjs
+export function createBidContainer(highestBid) {
   const bidContainer = document.getElementById("place-bid");
   if (!bidContainer) {
     console.error("Bid container not found.");
     return;
   }
 
-  // Create a Bootstrap row
-  const rowDiv = document.createElement("div");
-  rowDiv.className =
-    "row d-flex flex-nowrap w-100 justify-content-between align-items-center px-0 mx-auto";
+  // Create label row
+  const labelRowDiv = document.createElement("div");
+  labelRowDiv.className = "mb-2"; // Margin bottom for spacing
 
-  // Create columns for label, input, and button
-  const labelCol = document.createElement("div");
-  labelCol.className =
-    "col-3 py-0 d-flex align-items-center justify-content-start"; // Adjust as needed
-
-  const inputCol = document.createElement("div");
-  inputCol.className =
-    "col-4 py-0 ms-3 px-0 d-flex align-items-center justify-content-start amount-input"; // Adjust as needed
-
-  const buttonCol = document.createElement("div");
-  buttonCol.className =
-    "col-5 py-0 ps-0 d-flex align-items-center justify-content-end"; // Adjust as needed
-
-  // Create elements
   const amountLabel = document.createElement("label");
   amountLabel.textContent = "Amount: ";
   amountLabel.setAttribute("for", "bidAmount");
-  amountLabel.className = "form-label fw-bold mt-2 text-black text-start";
+  amountLabel.className =
+    "form-label fw-bold text-black text-start align-self-center";
+
+  labelRowDiv.appendChild(amountLabel);
+
+  // Create input and button row
+  const inputButtonRowDiv = document.createElement("div");
+  inputButtonRowDiv.className = "d-flex mx-auto align-items-center"; // Flexbox for alignment
 
   const amountInput = document.createElement("input");
   amountInput.type = "number";
   amountInput.id = "bidAmount";
-  amountInput.style.textIndent = "10px";
-  amountInput.className = "form-control px-0";
-  amountInput.placeholder = "Amount";
+  amountInput.style.textIndent = "4px";
+  amountInput.style.width = "80px";
+  amountInput.className = "form-control mx-2";
+  amountInput.placeholder = "Enter your bid";
+  amountInput.value = highestBid + 1; // Set initial value to highest bid + 1
 
   const submitButton = document.createElement("button");
   submitButton.textContent = "Place Bid";
-  submitButton.className = "btn btn-primary px-1";
-  submitButton.addEventListener("click", () => {
-    const bidValue = amountInput.value;
-    // Validate and submit bid logic here
-    console.log("Bid submitted:", bidValue);
-    // Add API submission logic here
-  });
+  submitButton.className = "btn btn-primary mx-2"; // Margin for spacing
 
-  // Append elements to their respective columns
-  labelCol.appendChild(amountLabel);
-  inputCol.appendChild(amountInput);
-  buttonCol.appendChild(submitButton);
+  inputButtonRowDiv.appendChild(amountInput);
+  inputButtonRowDiv.appendChild(submitButton);
 
-  // Append columns to the row
-  rowDiv.appendChild(labelCol);
-  rowDiv.appendChild(inputCol);
-  rowDiv.appendChild(buttonCol);
-
-  // Append the row to the container
-  bidContainer.appendChild(rowDiv);
+  // Append rows to the container
+  bidContainer.appendChild(labelRowDiv);
+  bidContainer.appendChild(inputButtonRowDiv);
 }

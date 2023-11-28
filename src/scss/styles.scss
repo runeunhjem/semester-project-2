@@ -164,6 +164,10 @@ a {
   min-width: 260px;
 }
 
+.bid-date {
+  font-size: 0.8rem;
+}
+
 .latest-auctions-card {
   .countdown-display {
     font-weight: 400 !important;
@@ -212,7 +216,9 @@ a {
   @media screen and (min-width: 401px) {
     top: -380px !important;
     width: 100% !important;
+    height: 375px !important;
     max-width: 600px !important;
+    max-height: 375px;
     height: 200px !important;
     object-fit: cover !important;
   }
