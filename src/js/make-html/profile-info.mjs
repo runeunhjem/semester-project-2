@@ -47,7 +47,7 @@ export async function updateProfileDisplay() {
     console.log("Logged in user data", data);
 
     profileName.textContent = loggedInUser;
-    profileListings.textContent = data._count.listings;
+    profileListings.textContent = `Listings: ${data._count.listings}`;
     profileCredits.innerHTML = `Balance: <i class="bi bi-currency-dollar"></i>${data.credits}`;
     profileImage.src = data.avatar;
     profileImage.alt = "Profile image of runeunhjem";

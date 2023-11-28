@@ -58,9 +58,6 @@ export function createListingCard(listing) {
     img.src = mediaUrl;
     img.className = "d-block w-100 carousel-image";
     img.alt = `Carousel image ${index + 1}`;
-    // img.addEventListener("click", () => {
-    //   window.location.href = `/src/html/auction/listing.html?id=${listing.id}`;
-    // });
     carouselItemDiv.appendChild(img);
   });
 
