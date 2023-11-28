@@ -12519,6 +12519,12 @@ fieldset:disabled .btn {
     display: none !important;
   }
 }
+:root {
+  --color-light-green: #c3ffce;
+  --primary-font: "Arial", sans-serif;
+  --secondary-font: "Iceberg", sans-serif;
+}
+
 body {
   font-family: "Arial", sans-serif;
 }
@@ -12698,6 +12704,14 @@ a {
   font-size: 0.8rem;
 }
 
+.current-bid {
+  white-space: nowrap;
+}
+
+.current-bid-big {
+  background-color: var(--color-light-green);
+}
+
 .latest-auctions-card .countdown-display {
   font-weight: 400 !important;
   font-size: 0.9rem !important;
@@ -12781,10 +12795,6 @@ a {
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
   max-width: 100%;
-  white-space: nowrap;
-}
-
-.current-bid {
   white-space: nowrap;
 }
 

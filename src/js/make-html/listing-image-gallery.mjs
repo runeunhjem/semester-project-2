@@ -24,6 +24,7 @@ export function createImageGallery(listing) {
   // Create an img tag inside the overlay div
   const overlayImg = document.createElement("img");
   overlayImg.className = "img-fluid rounded shadow";
+  overlayImg.alt = "Enlarged image";
   overlayDiv.appendChild(overlayImg);
 
   // Create left and right navigation arrows
