@@ -9,7 +9,7 @@ console.log("listingIdParam", listingIdParam);
 export async function displayListingDetails() {
   try {
     const listing = await fetchSingleListingById(listingIdParam);
-    console.log("Single listing", listing);
+    // console.log("Single listing", listing);
 
     // Get the container where the listings should be displayed
     const listingDetailsContainer = document.getElementById("listingDetails");

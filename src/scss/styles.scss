@@ -131,7 +131,6 @@ a {
 
 .categories-container::-webkit-scrollbar,
 .latest-auctions::-webkit-scrollbar,
-.listing-details::-webkit-scrollbar,
 .listing-title::-webkit-scrollbar {
   display: none; /* Hide scrollbar by default in Safari and Chrome */
 }
@@ -139,7 +138,6 @@ a {
 /* Show scrollbar on hover in WebKit browsers */
 .categories-container:hover::-webkit-scrollbar,
 .listing-title:hover::-webkit-scrollbar,
-.listing-details:hover::-webkit-scrollbar,
 .latest-auctions:hover::-webkit-scrollbar {
   display: block;
 }
@@ -147,23 +145,23 @@ a {
 /* Show scrollbar on hover in Firefox */
 .categories-container:hover,
 .listing-title:hover,
-.latest-auctions:hover,
-.listing-details:hover {
+.latest-auctions:hover {
   scrollbar-width: auto;
 }
 
 /* Optional: Add styles for the scrollbar thumb for better visibility */
 .categories-container::-webkit-scrollbar-thumb,
 .latest-auctions::-webkit-scrollbar-thumb,
-.listing-details::-webkit-scrollbar-thumb,
 .listing-title::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   border-radius: 10px;
 }
 
 .latest-auctions,
-.listing-details {
-  height: 460px;
+.listing-details,
+.bid-details {
+  min-height: 460px;
+  min-width: 260px;
 }
 
 .latest-auctions-card {
