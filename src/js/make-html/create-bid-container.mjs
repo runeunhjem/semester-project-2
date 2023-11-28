@@ -8,13 +8,13 @@ export function createBidContainer(highestBid) {
 
   // Create label row
   const labelRowDiv = document.createElement("div");
-  labelRowDiv.className = "mb-2"; // Margin bottom for spacing
+  labelRowDiv.className = "mb-2 mx-auto"; // Margin bottom for spacing
 
   const amountLabel = document.createElement("label");
   amountLabel.textContent = "Amount: ";
   amountLabel.setAttribute("for", "bidAmount");
   amountLabel.className =
-    "form-label fw-bold text-black text-start align-self-center";
+    "form-label fw-bold text-black mx-auto align-self-center";
 
   labelRowDiv.appendChild(amountLabel);
 
