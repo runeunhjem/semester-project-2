@@ -119,19 +119,30 @@
         <div class="container-fluid w-100 d-flex justify-content-center">
           <div class="row w-100 gap-3 d-flex justify-content-between">
             <div class="col d-flex listing-details bg-info rounded shadow-sm py-3 px-0" id="listingDetails"></div>
-            <div class="col d-flex flex-column bid-details bg-info rounded shadow-sm py-3 px-2" id="bidDetails">
-              <div class="row d-flex w-100">
-                <div class="col">
-                  <p class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300">Auction Details</p>
+            <div class="col d-flex flex flex-wrap mx-auto text-center bid-details bg-info rounded shadow-sm py-3 px-2" id="bidDetails">
+              <div class="row d-flex w-100 mx-auto text-center d-flex justify-content-center align-items-start">
+                <div class="col w-100">
+                  <p class="fs-4 px-4 pt-1 pb-0 border-bottom mb-0 rounded d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300">Auction Details</p>
+                </div>
+                <div class="place-bid max-width-300 d-flex justify-content-between" id="place-bid"></div>
+                <div class="col border rounded shadow-sm align-items-start">
+                  <div class="container-fluid w-100 d-flex justify-content-between">
+                    <p class="col-8 fs-3 pt-1 pb-0 mb-0 rounded d-flex text-nowrap text-primary text-left max-width-300">Current bid:</p>
+                    <p class="col-4 fs-3 pt-1 pb-0 mb-0 rounded d-flex justify-content-end text-nowrap text-primary text-right max-width-300" id="currentBid"></p>
+                  </div>
+                  <div class="container-fluid w-100 d-flex justify-content-between">
+                    <p class="col-7 fs-6 pt-1 pb-0 mb-1 rounded d-flex text-nowrap text-primary text-left max-width-300">Current leader:</p>
+                    <p class="col-5 fs-6 pt-1 pb-0 mb-1 rounded d-flex justify-content-end text-nowrap text-primary text-right max-width-300" id="currentLeader"></p>
+                  </div>
                 </div>
               </div>
-              <div class="row w-100">
+              <div class="row w-100 mx-auto text-center d-flex justify-content-center">
                 <div class="col">
-                  <p class="fs-6 px-4 py-1 rounded cursor-pointer d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300">Bid History</p>
+                  <p class="fs-6 px-4 py-1 rounded d-flex justify-content-center flex-nowrap text-primary text-center max-width-300">Bid History</p>
                 </div>
               </div>
-              <div class="row w-100">
-                <div class="col" id="bid-history"></div>
+              <div class="row w-100 mx-auto text-center d-flex justify-content-center">
+                <div class="col" id="bid-history">Maybe remove</div>
               </div>
             </div>
           </div>

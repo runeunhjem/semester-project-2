@@ -27,27 +27,33 @@
 
 // Add a function wrapper
 (function () {
-  const listingDetails = document.getElementById("toggleListingDetails");
-  if (!listingDetails) {
-    // Exit if the container is not found
+  const toggleListingDetailsButton = document.getElementById(
+    "toggleListingDetails"
+  );
+  if (!toggleListingDetailsButton) {
+    // Exit if the button is not found
     return;
-  } else {
-    document
-      .getElementById("toggleListingDetails")
-      .addEventListener("click", function () {
-        const listingDetails = document.querySelector(".listing-details");
-        const chevronIcon = document.getElementById("chevronIcon");
-
-        listingDetails.classList.toggle("d-none");
-
-        // Toggle chevron icon direction
-        if (listingDetails.classList.contains("d-none")) {
-          chevronIcon.classList.remove("bi-chevron-up");
-          chevronIcon.classList.add("bi-chevron-down");
-        } else {
-          chevronIcon.classList.remove("bi-chevron-down");
-          chevronIcon.classList.add("bi-chevron-up");
-        }
-      });
   }
+
+  toggleListingDetailsButton.addEventListener("click", function () {
+    const listingDetails = document.querySelector(".listing-details");
+    const bidDetails = document.querySelector(".bid-details");
+    const chevronIcon = document.getElementById("chevronIcon");
+
+    // Toggle the display of listing and bid details
+    listingDetails.classList.toggle("d-none");
+    if (bidDetails) {
+      // Check if bidDetails exists
+      bidDetails.classList.toggle("d-none");
+    }
+
+    // Toggle chevron icon direction
+    if (listingDetails.classList.contains("d-none")) {
+      chevronIcon.classList.remove("bi-chevron-up");
+      chevronIcon.classList.add("bi-chevron-down");
+    } else {
+      chevronIcon.classList.remove("bi-chevron-down");
+      chevronIcon.classList.add("bi-chevron-up");
+    }
+  });
 })();

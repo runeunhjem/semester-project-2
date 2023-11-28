@@ -12681,6 +12681,20 @@ a {
   min-width: 260px;
 }
 
+.latest-auctions-card .countdown-display {
+  font-weight: 400 !important;
+  font-size: 0.9rem !important;
+  color: #ff0000 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 !important;
+  margin: 2px 0 0 5px !important;
+  padding: 0 !important;
+}
+
+.amount-input {
+  width: 100px;
+}
+
 .latest-auctions-card {
   min-height: 100%;
   height: 403px;
@@ -12699,15 +12713,31 @@ a {
 }
 
 .gallery-images {
-  max-width: 70px;
+  width: 70px;
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover;
 }
 
-.overlay {
-  top: -220px !important;
-  max-width: 300px;
+@media screen and (max-width: 400px) {
+  .overlay {
+    top: -220px !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    height: 100px !important;
+    -o-object-fit: cover !important;
+    object-fit: cover !important;
+  }
+}
+@media screen and (min-width: 401px) {
+  .overlay {
+    top: -380px !important;
+    width: 100% !important;
+    max-width: 600px !important;
+    height: 200px !important;
+    -o-object-fit: cover !important;
+    object-fit: cover !important;
+  }
 }
 
 .listings {

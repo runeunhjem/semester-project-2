@@ -1,5 +1,6 @@
 import { getNewestBid } from "../utils/bids-get-highest.mjs";
-import { convertToShortDateFormat } from "../utils/date-converter.mjs";
+// import { convertToShortDateFormat } from "../utils/date-converter.mjs";
+import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs"; // Adjust path as necessary
 
 export function createListingCard(listing) {
   // Create the main column div
@@ -146,23 +147,27 @@ export function createListingCard(listing) {
 
   // Ends at
   const endsColDiv = document.createElement("div");
-  endsColDiv.className = "col text-nowrap ends";
+  endsColDiv.className =
+    "col text-nowrap ends ps-3 d-flex justify-content-between";
   endsRowDiv.appendChild(endsColDiv);
 
-  const endsAt = listing.endsAt;
-  const shortEndsAt = convertToShortDateFormat(endsAt);
-  const endsP = document.createElement("p");
-  endsP.className = "text-black text-start ps-2 mb-1";
-  endsP.innerHTML = `Ends: <span class="end-time">${shortEndsAt}</span>`; // Use listings endsAt
-  endsColDiv.appendChild(endsP);
+  // Create and append the countdown display element
+  const countdownDisplay = document.createElement("p");
+  countdownDisplay.className = "countdown-display text-danger";
+  endsColDiv.appendChild(countdownDisplay);
+
+  // Update the countdown every second
+  const countdownInterval = setInterval(() => {
+    updateCountdownDisplay(listing.endsAt, countdownDisplay, countdownInterval);
+  }, 1000);
 
   // Listing ID
   const idColDiv = document.createElement("div");
-  idColDiv.className = "col text-nowrap text-black listing-id";
+  idColDiv.className = "col text-nowrap text-black listing-id px-0";
   endsRowDiv.appendChild(idColDiv);
 
   const idP = document.createElement("p");
-  idP.className = "text-black fw-bold text-end pe-2 mb-1";
+  idP.className = "text-black fw-bold text-end pe-4 mb-1";
   const shortId = listing.id.slice(0, 3); // Extracts first 3 characters of the ID
   idP.innerHTML = `ID: <span class="listing-id">${shortId}</span>`; // Use shortened ID
   idColDiv.appendChild(idP);

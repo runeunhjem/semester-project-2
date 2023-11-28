@@ -18,7 +18,7 @@ export function createImageGallery(listing) {
   const overlayDiv = document.createElement("div");
   overlayDiv.className =
     "overlay position-absolute top-0 start-50 translate-middle-x w-100 d-flex d-none justify-content-center align-items-center";
-  overlayDiv.style.top = "-50px"; // Adjust the top position
+  // overlayDiv.style.top = "-50px"; // Adjust the top position
   imageGalleryContainer.appendChild(overlayDiv); // Append to the gallery container
 
   // Create an img tag inside the overlay div
