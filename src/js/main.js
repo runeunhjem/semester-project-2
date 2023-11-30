@@ -8,6 +8,7 @@ import { initializeAllCarousels } from "./utils/initialize-carousel.mjs";
 import { displayListingDetails } from "./utils/create-listing-details.mjs";
 import { displayAllListings } from "./utils/create-all-listings.mjs";
 import { isLoggedIn } from "./variables/constants.mjs";
+import { createNewListingForm } from "./make-html/create-new-listing.mjs";
 
 if (isLoggedIn) {
   // Select all elements with the class 'restricted'
@@ -72,3 +73,6 @@ if (currentPage === "listing.html") {
   // Run on index page (or root)
   displayAllListings();
 }
+
+// Assuming there's an element with the ID 'formContainer' on your page
+createNewListingForm("formContainer");
