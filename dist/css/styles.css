@@ -12529,6 +12529,10 @@ body {
   font-family: "Arial", sans-serif;
 }
 
+.restricted {
+  display: none;
+}
+
 main {
   border-bottom: 1px solid #0400ff;
   padding-bottom: 3em;

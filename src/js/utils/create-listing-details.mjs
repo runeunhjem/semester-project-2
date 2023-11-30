@@ -6,7 +6,7 @@ import { createImageGallery } from "../make-html/listing-image-gallery.mjs";
 import { createBidContainer } from "../make-html/create-bid-container.mjs";
 import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs"; // Adjust path as necessary
 import { createBidEntry } from "../make-html/create-bid-history-entry.mjs";
-
+import { populateCategories } from "../make-html/populate-categories.mjs";
 const urlParams = new URLSearchParams(window.location.search);
 const listingIdParam = urlParams.get("id");
 
@@ -14,11 +14,18 @@ export async function displayListingDetails() {
   try {
     const listing = await fetchSingleListingById(listingIdParam);
 
+    await populateCategories(listing);
+
     // Set the page title to the listing title
     if (window.location.pathname === "/src/html/auction/listing.html") {
       document.title = `${listing.title} | DreamBids`;
       const listingTitle = document.getElementById("listingTitle");
-      listingTitle.textContent = listing.title;
+      if (listingTitle) {
+        listingTitle.textContent =
+          listing.title.length > 30
+            ? listing.title.slice(0, 30) + "..."
+            : listing.title;
+      }
     }
     // Get the container where the listings should be displayed
     const listingDetailsContainer = document.getElementById("listingDetails");
@@ -180,7 +187,7 @@ export async function displayListingDetails() {
         { label: "ID", value: id },
         { label: "Description", value: description },
         { label: "Tags", value: tags.join(", ") },
-        { label: "Media", value: media.join("\n"), isMedia: true },
+        // { label: "Media", value: media.join("\n"), isMedia: true },
         { label: "Created", value: new Date(created).toLocaleString() },
         { label: "Updated", value: new Date(updated).toLocaleString() },
         { label: "Ends At", value: new Date(endsAt).toLocaleString() },
@@ -196,14 +203,14 @@ export async function displayListingDetails() {
         specEntry.className =
           "spec-entry d-flex flex-column my-1 border-bottom";
         if (index % 2 === 1) {
-          specEntry.style.backgroundColor = "#ecf8ff";
+          specEntry.style.backgroundColor = "#fff6ec";
           // specEntry.style.backgroundColor = "#ecffff";
         }
 
         if (spec.isLink) {
           const sellerLink = document.createElement("a");
           sellerLink.href = `/html/profile/index.html?${seller.name}`;
-          sellerLink.textContent = seller.name;
+          sellerLink.textContent = `${seller.name} | View Profile`;
           sellerLink.className = "fw-bold";
           specEntry.children[1].appendChild(sellerLink); // Append link to the value container
         }

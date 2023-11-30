@@ -7,6 +7,17 @@ import { displayLatestListings } from "./utils/create-latest-listings.mjs";
 import { initializeAllCarousels } from "./utils/initialize-carousel.mjs";
 import { displayListingDetails } from "./utils/create-listing-details.mjs";
 import { displayAllListings } from "./utils/create-all-listings.mjs";
+import { isLoggedIn } from "./variables/constants.mjs";
+
+if (isLoggedIn) {
+  // Select all elements with the class 'restricted'
+  const restrictedElements = document.querySelectorAll(".restricted");
+
+  // Loop through each element and remove the 'restricted' class
+  restrictedElements.forEach(element => {
+    element.classList.remove("restricted");
+  });
+}
 
 /**
  * Update the header profile info depending on if user is logged in.
@@ -45,12 +56,19 @@ toTopButton();
  */
 attachLogoutEvent();
 
-/**
- * Create single listing details.
- */
-displayListingDetails();
+// Function to get the current page name from the URL
+function getCurrentPage() {
+  const path = window.location.pathname;
+  return path.substring(path.lastIndexOf("/") + 1);
+}
 
-/**
- * Display all listings.
- */
-displayAllListings();
+// Run specific functions based on the current page
+const currentPage = getCurrentPage();
+
+if (currentPage === "listing.html") {
+  // Run on listing page
+  displayListingDetails();
+} else if (currentPage === "index.html" || currentPage === "") {
+  // Run on index page (or root)
+  displayAllListings();
+}

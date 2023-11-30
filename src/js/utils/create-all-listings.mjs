@@ -1,10 +1,13 @@
 import { fetchAllListingsWithMedia } from "../api/listings-all-with-media.mjs";
 import { createListingCard } from "../make-html/latest-listings-card.mjs";
+import { populateCategories } from "../make-html/populate-categories.mjs";
 
 export async function displayAllListings() {
   try {
     const listings = await fetchAllListingsWithMedia();
     console.log("All Listings with Media", listings);
+
+    await populateCategories(listings);
 
     // Get the container where the listings should be displayed
     const allAuctionsContainer = document.getElementById("all-auctions");
