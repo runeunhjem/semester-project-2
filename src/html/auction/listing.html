@@ -43,7 +43,7 @@
                 <a href="/src/html/auction/favorites.html" class="text-primary d-flex align-items-center icon-favorites">
                   <i class="bi fs-5 bi-star me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Favorites</span>
                 </a>
-                <a href="/src/html/auction/new-listing.html" class="text-primary d-flex align-items-center icon-add-listing">
+                <a href="#" class="text-primary d-flex align-items-center icon-add-listing" data-bs-toggle="collapse" data-bs-target="#create-new-listing" aria-expanded="false">
                   <i class="bi fs-5 bi-plus-circle me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Add listing</span>
                 </a>
                 <div class="searchbar text-primary d-md-none d-flex align-items-center">
@@ -81,16 +81,16 @@
       </div>
     </section>
     <!-- End Mobileview searchbar -->
-    <!-- Create new auction -->
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="create-new-listing" id="formContainer"></div>
+    <main class="mt-3 max-width-1200 mx-auto mb-3">
+      <!-- Create new auction -->
+      <div class="container-fluid d-none collapse" id="create-new-listing">
+        <div class="row d-flex justify-content-center">
+          <div class="col">
+            <div class="form-container p-2" id="formContainer"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- End Create new auction -->
-    <main class="mt-3 max-width-1200 mx-auto mb-3">
+      <!-- End Create new auction -->
       <!-- Back-to-top -->
       <a href="#" aria-label="Go back to the top"><span class="out-of-view-menu-text text-black">Back to top</span>
         <div class="back-to-top-button bg-primary text-white px-3 py-2"></div>
@@ -100,18 +100,24 @@
       <!-- Categories -->
       <p class="fs-4 px-4 pt-1 pb-0 mb-0 rounded d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300">Categories</p>
       <div class="categories-container container d-flex flex-nowrap pb-3 justify-content-center gap-3 overflow-x-auto max-width-300" id="categories-listing">
-        <button class="category-button bg-white rounded border text-center btn btn-group">Accessories</button>
+        <!-- <button class="category-button bg-white rounded border text-center btn btn-group">Accessories</button>
         <button class="category-button bg-white rounded border text-center btn btn-group">Art</button>
         <button class="category-button bg-white rounded border text-center btn btn-group">Gaming</button>
         <button class="category-button bg-white rounded border text-center btn btn-group">Interior</button>
         <button class="category-button bg-white rounded border text-center btn btn-group">Toys</button>
-        <button class="category-button bg-white rounded border text-center btn btn-group">Wine</button>
+        <button class="category-button bg-white rounded border text-center btn btn-group">Wine</button> -->
       </div>
       <!-- End of categories -->
 
       <!-- Listing Details -->
       <div class="container mx-auto p-3">
         <div class="row">
+          <div class="col d-flex justify-content-center">
+            <h1 id="toggleListingDetails" class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-between flex-nowrap divider-title bg-secondary text-white text-center w-100 max-width-300">
+              <span class="listingTitle" id="listingTitle">Listing Details</span>
+              <i class="bi bi-chevron-up" id="chevronIcon"></i>
+            </h1>
+          </div>
           <!-- Spinner - Hide when loaded -->
           <div class="row d-flex mx-auto justify-content-center py-3" id="spinner">
             <div class="spinner-border" role="status">
@@ -119,12 +125,6 @@
             </div>
           </div>
           <!-- End of spinner -->
-          <div class="col d-flex justify-content-center">
-            <h1 id="toggleListingDetails" class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-between flex-nowrap divider-title bg-secondary text-white text-center w-100 max-width-300">
-              <span class="listingTitle" id="listingTitle">Listing Details</span>
-              <i class="bi bi-chevron-up" id="chevronIcon"></i>
-            </h1>
-          </div>
         </div>
         <div class="container-fluid w-100 d-flex justify-content-center">
           <div class="row w-100 gap-3 d-flex justify-content-between">
@@ -163,7 +163,7 @@
       <div class="container mx-auto p-3 listing-gallery justify-content-center mx-auto bg-info rounded shadow-sm py-3 px-2 max-width-300">
         <div class="row d-flex">
           <div class="col">
-            <p class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300">Image Gallery</p>
+            <p class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300 border-bottom">Image Gallery</p>
           </div>
         </div>
         <div class="row">
@@ -174,7 +174,7 @@
       <div class="container mx-auto mt-3 p-3 listing-gallery justify-content-center mx-auto bg-info rounded shadow-sm py-3 px-2 max-width-300">
         <div class="row d-flex">
           <div class="col">
-            <p class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300">Specifications:</p>
+            <p class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300 border-bottom">Specifications:</p>
           </div>
         </div>
         <div class="row text-left">

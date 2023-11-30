@@ -43,7 +43,7 @@
                 <a href="/src/html/auction/favorites.html" class="text-primary d-flex align-items-center icon-favorites">
                   <i class="bi fs-5 bi-star me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Favorites</span>
                 </a>
-                <a href="/src/html/auction/new-listing.html" class="text-primary d-flex align-items-center icon-add-listing">
+                <a href="#" class="text-primary d-flex align-items-center icon-add-listing" data-bs-toggle="collapse" data-bs-target="#create-new-listing" aria-expanded="false">
                   <i class="bi fs-5 bi-plus-circle me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Add listing</span>
                 </a>
                 <div class="searchbar text-primary d-md-none d-flex align-items-center">
@@ -81,6 +81,15 @@
       </div>
     </section>
     <!-- End Mobileview searchbar -->
+    <!-- Create new auction -->
+    <div class="container d-none collapse" id="create-new-listing">
+      <div class="row">
+        <div class="col max-width-300">
+          <div class="form-container" id="formContainer"></div>
+        </div>
+      </div>
+    </div>
+    <!-- End Create new auction -->
     <main class="mt-3 max-width-1200 mx-auto mb-3">
       <!-- Back-to-top -->
       <a href="#" aria-label="Go back to the top"><span class="out-of-view-menu-text text-black">Back to top</span>
@@ -91,12 +100,12 @@
       <!-- Categories -->
       <p class="fs-4 px-4 pt-1 pb-0 mb-0 rounded d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300">Categories</p>
       <div class="categories-container container d-flex flex-nowrap pb-3 justify-content-start gap-3 overflow-x-auto max-width-300" id="categories">
-        <button class="category-button bg-white rounded border text-center btn btn-group">Accessories</button>
+        <!-- <button class="category-button bg-white rounded border text-center btn btn-group">Accessories</button>
         <button class="category-button bg-white rounded border text-center btn btn-group">Art</button>
         <button class="category-button bg-white rounded border text-center btn btn-group">Gaming</button>
         <button class="category-button bg-white rounded border text-center btn btn-group">Interior</button>
         <button class="category-button bg-white rounded border text-center btn btn-group">Toys</button>
-        <button class="category-button bg-white rounded border text-center btn btn-group">Wine</button>
+        <button class="category-button bg-white rounded border text-center btn btn-group">Wine</button> -->
       </div>
       <!-- End of categories -->
 

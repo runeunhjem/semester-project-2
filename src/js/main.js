@@ -74,5 +74,20 @@ if (currentPage === "listing.html") {
   displayAllListings();
 }
 
-// Assuming there's an element with the ID 'formContainer' on your page
-createNewListingForm("formContainer");
+document.addEventListener("DOMContentLoaded", () => {
+  const addListingLink = document.querySelector(".icon-add-listing");
+  const createListingDiv = document.getElementById("create-new-listing");
+
+  if (addListingLink && createListingDiv) {
+    addListingLink.addEventListener("click", event => {
+      event.preventDefault(); // Prevent default link behavior
+      // Toggle the 'd-none' class on the createListingDiv
+      if (createListingDiv.classList.contains("d-none")) {
+        createListingDiv.classList.remove("d-none");
+        createNewListingForm("formContainer"); // Call this only when showing the form
+      } else {
+        createListingDiv.classList.add("d-none");
+      }
+    });
+  }
+});

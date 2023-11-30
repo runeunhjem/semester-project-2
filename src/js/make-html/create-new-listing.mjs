@@ -1,6 +1,7 @@
 // createNewListingForm.mjs
 export function createNewListingForm(parentElementId) {
   const parentElement = document.getElementById(parentElementId);
+  parentElement.innerHTML = "";
   if (!parentElement) {
     console.error("Parent element not found");
     return;
@@ -8,23 +9,24 @@ export function createNewListingForm(parentElementId) {
 
   // Main container div
   const mainDiv = document.createElement("div");
-  mainDiv.className = "mb-3";
+  mainDiv.className = "mb-3 max-width-1200";
 
   // Card body div
   const cardBodyDiv = document.createElement("div");
-  cardBodyDiv.className = "card-body dropdown collapse show";
+  cardBodyDiv.className = "card-body collapse show";
   cardBodyDiv.id = "createListingForm";
 
   // Card title
   const cardTitle = document.createElement("h1");
-  cardTitle.className = "card-title";
+  cardTitle.className = "card-title fs-3 text-center mt-3 text-primary";
   cardTitle.textContent = "Create new auction...";
   cardBodyDiv.appendChild(cardTitle);
 
   // Form
   const form = document.createElement("form");
   form.id = "listingForm";
-  form.className = "needs-validation was-validated";
+  form.className =
+    "needs-validation was-validated border border-1 p-3 my-2 p-md-4 my-md-3 rounded shadow-sm";
   form.setAttribute("novalidate", "");
 
   // Function to create input groups
@@ -50,8 +52,7 @@ export function createNewListingForm(parentElementId) {
     if (inputType !== "textarea") {
       input.type = inputType;
     }
-    input.className =
-      inputType === "textarea" ? "form-control" : "form-control";
+    input.className = "form-control";
     input.id = inputId;
     input.name = inputId;
     input.placeholder = placeholder;
@@ -73,7 +74,7 @@ export function createNewListingForm(parentElementId) {
       "url",
       `media-${Date.now()}`,
       "Valid image URL",
-      false
+      true
     );
     form.insertBefore(newImageUrlDiv, addImageButton); // Insert before the 'Add Image' button
   };
@@ -100,12 +101,16 @@ export function createNewListingForm(parentElementId) {
     "url",
     "media",
     "Valid image URL",
-    false
+    true
   );
   form.appendChild(imageInputDiv);
-
   // Append the 'Add Image' button after the image URL input
   form.appendChild(addImageButton);
+
+  // Add end date input
+  form.appendChild(
+    createInputGroup("End Date", "date", "endDate", "YYYY-MM-DD", true)
+  );
 
   form.appendChild(
     createInputGroup(

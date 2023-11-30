@@ -201,7 +201,7 @@ export async function displayListingDetails() {
           spec.isMedia
         );
         specEntry.className =
-          "spec-entry d-flex flex-column my-1 border-bottom";
+          "spec-entry d-flex flex-column my-1 border-bottom p-2";
         if (index % 2 === 1) {
           specEntry.style.backgroundColor = "#fff6ec";
           // specEntry.style.backgroundColor = "#ecffff";
