@@ -234,19 +234,25 @@ a {
 .overlay {
   @media screen and (max-width: 400px) {
     top: -220px !important;
-    width: 95% !important;
     max-width: 300px !important;
-    height: 100px !important;
-    object-fit: cover !important;
+    width: 90% !important;
+    height: 300px !important;
+    img {
+      width: 95% !important;
+      height: 300px !important;
+      object-fit: cover !important;
+    }
   }
   @media screen and (min-width: 401px) {
     top: -380px !important;
-    width: 95% !important;
-    height: 375px !important;
     max-width: 600px !important;
-    max-height: 375px;
-    height: 200px !important;
-    object-fit: cover !important;
+    height: 400px !important;
+    img {
+      // height: 350px !important;
+      width: 95% !important;
+      // max-height: 400px !important;
+      object-fit: cover !important;
+    }
   }
 }
 

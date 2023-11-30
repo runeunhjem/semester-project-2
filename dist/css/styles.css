@@ -12753,9 +12753,13 @@ a {
 @media screen and (max-width: 400px) {
   .overlay {
     top: -220px !important;
-    width: 95% !important;
     max-width: 300px !important;
-    height: 100px !important;
+    width: 90% !important;
+    height: 300px !important;
+  }
+  .overlay img {
+    width: 95% !important;
+    height: 300px !important;
     -o-object-fit: cover !important;
     object-fit: cover !important;
   }
@@ -12763,11 +12767,11 @@ a {
 @media screen and (min-width: 401px) {
   .overlay {
     top: -380px !important;
-    width: 95% !important;
-    height: 375px !important;
     max-width: 600px !important;
-    max-height: 375px;
-    height: 200px !important;
+    height: 400px !important;
+  }
+  .overlay img {
+    width: 95% !important;
     -o-object-fit: cover !important;
     object-fit: cover !important;
   }

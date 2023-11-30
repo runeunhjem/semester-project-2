@@ -14,8 +14,9 @@ export async function displayListingDetails() {
     const listing = await fetchSingleListingById(listingIdParam);
 
     // Set the page title to the listing title
-    document.title = `${listing.title} | DreamBids`; // Assuming 'title' is a property of the listing object
-
+    if (window.location.pathname === "/src/html/auction/listing.html") {
+      document.title = `${listing.title} | DreamBids`;
+    }
     // Get the container where the listings should be displayed
     const listingDetailsContainer = document.getElementById("listingDetails");
     if (!listingDetailsContainer) return;
