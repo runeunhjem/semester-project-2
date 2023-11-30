@@ -1,17 +1,18 @@
 import { getNewestBid } from "../utils/bids-get-highest.mjs";
 // import { convertToShortDateFormat } from "../utils/date-converter.mjs";
-import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs"; // Adjust path as necessary
+import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs";
 
 export function createListingCard(listing) {
   // Create the main column div
   const colDiv = document.createElement("div");
-  colDiv.className = "col ms-1 p-0 latest-auctions-card";
+  colDiv.className = "col ms-1 my-3 p-0 latest-auctions-card";
   colDiv.setAttribute("data-post-id", listing.id);
   colDiv.setAttribute("data-post-sellerName", listing.seller.name);
   colDiv.setAttribute("data-post-sellerAvatar", listing.seller.avatar);
   colDiv.setAttribute("data-post-sellerWins", listing.seller.wins.length);
   colDiv.setAttribute("data-post-listingBids", listing._count.bids);
-  colDiv.addEventListener("mouseover", handlePostCardClick);
+  colDiv.addEventListener("mouseover", handleListingCardClick);
+  colDiv.addEventListener("click", handleListingCardClick);
   colDiv.addEventListener("click", () => {
     window.location.href = `/src/html/auction/listing.html?id=${listing.id}`;
   });
@@ -175,8 +176,8 @@ export function createListingCard(listing) {
   return colDiv;
 }
 
-// Sets the post ID and author name in localStorage and checks if it is the logged in user when a post card is clicked
-export async function handlePostCardClick(event) {
+// Sets the listing ID and seller name in localStorage and checks if it is the logged in user when a listing card is clicked
+export async function handleListingCardClick(event) {
   const card = event.currentTarget;
 
   const listingId = card.getAttribute("data-post-id");

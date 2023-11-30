@@ -19,7 +19,7 @@ export async function fetchAllListingsWithMedia() {
       "GET"
     );
 
-    const listings = await response; // Assuming response returns JSON
+    const listings = await response;
 
     if (listings.length === 0 || listings.length < limit) {
       allListingsArray = [...allListingsArray, ...listings];
@@ -32,7 +32,7 @@ export async function fetchAllListingsWithMedia() {
 
   // Filter listings to include only those with media
   const listingsWithMedia = allListingsArray.filter(
-    listing => listing.media && listing.media.length > 0
+    listing => listing.media && listing.media.length > 1
   );
 
   // console.log("All active Listings with Media", listingsWithMedia);

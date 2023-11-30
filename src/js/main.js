@@ -6,6 +6,7 @@ import { updateProfileDisplay } from "./make-html/profile-info.mjs";
 import { displayLatestListings } from "./utils/create-latest-listings.mjs";
 import { initializeAllCarousels } from "./utils/initialize-carousel.mjs";
 import { displayListingDetails } from "./utils/create-listing-details.mjs";
+import { displayAllListings } from "./utils/create-all-listings.mjs";
 
 /**
  * Update the header profile info depending on if user is logged in.
@@ -48,3 +49,8 @@ attachLogoutEvent();
  * Create single listing details.
  */
 displayListingDetails();
+
+/**
+ * Display all listings.
+ */
+displayAllListings();
