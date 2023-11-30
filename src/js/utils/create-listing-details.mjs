@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // create-listing-details.mjs
 import { fetchSingleListingById } from "../api/listings-singel-id.mjs";
 import { createListingCard } from "../make-html/latest-listings-card.mjs";
@@ -95,8 +96,15 @@ export async function displayListingDetails() {
           const bidEntry = createBidEntry(bid);
           bidHistoryContainer.appendChild(bidEntry);
         });
-        bidHistoryContainer.appendChild(showMoreLink); // Append 'Show More' link again
+
+        // Add 'Show More' link only if there are more than 3 bids
+        if (sortedBids.length > 3) {
+          bidHistoryContainer.appendChild(showMoreLink);
+        }
       };
+
+      const numberOfBids = document.getElementById("number-of-bids");
+      if (numberOfBids) numberOfBids.textContent = ` (${listing.bids.length})`;
 
       const showMoreLink = document.createElement("a");
       showMoreLink.href = "#";
@@ -106,18 +114,102 @@ export async function displayListingDetails() {
       showMoreLink.addEventListener("click", function (event) {
         event.preventDefault();
         if (showMoreLink.textContent === "Show All") {
+          // Display all bids
           sortedBids.forEach(bid => {
             const bidEntry = createBidEntry(bid);
             bidHistoryContainer.appendChild(bidEntry);
           });
           showMoreLink.textContent = "Show Less";
         } else {
+          // Display initial 3 bids
           showInitialBids();
           showMoreLink.textContent = "Show All";
         }
       });
 
       showInitialBids(); // Initially show the first 3 bids
+    }
+
+    // Specifications
+    const specificationsContainer = document.getElementById("specifications");
+    if (specificationsContainer) {
+      // Clear existing content
+      specificationsContainer.innerHTML = "";
+
+      // Function to create specification entries
+      const createSpecEntry = (label, value, isMedia = false) => {
+        const specDiv = document.createElement("div");
+        specDiv.className = "spec-entry d-flex flex-column my-1";
+
+        const specLabel = document.createElement("strong");
+        specLabel.textContent = `${label}: `;
+        specDiv.appendChild(specLabel);
+
+        const specValue = document.createElement("span");
+        if (isMedia) {
+          const mediaDiv = document.createElement("div");
+          mediaDiv.style.overflowX = "auto";
+          mediaDiv.textContent = value;
+          specValue.appendChild(mediaDiv);
+        } else {
+          specValue.textContent = value;
+        }
+        specDiv.appendChild(specValue);
+
+        return specDiv;
+      };
+
+      // Add specifications
+      const {
+        id,
+        title,
+        description,
+        tags,
+        media,
+        created,
+        updated,
+        endsAt,
+        seller,
+        _count,
+      } = listing;
+
+      // Define specifications in an array
+      const specs = [
+        { label: "Title", value: title },
+        { label: "Seller", value: seller.name, isLink: true },
+        { label: "ID", value: id },
+        { label: "Description", value: description },
+        { label: "Tags", value: tags.join(", ") },
+        { label: "Media", value: media.join("\n"), isMedia: true },
+        { label: "Created", value: new Date(created).toLocaleString() },
+        { label: "Updated", value: new Date(updated).toLocaleString() },
+        { label: "Ends At", value: new Date(endsAt).toLocaleString() },
+        { label: "Bids Count", value: _count.bids },
+      ];
+
+      specs.forEach((spec, index) => {
+        const specEntry = createSpecEntry(
+          spec.label,
+          spec.isLink ? "" : spec.value,
+          spec.isMedia
+        );
+        specEntry.className =
+          "spec-entry d-flex flex-column my-1 border-bottom";
+        if (index % 2 === 1) {
+          specEntry.style.backgroundColor = "#ecf8ff";
+          // specEntry.style.backgroundColor = "#ecffff";
+        }
+
+        if (spec.isLink) {
+          const sellerLink = document.createElement("a");
+          sellerLink.href = `/html/profile/index.html?${seller.name}`;
+          sellerLink.textContent = seller.name;
+          sellerLink.className = "fw-bold";
+          specEntry.children[1].appendChild(sellerLink); // Append link to the value container
+        }
+
+        specificationsContainer.appendChild(specEntry);
+      });
     }
   } catch (error) {
     console.error("Error displaying listing details:", error);
