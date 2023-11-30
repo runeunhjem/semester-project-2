@@ -1,4 +1,6 @@
 // createNewListingForm.mjs
+import { createNewListing } from "../api/create-new-listing.mjs";
+
 export function createNewListingForm(parentElementId) {
   const parentElement = document.getElementById(parentElementId);
   parentElement.innerHTML = "";
@@ -49,12 +51,15 @@ export function createNewListingForm(parentElementId) {
     const input = document.createElement(
       inputType === "textarea" ? "textarea" : "input"
     );
+    if (inputId === "endsAt") {
+      input.type = "datetime-local"; // Change to 'datetime-local' to capture both date and time
+    }
     if (inputType !== "textarea") {
       input.type = inputType;
     }
     input.className = "form-control";
     input.id = inputId;
-    input.name = inputId;
+    input.name = inputId; // 'name' attribute set to match 'id'
     input.placeholder = placeholder;
     if (isRequired) {
       input.required = true;
@@ -72,9 +77,9 @@ export function createNewListingForm(parentElementId) {
     const newImageUrlDiv = createInputGroup(
       "Additional Image URL",
       "url",
-      `media-${Date.now()}`,
+      "media",
       "Valid image URL",
-      true
+      false
     );
     form.insertBefore(newImageUrlDiv, addImageButton); // Insert before the 'Add Image' button
   };
@@ -104,12 +109,13 @@ export function createNewListingForm(parentElementId) {
     true
   );
   form.appendChild(imageInputDiv);
+
   // Append the 'Add Image' button after the image URL input
   form.appendChild(addImageButton);
 
   // Add end date input
   form.appendChild(
-    createInputGroup("End Date", "date", "endDate", "YYYY-MM-DD", true)
+    createInputGroup("End Date", "datetime-local", "endsAt", "", true)
   );
 
   form.appendChild(
@@ -125,7 +131,7 @@ export function createNewListingForm(parentElementId) {
     createInputGroup(
       "Listing Description",
       "textarea",
-      "newListingBody",
+      "description",
       "Write something",
       true
     )
@@ -142,4 +148,31 @@ export function createNewListingForm(parentElementId) {
   cardBodyDiv.appendChild(form);
   mainDiv.appendChild(cardBodyDiv);
   parentElement.appendChild(mainDiv);
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Create FormData object from the form
+    let formData = new FormData(form);
+
+    // Get the endsAt value and convert it to ISO string format
+    let endsAt = new Date(formData.get("endsAt")).toISOString();
+
+    // Create the data object for API call
+    let listingData = {
+      title: formData.get("title"),
+      description: formData.get("description"),
+      tags: formData
+        .get("tags")
+        .split(",")
+        .map(tag => tag.trim()),
+      media: formData.getAll("media"),
+      endsAt: endsAt,
+    };
+    console.log("Listing data", listingData);
+    // Call the API function to create a new listing
+    createNewListing(listingData); // Make sure this function is properly implemented to handle the API call
+    const createListingDiv = document.getElementById("create-new-listing");
+    createListingDiv.classList.add("d-none");
+  });
 }
