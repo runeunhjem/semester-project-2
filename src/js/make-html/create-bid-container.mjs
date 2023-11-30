@@ -1,4 +1,6 @@
 // make-html/create-bid-container.mjs
+import { bidOnListing } from "../api/bid-on-listing.mjs";
+
 export function createBidContainer(highestBid) {
   const bidContainer = document.getElementById("place-bid");
   if (!bidContainer) {
@@ -8,7 +10,7 @@ export function createBidContainer(highestBid) {
 
   // Create label row
   const labelRowDiv = document.createElement("div");
-  labelRowDiv.className = "mb-2 mx-auto"; // Margin bottom for spacing
+  labelRowDiv.className = "mb-2 mx-auto";
 
   const amountLabel = document.createElement("label");
   amountLabel.textContent = "Amount: ";
@@ -20,7 +22,7 @@ export function createBidContainer(highestBid) {
 
   // Create input and button row
   const inputButtonRowDiv = document.createElement("div");
-  inputButtonRowDiv.className = "d-flex mx-auto align-items-center"; // Flexbox for alignment
+  inputButtonRowDiv.className = "d-flex mx-auto align-items-center";
 
   const amountInput = document.createElement("input");
   amountInput.type = "number";
@@ -33,7 +35,11 @@ export function createBidContainer(highestBid) {
 
   const submitButton = document.createElement("button");
   submitButton.textContent = "Place Bid";
-  submitButton.className = "btn btn-primary mx-2"; // Margin for spacing
+  submitButton.className = "btn btn-primary mx-2";
+  const listingId = localStorage.getItem("listingId");
+  submitButton.addEventListener("click", () =>
+    bidOnListing(amountInput.value, listingId)
+  );
 
   inputButtonRowDiv.appendChild(amountInput);
   inputButtonRowDiv.appendChild(submitButton);

@@ -16,6 +16,8 @@ export async function displayListingDetails() {
     // Set the page title to the listing title
     if (window.location.pathname === "/src/html/auction/listing.html") {
       document.title = `${listing.title} | DreamBids`;
+      const listingTitle = document.getElementById("listingTitle");
+      listingTitle.textContent = listing.title;
     }
     // Get the container where the listings should be displayed
     const listingDetailsContainer = document.getElementById("listingDetails");
@@ -82,11 +84,14 @@ export async function displayListingDetails() {
     // Create and display bid history
     const bidHistoryContainer = document.getElementById("bid-history");
     if (bidHistoryContainer) {
-      const reversedBids = [...listing.bids].reverse();
+      // Sort bids by date in descending order (newest first)
+      const sortedBids = listing.bids.sort(
+        (a, b) => new Date(b.created) - new Date(a.created)
+      );
 
       const showInitialBids = () => {
         bidHistoryContainer.innerHTML = ""; // Clear the container
-        reversedBids.slice(0, 3).forEach(bid => {
+        sortedBids.slice(0, 3).forEach(bid => {
           const bidEntry = createBidEntry(bid);
           bidHistoryContainer.appendChild(bidEntry);
         });
@@ -101,8 +106,7 @@ export async function displayListingDetails() {
       showMoreLink.addEventListener("click", function (event) {
         event.preventDefault();
         if (showMoreLink.textContent === "Show All") {
-          // bidHistoryContainer.innerHTML = ""; // Clear the container - removes the 'Show less' link as well - find solution
-          reversedBids.forEach(bid => {
+          sortedBids.forEach(bid => {
             const bidEntry = createBidEntry(bid);
             bidHistoryContainer.appendChild(bidEntry);
           });
