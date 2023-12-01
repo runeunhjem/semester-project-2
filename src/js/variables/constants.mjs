@@ -2,6 +2,7 @@ export const loggedInUser = localStorage.getItem("loggedInUser");
 export const currentProfileName = localStorage.getItem("currentProfileName");
 export const accessToken = localStorage.getItem("accessToken");
 export const isLoggedIn = localStorage.getItem("isLoggedIn");
+
 export const pastelColors = [
   "#fbb4ae", // pastel pink
   "#b3cde3", // pastel blue

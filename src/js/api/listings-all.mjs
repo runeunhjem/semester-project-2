@@ -30,6 +30,6 @@ export async function fetchAllListings() {
     offset += limit;
   }
 
-  // console.log("All active Listings", allListingsArray);
+  console.log("All active Listings", allListingsArray);
   return allListingsArray;
 }

@@ -11,8 +11,8 @@ export async function listingsEndsSoon() {
 
     // Get only the first 12 listings
     const endsSoon12Listings = allListingsSortedArray.slice(0, 12);
-
     console.log("12 Listings that ends soon", endsSoon12Listings);
+
     return endsSoon12Listings;
   } catch (error) {
     console.error("Error fetching and sorting listings:", error);

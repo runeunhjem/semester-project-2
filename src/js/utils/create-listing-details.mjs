@@ -7,6 +7,8 @@ import { createBidContainer } from "../make-html/create-bid-container.mjs";
 import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs"; // Adjust path as necessary
 import { createBidEntry } from "../make-html/create-bid-history-entry.mjs";
 import { populateCategories } from "../make-html/populate-categories.mjs";
+import { viewProfile } from "../utils/view-profile.mjs";
+
 const urlParams = new URLSearchParams(window.location.search);
 const listingIdParam = urlParams.get("id");
 
@@ -209,9 +211,10 @@ export async function displayListingDetails() {
 
         if (spec.isLink) {
           const sellerLink = document.createElement("a");
-          sellerLink.href = `/html/profile/index.html?${seller.name}`;
+          sellerLink.href = `/src/html/profile/index.html?${seller.name}`;
           sellerLink.textContent = `${seller.name} | View Profile`;
           sellerLink.className = "fw-bold";
+          sellerLink.setAttribute("id", "viewProfileLink");
           specEntry.children[1].appendChild(sellerLink); // Append link to the value container
         }
 

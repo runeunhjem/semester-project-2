@@ -12632,9 +12632,12 @@ a {
 }
 
 .carousel-item {
-  min-width: 100%;
-  max-width: 100%;
-  height: 200px;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  height: 200px !important;
+}
+.carousel-item img {
+  height: 200px !important;
 }
 
 .back-to-top-button {
@@ -12676,6 +12679,7 @@ a {
 
 .categories-container::-webkit-scrollbar,
 .latest-auctions::-webkit-scrollbar,
+.profile-auctions::-webkit-scrollbar,
 .listing-title::-webkit-scrollbar {
   display: none; /* Hide scrollbar by default in Safari and Chrome */
 }
@@ -12683,26 +12687,30 @@ a {
 /* Show scrollbar on hover in WebKit browsers */
 .categories-container:hover::-webkit-scrollbar,
 .listing-title:hover::-webkit-scrollbar,
-.latest-auctions:hover::-webkit-scrollbar {
+.latest-auctions:hover::-webkit-scrollbar,
+.profile-auctions:hover::-webkit-scrollbar {
   display: block;
 }
 
 /* Show scrollbar on hover in Firefox */
 .categories-container:hover,
 .listing-title:hover,
-.latest-auctions:hover {
+.latest-auctions:hover,
+.profile-auctions:hover {
   scrollbar-width: auto;
 }
 
 /* Optional: Add styles for the scrollbar thumb for better visibility */
 .categories-container::-webkit-scrollbar-thumb,
 .latest-auctions::-webkit-scrollbar-thumb,
+.profile-auctions::-webkit-scrollbar-thumb,
 .listing-title::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   border-radius: 10px;
 }
 
 .latest-auctions,
+.profile-auctions,
 .listing-details,
 .bid-details {
   min-height: 460px;
@@ -12745,6 +12753,21 @@ a {
   transition: transform 0.3s ease-in-out;
   transform: scale(1.03);
   cursor: pointer;
+}
+
+@keyframes scrollTitle {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.scrolling-title {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  display: block !important;
+  animation: scrollTitle 3s linear infinite !important;
 }
 
 .listing-gallery {

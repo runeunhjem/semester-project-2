@@ -9,8 +9,11 @@ import { displayListingDetails } from "./utils/create-listing-details.mjs";
 import { displayAllListings } from "./utils/create-all-listings.mjs";
 import { isLoggedIn } from "./variables/constants.mjs";
 import { createNewListingForm } from "./make-html/create-new-listing.mjs";
+import { displayProfileListings } from "./utils/create-profile-listings.mjs";
+import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
 
 if (isLoggedIn) {
+  listingsEndsSoon();
   // Select all elements with the class 'restricted'
   const restrictedElements = document.querySelectorAll(".restricted");
 
@@ -25,6 +28,7 @@ if (isLoggedIn) {
  */
 document.addEventListener("DOMContentLoaded", () => {
   updateProfileDisplay();
+  // listingsEndsSoon();
 });
 
 /**
@@ -37,7 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleSearchSection();
   applyBootstrapValidation();
 
-  if (!window.location.href.includes("login")) {
+  if (
+    !window.location.href.includes("login") ||
+    !window.location.href.includes("profile")
+  ) {
     displayLatestListings();
 
     setTimeout(() => {
@@ -100,3 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/**
+ * Display listings for the current profile.
+ */
+if (window.location.pathname.includes("profile")) {
+  displayProfileListings();
+}

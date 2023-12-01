@@ -49,19 +49,32 @@ export function createListingCard(listing) {
   carouselDiv.appendChild(carouselInnerDiv);
 
   // Create carousel items
-  listing.media.forEach((mediaUrl, index) => {
+  if (listing.media && listing.media.length > 0) {
+    listing.media.forEach((mediaUrl, index) => {
+      const carouselItemDiv = document.createElement("div");
+      carouselItemDiv.className =
+        "carousel-item" + (index === 0 ? " active" : "");
+      carouselInnerDiv.appendChild(carouselItemDiv);
+
+      const img = document.createElement("img");
+      img.src = mediaUrl;
+      img.className = "d-block w-100 carousel-image";
+      img.alt = `Carousel image ${index + 1}`;
+      carouselItemDiv.appendChild(img);
+    });
+  } else {
+    // Add default image or placeholder
     const carouselItemDiv = document.createElement("div");
-    carouselItemDiv.className =
-      "carousel-item" + (index === 0 ? " active" : "");
+    carouselItemDiv.className = "carousel-item active";
     carouselInnerDiv.appendChild(carouselItemDiv);
 
     const img = document.createElement("img");
-
-    img.src = mediaUrl;
+    const uniqueQueryParam = Math.floor(Math.random() * (500 - 200 + 1) + 100);
+    img.src = `https://picsum.photos/id/${uniqueQueryParam}/200/300`;
     img.className = "d-block w-100 carousel-image";
-    img.alt = `Carousel image ${index + 1}`;
+    img.alt = "Default image";
     carouselItemDiv.appendChild(img);
-  });
+  }
 
   // Overlay icon
   const overlayDiv = document.createElement("div");
@@ -84,8 +97,14 @@ export function createListingCard(listing) {
   const titleH1 = document.createElement("h1");
   titleH1.className =
     "py-1 mb-2 border-bottom text-center fs-3 listing-title align-items-center text-primary";
-  titleH1.textContent = listing.title; // Use listing title
+  titleH1.textContent = listing.title;
+  titleH1.style.width = "235px";
   titleColDiv.appendChild(titleH1);
+
+  // Check if title is too long
+  if (titleH1.scrollWidth > titleH1.clientWidth) {
+    titleH1.classList.add("scrolling-title");
+  }
 
   // Description
   const descRowDiv = document.createElement("div");
@@ -189,6 +208,7 @@ export async function handleListingCardClick(event) {
   localStorage.setItem("listingId", listingId);
   localStorage.setItem("listingBids", listingBids);
   localStorage.setItem("sellerName", sellerName);
+  localStorage.setItem("currentProfileName", sellerName);
   localStorage.setItem("sellerAvatar", sellerAvatar);
   localStorage.setItem("sellerWins", sellerWins);
 

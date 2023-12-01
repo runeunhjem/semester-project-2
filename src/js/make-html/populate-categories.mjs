@@ -33,6 +33,12 @@ export async function populateCategories(listingsData) {
   if (categoriesContainerListing) {
     populateContainer(categoriesContainerListing, tagCounts);
   }
+
+  const categoriesContainerProfile =
+    document.getElementById("categories-profile");
+  if (categoriesContainerProfile) {
+    populateContainer(categoriesContainerProfile, tagCounts);
+  }
 }
 
 function populateContainer(container, tagCounts) {

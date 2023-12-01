@@ -36,6 +36,13 @@
     "chevronIcon"
   );
 
+  // Setup toggle for profile auctions
+  setupToggleButton(
+    "toggleProfileAuctions",
+    [".profile-auctions"],
+    "chevronIcon"
+  );
+
   // Setup toggle for listing details and bid details
   setupToggleButton(
     "toggleListingDetails",
