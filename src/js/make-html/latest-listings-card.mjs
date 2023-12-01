@@ -1,11 +1,21 @@
 import { getNewestBid } from "../utils/bids-get-highest.mjs";
-import { convertToShortDateFormat } from "../utils/date-converter.mjs";
+// import { convertToShortDateFormat } from "../utils/date-converter.mjs";
+import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs";
 
 export function createListingCard(listing) {
   // Create the main column div
   const colDiv = document.createElement("div");
-  colDiv.className = "col ms-1 p-0 latest-auctions-card";
-
+  colDiv.className = "col ms-1 my-3 p-0 latest-auctions-card";
+  colDiv.setAttribute("data-post-id", listing.id);
+  colDiv.setAttribute("data-post-sellerName", listing.seller.name);
+  colDiv.setAttribute("data-post-sellerAvatar", listing.seller.avatar);
+  colDiv.setAttribute("data-post-sellerWins", listing.seller.wins.length);
+  colDiv.setAttribute("data-post-listingBids", listing._count.bids);
+  colDiv.addEventListener("mouseover", handleListingCardClick);
+  colDiv.addEventListener("click", handleListingCardClick);
+  colDiv.addEventListener("click", () => {
+    window.location.href = `/src/html/auction/listing.html?id=${listing.id}`;
+  });
   // Create container div
   const containerDiv = document.createElement("div");
   containerDiv.className = "container listings";
@@ -46,6 +56,7 @@ export function createListingCard(listing) {
     carouselInnerDiv.appendChild(carouselItemDiv);
 
     const img = document.createElement("img");
+
     img.src = mediaUrl;
     img.className = "d-block w-100 carousel-image";
     img.alt = `Carousel image ${index + 1}`;
@@ -112,12 +123,12 @@ export function createListingCard(listing) {
     listing.currentBid = currentBid.amount;
   } else {
     listing.currentBid = 0;
-    console.log("No bids available");
+    // console.log("No bids available");
   }
 
   const currentBidP = document.createElement("p");
   currentBidP.className = "text-primary text-start ps-2 mb-0 current-bid";
-  currentBidP.innerHTML = `Current Bid: <span class="current-bid">${listing.currentBid}</span>`; // Use listing current bid
+  currentBidP.innerHTML = `Current Bid: <span class="current-bid">${listing.currentBid}</span>`; // Use listings newest bid
   currentBidColDiv.appendChild(currentBidP);
 
   // Number of bids
@@ -127,7 +138,7 @@ export function createListingCard(listing) {
 
   const numberOfBidsP = document.createElement("p");
   numberOfBidsP.className = "text-primary text-end pe-2 mb-0";
-  numberOfBidsP.innerHTML = `Bids: <span class="number-of-bids">${listing.bids.length}</span>`; // Use listing bids length
+  numberOfBidsP.innerHTML = `Bids: <span class="number-of-bids">${listing.bids.length}</span>`; // Use listings bids length
   numberOfBidsColDiv.appendChild(numberOfBidsP);
 
   // Second row for ends and listing ID
@@ -137,26 +148,53 @@ export function createListingCard(listing) {
 
   // Ends at
   const endsColDiv = document.createElement("div");
-  endsColDiv.className = "col text-nowrap ends";
+  endsColDiv.className =
+    "col text-nowrap ends ps-3 d-flex justify-content-between";
   endsRowDiv.appendChild(endsColDiv);
 
-  const endsAt = listing.endsAt;
-  const shortEndsAt = convertToShortDateFormat(endsAt);
-  const endsP = document.createElement("p");
-  endsP.className = "text-black text-start ps-2 mb-1";
-  endsP.innerHTML = `Ends: <span class="end-time">${shortEndsAt}</span>`; // Use listing endsAt
-  endsColDiv.appendChild(endsP);
+  // Create and append the countdown display element
+  const countdownDisplay = document.createElement("p");
+  countdownDisplay.className = "countdown-display text-danger";
+  endsColDiv.appendChild(countdownDisplay);
+
+  // Update the countdown every second
+  const countdownInterval = setInterval(() => {
+    updateCountdownDisplay(listing.endsAt, countdownDisplay, countdownInterval);
+  }, 1000);
 
   // Listing ID
   const idColDiv = document.createElement("div");
-  idColDiv.className = "col text-nowrap text-black listing-id";
+  idColDiv.className = "col text-nowrap text-black listing-id px-0";
   endsRowDiv.appendChild(idColDiv);
 
   const idP = document.createElement("p");
-  idP.className = "text-black fw-bold text-end pe-2 mb-1";
+  idP.className = "text-black fw-bold text-end pe-4 mb-1";
   const shortId = listing.id.slice(0, 3); // Extracts first 3 characters of the ID
   idP.innerHTML = `ID: <span class="listing-id">${shortId}</span>`; // Use shortened ID
   idColDiv.appendChild(idP);
 
   return colDiv;
+}
+
+// Sets the listing ID and seller name in localStorage and checks if it is the logged in user when a listing card is clicked
+export async function handleListingCardClick(event) {
+  const card = event.currentTarget;
+
+  const listingId = card.getAttribute("data-post-id");
+  const listingBids = card.getAttribute("data-post-listingBids");
+  const sellerName = card.getAttribute("data-post-sellerName");
+  const sellerAvatar = card.getAttribute("data-post-sellerAvatar");
+  const sellerWins = card.getAttribute("data-post-sellerWins");
+
+  localStorage.setItem("listingId", listingId);
+  localStorage.setItem("listingBids", listingBids);
+  localStorage.setItem("sellerName", sellerName);
+  localStorage.setItem("sellerAvatar", sellerAvatar);
+  localStorage.setItem("sellerWins", sellerWins);
+
+  // if (authorName !== loggedInUser) {
+  //   localStorage.setItem("isLoggedIn", false);
+  // } else if (authorName === loggedInUser) {
+  //   localStorage.setItem("isLoggedIn", true);
+  // }
 }

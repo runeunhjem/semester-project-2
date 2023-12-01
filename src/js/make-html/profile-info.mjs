@@ -1,8 +1,10 @@
-export function updateProfileDisplay() {
+import { isLoggedIn, loggedInUser } from "../variables/constants.mjs";
+import { doApiFetch } from "../api/doFetch.mjs";
+import { API_BASE_URL, profilesInclude } from "../api/apiUrls.mjs";
+
+export async function updateProfileDisplay() {
   const profileContainer = document.getElementById("profileContainer");
   if (!profileContainer) return; // Exit if the container is not found
-
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
 
   // Create elements
   const colProfileInfo = document.createElement("div");
@@ -34,11 +36,20 @@ export function updateProfileDisplay() {
 
   // Set content based on login status
   if (isLoggedIn === "true") {
-    profileName.textContent = "runeunhjem";
-    profileListings.textContent = "Listings: 1";
-    profileCredits.innerHTML =
-      'Balance: <i class="bi bi-currency-dollar"></i>1000';
-    profileImage.src = "/images/rune-profile-pic-medium.jpg";
+    const response = await doApiFetch(
+      `${API_BASE_URL}${profilesInclude}/${loggedInUser}?_listings=true`,
+      "GET"
+    );
+    const data = await response;
+    const loggedInUserData = JSON.stringify(data);
+    localStorage.setItem("loggedInUserData", loggedInUserData);
+
+    console.log("Logged in user data", data);
+
+    profileName.textContent = loggedInUser;
+    profileListings.textContent = `Listings: ${data._count.listings}`;
+    profileCredits.innerHTML = `Balance: <i class="bi bi-currency-dollar"></i>${data.credits}`;
+    profileImage.src = data.avatar;
     profileImage.alt = "Profile image of runeunhjem";
   } else {
     profileName.textContent = "Profile name";

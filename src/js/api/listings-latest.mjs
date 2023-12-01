@@ -7,8 +7,7 @@ export async function latestListings() {
     let allListingsArray = await fetchAllListings();
 
     // Valid file endings
-    const validFileEndings = [""];
-    // const validFileEndings = [".jpg", ".jpeg", ".gif"];
+    const validFileEndings = [".jpg", ".jpeg", ".gif", ""];
 
     // Filter listings to include only those with valid media
     const listingsWithValidMedia = allListingsArray.filter(listing => {
@@ -33,7 +32,6 @@ export async function latestListings() {
     const latest12Listings = listingsWithValidMedia.slice(0, 12);
     spinner.classList.add("d-none");
 
-    console.log("Latest 12 Listings with Valid Media", latest12Listings);
     return latest12Listings;
   } catch (error) {
     console.error("Error fetching and sorting listings:", error);

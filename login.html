@@ -16,12 +16,12 @@
   <title>DreamBids | Login</title>
 </head>
 <body class="h-100">
-  <header class="container-fluid border-bottom border-secondary py-1 max-width-1200">
+  <header class="container-fluid border-bottom border-primary py-1 max-width-1200">
     <div class="container ps-0 mt-2 max-width-1200">
       <div class="row d-flex justify-content-between">
         <div class="col-5 col-md-2 d-flex justify-content-start">
-          <a href="/index.html" alt="Home" aria-labelledby="Home">
-            <span class="out-of-view-menu-text">Home</span>
+          <a href="/index.html" aria-labelledby="homeLabel">
+            <span id="homeLabel" class="out-of-view-menu-text">Home</span>
             <img src="/images/db-logo.svg" class="header-logo" alt="DreamBids Logo">
           </a>
         </div>
@@ -44,7 +44,7 @@
                   <i class="bi fs-5 bi-star me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Favorites</span>
                 </a>
                 <a href="/src/html/auction/new-listing.html" class="text-primary d-flex align-items-center icon-add-listing">
-                  <i class="bi fs-5 bi-plus-circle me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Add listing</span>
+                  <i class="bi fs-5 bi-plus-circle me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex add-listing">Add listing</span>
                 </a>
                 <div class="searchbar text-primary d-md-none d-flex align-items-center">
                   <i class="bi fs-5 bi-search me-2 icon-link icon-link-hover search" id="searchIcon"></i><span class="d-none d-md-inline-flex search">Search</span>
@@ -213,7 +213,7 @@
       <div class="back-to-top-button bg-primary text-white px-3 py-2"></div>
     </a>
   </main>
-  <footer class="border-top border-primary">
+  <footer class="max-width-300">
       <div class="container my-2 pb-0 max-width-300 mx-auto">
         <div class="row border-primary pb-1 d-flex justify-content-between align-items-top">
           <div class="col-6">
@@ -229,13 +229,13 @@
           </div>
           <div class="col-6">
             <div class="row">
-              <a href="/index.html" alt="Home" aria-labelledby="Home" class=" align-items-center">
-                <span class="out-of-view-menu-text">Home</span>
+              <a href="/index.html" aria-labelledby="homeLabel">
+                <span id="homeLabel" class="out-of-view-menu-text">Home</span>
                 <img src="/images/db-logo.svg" class="header-logo" alt="DreamBids Logo">
               </a>
             </div>
             <div class="row mt-3">
-              <div class="col text-primary text-center fs-3 d-flex justify-content-around mt-2">
+              <div class="col text-primary text-center fs-3 d-flex justify-content-around mt-2 social">
                 <a href="https://www.facebook.com"><i class="bi bi-facebook"></i><span class="out-of-view-menu-text">Find us on Facebook</span></a>
                 <a href="https://www.instagram.com"><i class="bi bi-instagram"></i><span class="out-of-view-menu-text">Find us on Instagram</span></a>
                 <a href="https://github.com/runeunhjem/semester-project-2"><i class="bi bi-github"></i><span class="out-of-view-menu-text">DreamBids on GitHub</span></a>

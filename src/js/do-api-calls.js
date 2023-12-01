@@ -3,28 +3,38 @@ import { fetchAllListingsWithMedia } from "./api/listings-all-with-media.mjs";
 import { fetchSingleListingById } from "./api/listings-singel-id.mjs";
 import { latestListings } from "./api/listings-latest.mjs";
 import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
+import { fetchProfileListings } from "./api/get-profile.mjs";
 
-/**
- * Fetch all listings
- */
-fetchAllListings();
+if (!window.location.href.includes("login")) {
+  /**
+   * Fetch all listings
+   */
+  fetchAllListings();
 
-/**
- * Fetch all listings with media
- */
-fetchAllListingsWithMedia();
+  /**
+   * Fetch all listings with media
+   */
+  fetchAllListingsWithMedia();
 
-/**
- * Fetch single listing by id
- */
-fetchSingleListingById();
+  /**
+   * Fetch single listing by id
+   */
+  fetchSingleListingById();
 
-/**
- * Latest listings
- */
-latestListings();
+  /**
+   * Latest listings
+   */
+  latestListings();
 
-/**
- * 12 Listings that ends soon
- */
-listingsEndsSoon();
+  /**
+   * 12 Listings that ends soon
+   */
+  listingsEndsSoon();
+
+  /**
+   * Fetch profile listings
+   */
+  fetchProfileListings();
+} else {
+  console.log("No fetching on Login page");
+}
