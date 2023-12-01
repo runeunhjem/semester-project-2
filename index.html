@@ -43,8 +43,8 @@
                 <a href="/src/html/auction/favorites.html" class="text-primary d-flex align-items-center icon-favorites">
                   <i class="bi fs-5 bi-star me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Favorites</span>
                 </a>
-                <a href="#" class="text-primary d-flex align-items-center icon-add-listing" data-bs-toggle="collapse" data-bs-target="#create-new-listing" aria-expanded="false">
-                  <i class="bi fs-5 bi-plus-circle me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Add listing</span>
+                <a href="#" class="text-primary d-flex align-items-center mx-2 icon-add-listing" data-bs-toggle="collapse" data-bs-target="#create-new-listing" aria-expanded="false">
+                  <i class="bi fs-5 bi-plus-circle me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex add-listing">Add listing</span>
                 </a>
                 <div class="searchbar text-primary d-md-none d-flex align-items-center">
                   <i class="bi fs-5 bi-search me-2 icon-link icon-link-hover search" id="searchIcon"></i><span class="d-none d-md-inline-flex search">Search</span>
@@ -98,15 +98,8 @@
       <!-- End Back-to-top -->
 
       <!-- Categories -->
-      <p class="fs-4 px-4 pt-1 pb-0 mb-0 rounded d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300">Categories</p>
-      <div class="categories-container container d-flex flex-nowrap pb-3 justify-content-start gap-3 overflow-x-auto max-width-300" id="categories">
-        <!-- <button class="category-button bg-white rounded border text-center btn btn-group">Accessories</button>
-        <button class="category-button bg-white rounded border text-center btn btn-group">Art</button>
-        <button class="category-button bg-white rounded border text-center btn btn-group">Gaming</button>
-        <button class="category-button bg-white rounded border text-center btn btn-group">Interior</button>
-        <button class="category-button bg-white rounded border text-center btn btn-group">Toys</button>
-        <button class="category-button bg-white rounded border text-center btn btn-group">Wine</button> -->
-      </div>
+      <p class="fs-4 px-4 pt-1 pb-2 mb-0 rounded d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300">Categories</p>
+      <div class="categories-container container d-flex flex-nowrap pb-3 justify-content-start gap-3 overflow-x-auto max-width-300" id="categories"></div>
       <!-- End of categories -->
 
       <!-- Listing Cards -->
@@ -137,7 +130,7 @@
           <div class="col d-flex justify-content-center">
             <h1 id="toggleAllAuctions" class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-between flex-nowrap divider-title bg-secondary text-white text-center w-100 max-width-300">
               All Auctions
-              <i class="bi bi-chevron-down" id="chevronRight"></i>
+              <i class="bi bi-chevron-up" id="chevronRight"></i>
             </h1>
           </div>
         </div>

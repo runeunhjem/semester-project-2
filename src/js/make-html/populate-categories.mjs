@@ -1,3 +1,5 @@
+import { pastelColors } from "../variables/constants.mjs";
+
 export async function populateCategories(listingsData) {
   const tagCounts = new Map();
 
@@ -36,13 +38,22 @@ export async function populateCategories(listingsData) {
 function populateContainer(container, tagCounts) {
   container.innerHTML = "";
 
+  let colorIndex = 0; // To keep track of which color to apply
+
   Array.from(tagCounts)
     .sort((a, b) => a[0].localeCompare(b[0])) // Sort by tag name
     .forEach(([tag, count]) => {
       const categoryButton = document.createElement("button");
       categoryButton.className =
-        "category-button bg-white text-nowrap rounded border text-center btn btn-group text-capitalize";
+        "category-button text-nowrap rounded border text-center btn btn-group text-capitalize";
       categoryButton.textContent = `${tag} (${count})`;
+
+      // Set background color
+      categoryButton.style.backgroundColor = pastelColors[colorIndex];
+
+      // Move to the next color, loop back if at the end
+      colorIndex = (colorIndex + 1) % pastelColors.length;
+
       container.appendChild(categoryButton);
     });
 }

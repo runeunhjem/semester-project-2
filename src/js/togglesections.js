@@ -1,59 +1,48 @@
-// Add a function wrapper
-(function () {
-  const latestAuctions = document.getElementById("toggleLatestAuctions");
-  if (!latestAuctions) {
-    // Exit if the container is not found
-    return;
-  } else {
-    document
-      .getElementById("toggleLatestAuctions")
-      .addEventListener("click", function () {
-        const latestAuctions = document.querySelector(".latest-auctions");
-        const chevronIcon = document.getElementById("chevronIcon");
+(function initializeToggleButtons() {
+  function setupToggleButton(toggleButtonId, targetSelectors, chevronIconId) {
+    const toggleButton = document.getElementById(toggleButtonId);
 
-        latestAuctions.classList.toggle("d-none");
+    if (!toggleButton) {
+      // Exit if the toggle button is not found
+      return;
+    }
 
-        // Toggle chevron icon direction
-        if (latestAuctions.classList.contains("d-none")) {
-          chevronIcon.classList.remove("bi-chevron-up");
-          chevronIcon.classList.add("bi-chevron-down");
-        } else {
-          chevronIcon.classList.remove("bi-chevron-down");
-          chevronIcon.classList.add("bi-chevron-up");
+    toggleButton.addEventListener("click", function () {
+      targetSelectors.forEach(selector => {
+        const targetElement = document.querySelector(selector);
+        if (targetElement) {
+          targetElement.classList.toggle("d-none");
         }
       });
-  }
-})();
 
-// Add a function wrapper
-(function () {
-  const toggleListingDetailsButton = document.getElementById(
-    "toggleListingDetails"
+      const chevronIcon = document.getElementById(chevronIconId);
+      // Toggle chevron icon direction
+      if (
+        document.querySelector(targetSelectors[0]).classList.contains("d-none")
+      ) {
+        chevronIcon.classList.remove("bi-chevron-up");
+        chevronIcon.classList.add("bi-chevron-down");
+      } else {
+        chevronIcon.classList.remove("bi-chevron-down");
+        chevronIcon.classList.add("bi-chevron-up");
+      }
+    });
+  }
+
+  // Setup toggle for latest auctions
+  setupToggleButton(
+    "toggleLatestAuctions",
+    [".latest-auctions"],
+    "chevronIcon"
   );
-  if (!toggleListingDetailsButton) {
-    // Exit if the button is not found
-    return;
-  }
 
-  toggleListingDetailsButton.addEventListener("click", function () {
-    const listingDetails = document.querySelector(".listing-details");
-    const bidDetails = document.querySelector(".bid-details");
-    const chevronIcon = document.getElementById("chevronIcon");
+  // Setup toggle for listing details and bid details
+  setupToggleButton(
+    "toggleListingDetails",
+    [".listing-details", ".bid-details"],
+    "chevronIcon"
+  );
 
-    // Toggle the display of listing and bid details
-    listingDetails.classList.toggle("d-none");
-    if (bidDetails) {
-      // Check if bidDetails exists
-      bidDetails.classList.toggle("d-none");
-    }
-
-    // Toggle chevron icon direction
-    if (listingDetails.classList.contains("d-none")) {
-      chevronIcon.classList.remove("bi-chevron-up");
-      chevronIcon.classList.add("bi-chevron-down");
-    } else {
-      chevronIcon.classList.remove("bi-chevron-down");
-      chevronIcon.classList.add("bi-chevron-up");
-    }
-  });
+  // Setup toggle for all auctions
+  setupToggleButton("toggleAllAuctions", [".all-auctions"], "chevronRight");
 })();

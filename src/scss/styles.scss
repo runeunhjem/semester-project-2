@@ -7,6 +7,7 @@
   --primary-font: "Arial", sans-serif;
   --secondary-font: "Iceberg", sans-serif;
 }
+
 body {
   font-family: "Arial", sans-serif;
 }
@@ -28,6 +29,7 @@ main {
   width: 100%;
   height: 108px;
 }
+
 footer {
   max-width: 600px;
   margin: 0 auto;
@@ -59,6 +61,11 @@ a {
   }
 }
 
+.icon-add-listing,
+.icon-favorites {
+  width: 110px !important;
+}
+
 @media screen and (min-width: 548px) {
   .categories-container {
     margin: 0 auto !important;
@@ -68,7 +75,7 @@ a {
 .max-width-300 {
   @media screen and (max-width: 547px) {
     padding: 10px 0;
-    max-width: 90%;
+    max-width: 90% !important;
   }
 }
 
