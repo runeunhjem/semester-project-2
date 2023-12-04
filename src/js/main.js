@@ -11,6 +11,7 @@ import { isLoggedIn } from "./variables/constants.mjs";
 import { createNewListingForm } from "./make-html/create-new-listing.mjs";
 import { displayProfileListings } from "./utils/create-profile-listings.mjs";
 import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
+import { currentProfile } from "./make-html/profile-page.mjs";
 
 if (isLoggedIn) {
   listingsEndsSoon();
@@ -79,6 +80,7 @@ if (currentPage === "listing.html") {
 } else if (currentPage === "index.html" || currentPage === "") {
   // Run on index page (or root)
   displayAllListings();
+  currentProfile();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

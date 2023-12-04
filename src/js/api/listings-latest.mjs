@@ -1,6 +1,9 @@
 import { fetchAllListings } from "./listings-all.mjs";
 
 export async function latestListings() {
+  if (window.location.href.includes("login")) {
+    return;
+  }
   try {
     const spinner = document.getElementById("spinner");
     spinner.classList.remove("d-none");

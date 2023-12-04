@@ -7,7 +7,9 @@ export async function displayProfileListings() {
   let allListingsArray = [];
   const limit = 100;
   let offset = 0;
-  const currentProfileName = localStorage.getItem("currentProfileName");
+  // const currentProfileName = localStorage.getItem("currentProfileName");
+  const urlParams = new URLSearchParams(window.location.search);
+  const currentProfileName = urlParams.get("profile");
 
   // Ensure currentProfileName is available
   if (!currentProfileName) {
@@ -17,7 +19,7 @@ export async function displayProfileListings() {
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    const url = `${API_BASE_URL}${profilesInclude}/${currentProfileName}${listingsUrl}?_seller=true&_bids=true&limit=${limit}&offset=${offset}`;
+    const url = `${API_BASE_URL}${profilesInclude}/${currentProfileName}${listingsUrl}?_seller=true&_bids=true&limit=${limit}&offset=${offset}&sort=created&sortOrder=asc`;
     const response = await doApiFetch(url, "GET");
     const listings = await response;
 

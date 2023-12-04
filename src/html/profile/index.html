@@ -35,33 +35,32 @@
                     <button class="btn btn-primary" type="submit"><i class="bi text-white ps-1 bi-search me-2"></i><span class="visually-hidden">Search</span></button>
                   </form>
                 </div>
-                <div id="profileContainer" class="col-fluid d-flex justify-content-between w-100">
+                <div id="profileContainer" class="col-fluid d-flex justify-content-between w-100"></div>
               </div>
-            </div>
-            <div class="row py-1 px-0 icons">
-              <div class="col d-flex flex-nowrap text-primary justify-content-between justify-content-md-end gap-md-4 align-items-center me-md-3">
-                <a href="/src/html/auction/favorites.html" class="text-primary d-flex align-items-center icon-favorites">
-                  <i class="bi fs-5 bi-star me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Favorites</span>
-                </a>
-                <a href="#" class="text-primary d-flex align-items-center mx-2 icon-add-listing" data-bs-toggle="collapse" data-bs-target="#create-new-listing" aria-expanded="false">
-                  <i class="bi fs-5 bi-plus-circle me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex add-listing">Add listing</span>
-                </a>
-                <div class="searchbar text-primary d-md-none d-flex align-items-center">
-                  <i class="bi fs-5 bi-search me-2 icon-link icon-link-hover search" id="searchIcon"></i><span class="d-none d-md-inline-flex search">Search</span>
-                </div>
-                <nav class="text-primary">
-                  <div class="dropdown d-flex align-items-center">
-                    <i class="bi fs-3 bi-list me-2 my-2 dropdown-toggle icon-link icon-link-hover" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></i><span class="dropdown-toggle d-none d-md-inline-flex" data-bs-toggle="dropdown">Menu</span>
-                    <ul class="dropdown-menu border-primary" aria-labelledby="dropdownMenuButton">
-                      <li class=" menu-home"><a class="dropdown-item" href="/index.html">Home</a></li>
-                      <li class=" menu-profile"><a class="dropdown-item" href="/src/html/profile/index.html">Profile</a></li>
-                      <li class=" menu-contact"><a class="dropdown-item" href="/contact.html">Contact</a></li>
-                      <li class=" menu-about"><a class="dropdown-item" href="/about.html">About</a></li>
-                      <li class=" menu-login"><a class="dropdown-item" href="/login.html">Log in</a></li>
-                      <li class=" menu-logout"><a class="dropdown-item logout-link" href="/index.html">Log out</a></li>
-                    </ul>
+              <div class="row py-1 px-0 icons">
+                <div class="col d-flex flex-nowrap text-primary justify-content-between justify-content-md-end gap-md-4 align-items-center me-md-3">
+                  <a href="/src/html/auction/favorites.html" class="text-primary d-flex align-items-center icon-favorites">
+                    <i class="bi fs-5 bi-star me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Favorites</span>
+                  </a>
+                  <a href="#" class="text-primary d-flex align-items-center mx-2 icon-add-listing" data-bs-toggle="collapse" data-bs-target="#create-new-listing" aria-expanded="false">
+                    <i class="bi fs-5 bi-plus-circle me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex add-listing">Add listing</span>
+                  </a>
+                  <div class="searchbar text-primary d-md-none d-flex align-items-center">
+                    <i class="bi fs-5 bi-search me-2 icon-link icon-link-hover search" id="searchIcon"></i><span class="d-none d-md-inline-flex search">Search</span>
                   </div>
-                </nav>
+                  <nav class="text-primary">
+                    <div class="dropdown d-flex align-items-center">
+                      <i class="bi fs-3 bi-list me-2 my-2 dropdown-toggle icon-link icon-link-hover" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></i><span class="dropdown-toggle d-none d-md-inline-flex" data-bs-toggle="dropdown">Menu</span>
+                      <ul class="dropdown-menu border-primary" aria-labelledby="dropdownMenuButton">
+                        <li class=" menu-home"><a class="dropdown-item" href="/index.html">Home</a></li>
+                        <li class=" menu-profile"><a class="dropdown-item" href="/src/html/profile/index.html">Profile</a></li>
+                        <li class=" menu-contact"><a class="dropdown-item" href="/contact.html">Contact</a></li>
+                        <li class=" menu-about"><a class="dropdown-item" href="/about.html">About</a></li>
+                        <li class=" menu-login"><a class="dropdown-item" href="/login.html">Log in</a></li>
+                        <li class=" menu-logout"><a class="dropdown-item logout-link" href="/index.html">Log out</a></li>
+                      </ul>
+                    </div>
+                  </nav>
               </div>
             </div>
           </div>
@@ -96,6 +95,10 @@
         <div class="back-to-top-button bg-primary text-white px-3 py-2"></div>
       </a>
       <!-- End Back-to-top -->
+
+      <!-- Profile info -->
+      <div class="current-profile max-width-300 border-bottom container d-flex flex-wrap justify-content-center pb-4" id="current-profile"></div>
+      <!-- End of profile info -->
 
       <!-- Categories -->
       <p class="fs-4 px-4 pt-1 pb-2 mb-0 rounded d-flex justify-content-center flex-nowrap divider-title text-primary text-center max-width-300">Categories</p>
