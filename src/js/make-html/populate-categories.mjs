@@ -1,11 +1,11 @@
 import { pastelColors } from "../variables/constants.mjs";
 
-export async function populateCategories(listingsData) {
+export async function populateCategories(listingsData, containerId) {
   const tagCounts = new Map();
 
   // Process each listing
   const processListing = listing => {
-    if (listing.tags.length > 0) {
+    if (listing.tags && listing.tags.length > 0) {
       listing.tags.forEach(tag => {
         tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
       });
@@ -22,28 +22,15 @@ export async function populateCategories(listingsData) {
     processListing(listingsData);
   }
 
-  // Populate containers
-  const categoriesContainerIndex = document.getElementById("categories");
-  if (categoriesContainerIndex) {
-    populateContainer(categoriesContainerIndex, tagCounts);
-  }
-
-  const categoriesContainerListing =
-    document.getElementById("categories-listing");
-  if (categoriesContainerListing) {
-    populateContainer(categoriesContainerListing, tagCounts);
-  }
-
-  const categoriesContainerProfile =
-    document.getElementById("categories-profile");
-  if (categoriesContainerProfile) {
-    populateContainer(categoriesContainerProfile, tagCounts);
+  // Populate the specified container
+  const container = document.getElementById(containerId);
+  if (container) {
+    populateContainer(container, tagCounts);
   }
 }
 
 function populateContainer(container, tagCounts) {
   container.innerHTML = "";
-
   let colorIndex = 0; // To keep track of which color to apply
 
   Array.from(tagCounts)

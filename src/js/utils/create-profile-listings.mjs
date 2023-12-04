@@ -37,9 +37,10 @@ export async function displayProfileListings() {
     return;
   }
   allListingsArray.forEach(listing => {
-    populateCategories(listing);
-    const listingCard = createListingCard(listing);
+    // populateCategories(listing);
+    const listingCard = createListingCard(listing, "categories-profile");
     profileAuctionsContainer.appendChild(listingCard);
   });
+  populateCategories(allListingsArray, "categories-profile");
   return allListingsArray;
 }

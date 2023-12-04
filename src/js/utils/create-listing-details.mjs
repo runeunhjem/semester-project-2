@@ -16,7 +16,8 @@ export async function displayListingDetails() {
   try {
     const listing = await fetchSingleListingById(listingIdParam);
 
-    await populateCategories(listing);
+    await populateCategories(listing, "categories-listing");
+    // await populateCategories(listing);
 
     // Set the page title to the listing title
     if (window.location.pathname === "/src/html/auction/listing.html") {

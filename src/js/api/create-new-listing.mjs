@@ -9,5 +9,6 @@ export async function createNewListing(listingData) {
   );
   const newListing = await response;
   console.log("New listing created", newListing);
+  window.location.reload();
   return newListing;
 }

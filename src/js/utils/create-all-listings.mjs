@@ -7,7 +7,10 @@ export async function displayAllListings() {
     const listings = await fetchAllListingsWithMedia();
     console.log("All Listings with Media", listings);
 
-    await populateCategories(listings);
+    if (window.location.pathname === "/index.html") {
+      await populateCategories(listings, "categories");
+      // await populateCategories(listings);
+    }
 
     // Get the container where the listings should be displayed
     const allAuctionsContainer = document.getElementById("all-auctions");
