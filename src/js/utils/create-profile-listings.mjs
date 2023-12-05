@@ -19,7 +19,7 @@ export async function displayProfileListings() {
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    const url = `${API_BASE_URL}${profilesInclude}/${currentProfileName}${listingsUrl}?_seller=true&_bids=true&limit=${limit}&offset=${offset}&sort=created&sortOrder=asc`;
+    const url = `${API_BASE_URL}${profilesInclude}/${currentProfileName}${listingsUrl}?_seller=true&_bids=true&limit=${limit}&offset=${offset}&sort=updated&sortOrder=desc`;
     const response = await doApiFetch(url, "GET");
     const listings = await response;
 
@@ -39,7 +39,6 @@ export async function displayProfileListings() {
     return;
   }
   allListingsArray.forEach(listing => {
-    // populateCategories(listing);
     const listingCard = createListingCard(listing, "categories-profile");
     profileAuctionsContainer.appendChild(listingCard);
   });

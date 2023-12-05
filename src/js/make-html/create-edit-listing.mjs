@@ -1,27 +1,26 @@
-// createNewListingForm.mjs
-import { createNewListing } from "../api/create-new-listing.mjs";
+import { updateListing } from "../api/edit-listing.mjs";
 
-export function createNewListingForm(parentElementId) {
-  const parentElement = document.getElementById(parentElementId);
-  parentElement.innerHTML = "";
+export function editListingForm(id, listing) {
+  const parentElement = document.getElementById("edit-listing");
   if (!parentElement) {
     console.error("Parent element not found");
     return;
   }
+  parentElement.innerHTML = "";
 
   // Main container div
   const mainDiv = document.createElement("div");
-  mainDiv.className = "mb-3 w-100 mx-auto";
+  mainDiv.className = "mb-3 w-100";
 
   // Card body div
   const cardBodyDiv = document.createElement("div");
   cardBodyDiv.className = "card-body w-100 collapse show";
-  cardBodyDiv.id = "createListingForm";
+  cardBodyDiv.id = "editListingForm";
 
-  // Card title
+  // Card title changed to 'Edit auction...'
   const cardTitle = document.createElement("h1");
   cardTitle.className = "card-title fs-3 text-center mt-3 text-primary";
-  cardTitle.textContent = "Create new auction...";
+  cardTitle.textContent = "Edit auction...";
   cardBodyDiv.appendChild(cardTitle);
 
   // Form
@@ -37,7 +36,8 @@ export function createNewListingForm(parentElementId) {
     inputType,
     inputId,
     placeholder,
-    isRequired
+    isRequired,
+    value = "" // Add a new parameter for value
   ) => {
     const div = document.createElement("div");
     div.className = "mb-3";
@@ -67,6 +67,8 @@ export function createNewListingForm(parentElementId) {
     if (inputType === "textarea") {
       input.rows = 4;
     }
+    input.value = value; // Set the value of the input
+
     div.appendChild(input);
 
     return div;
@@ -140,26 +142,61 @@ export function createNewListingForm(parentElementId) {
   // Submit button
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
-  submitButton.className = "btn btn-primary text-white";
-  submitButton.id = "create-new-listing";
-  submitButton.textContent = "Create Listing";
+  submitButton.className = "btn btn-primary text-white me-3";
+  submitButton.id = "update-listing";
+  submitButton.textContent = "Update Listing";
   form.appendChild(submitButton);
 
   cardBodyDiv.appendChild(form);
   mainDiv.appendChild(cardBodyDiv);
   parentElement.appendChild(mainDiv);
 
+  // Logic to pre-fill the form with listing data
+  const prefillForm = () => {
+    document.getElementById("title").value = listing.title || "";
+    document.getElementById("description").value = listing.description || "";
+    document.getElementById("tags").value = listing.tags?.join(", ") || "";
+    if (listing.endsAt) {
+      // Convert the endsAt to a format suitable for a datetime-local input
+      const endsAtValue = new Date(listing.endsAt).toISOString().slice(0, 16);
+      document.getElementById("endsAt").value = endsAtValue;
+    }
+
+    // Handling image URLs
+    if (listing.media && listing.media.length > 0) {
+      document.getElementById("media").value = listing.media[0]; // Set value for the first image URL
+
+      // Create additional image URL inputs for each additional image
+      listing.media.slice(1).forEach(url => {
+        const newImageUrlDiv = createInputGroup(
+          "Additional Image URL",
+          "url",
+          // `media-${Math.random()}`, // Unique ID for each input
+          "media", // Unique ID for each input
+          "Valid image URL",
+          false,
+          url // Pass the URL as the value
+        );
+        form.insertBefore(newImageUrlDiv, addImageButton);
+      });
+    }
+  };
+
+  // Modify form submission logic for updating a listing
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
     // Create FormData object from the form
     let formData = new FormData(form);
 
-    // Get the endsAt value and convert it to ISO string format
-    let endsAt = new Date(formData.get("endsAt")).toISOString();
+    // Get the endsAt value and convert it to ISO string format if necessary
+    let endsAt = formData.get("endsAt");
+    if (endsAt) {
+      endsAt = new Date(endsAt).toISOString();
+    }
 
-    // Create the data object for API call
-    let listingData = {
+    // Construct the updated listing data object
+    let updatedListingData = {
       title: formData.get("title"),
       description: formData.get("description"),
       tags: formData
@@ -169,10 +206,32 @@ export function createNewListingForm(parentElementId) {
       media: formData.getAll("media"),
       endsAt: endsAt,
     };
-    console.log("Listing data", listingData);
-    // Call the API function to create a new listing
-    createNewListing(listingData); // Make sure this function is properly implemented to handle the API call
-    const createListingDiv = document.getElementById("create-new-listing");
-    createListingDiv.classList.add("d-none");
+
+    // Call the API function to update the listing
+    updateListing(id, updatedListingData); // Pass the updated data and the listing's ID
   });
+
+  // Add a cancel button
+  const cancelButton = document.createElement("button");
+  cancelButton.type = "button";
+  cancelButton.className = "btn btn-dark text-white";
+  cancelButton.textContent = "Cancel";
+  cancelButton.setAttribute("data-bs-toggle", "collapse");
+  cancelButton.setAttribute("data-bs-target", "#edit-listing");
+  cancelButton.setAttribute("aria-expanded", "false");
+  cancelButton.addEventListener("click", function () {
+    // Logic to handle cancel action, e.g., clear form or redirect
+    // window.location.href = '/some-redirect-url'; // Redirect to another page
+    form.reset(); // Or just reset the form
+  });
+
+  // Append both submit and cancel buttons to the form
+  const buttonGroup = document.createElement("div");
+  buttonGroup.className = "button-group";
+  buttonGroup.appendChild(submitButton);
+  buttonGroup.appendChild(cancelButton);
+  form.appendChild(buttonGroup);
+
+  // Pre-fill the form when it's created
+  prefillForm();
 }

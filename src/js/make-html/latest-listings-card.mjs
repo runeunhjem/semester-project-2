@@ -1,8 +1,10 @@
 import { getNewestBid } from "../utils/bids-get-highest.mjs";
 import { getRandomId } from "../utils/excluded-picsum-ids.mjs";
-import { excludedIds } from "../variables/constants.mjs";
+import { excludedIds, loggedInUser } from "../variables/constants.mjs";
 import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs";
 import { loadFavorites } from "./create-favorites.mjs";
+import { editListingForm } from "../make-html/create-edit-listing.mjs";
+
 // import { convertToShortDateFormat } from "../utils/date-converter.mjs";
 
 export function createListingCard(listing) {
@@ -45,6 +47,34 @@ export function createListingCard(listing) {
   carouselDiv.className = "carousel slide";
   carouselDiv.setAttribute("data-bs-ride", "carousel");
   cardDiv.appendChild(carouselDiv);
+
+  // Check if the loggedInUser is the seller
+  if (loggedInUser === listing.seller.name) {
+    // Create the edit button
+    const editButton = document.createElement("button");
+    editButton.className = "btn btn-secondary text-white";
+    editButton.style.position = "absolute";
+    editButton.style.top = "10px";
+    editButton.style.left = "10px";
+    editButton.style.cursor = "pointer";
+    editButton.textContent = "Edit"; // Adding text to the button
+    editButton.setAttribute("data-bs-toggle", "collapse");
+    editButton.setAttribute("data-bs-target", "#edit-listing");
+    editButton.setAttribute("aria-expanded", "false");
+    editButton.title = "Edit Listing";
+
+    // Event listener for edit action
+    editButton.addEventListener("click", function (event) {
+      event.stopPropagation(); // Prevent triggering any click events on parent elements
+      // Logic to handle the edit action, e.g., redirect to an edit page or open an edit modal
+      console.log("Editing listing", listing.id);
+      editListingForm(listing.id, listing);
+    });
+
+    // Append the edit button to the listing card
+    // Assuming `cardDiv` is your main card container
+    cardDiv.appendChild(editButton);
+  }
 
   // Create carousel-inner div
   const carouselInnerDiv = document.createElement("div");
