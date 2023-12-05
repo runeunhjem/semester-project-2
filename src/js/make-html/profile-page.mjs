@@ -51,11 +51,19 @@ export async function currentProfile() {
     "profile-name text-primary d-flex justify-content-center";
 
   // Create the 'Change' text element
+  // const changeText = document.createElement("span");
+  // changeText.textContent = "Change Avatar";
+  // changeText.style.cursor = "pointer"; // Make it look clickable
+  // changeText.className = "text-secondary"; // Add class for styling if needed
+  // changeText.className = "text-secondary"; // Add class for styling if needed
 
-  const changeText = document.createElement("span");
-  changeText.textContent = "Change Avatar";
-  changeText.style.cursor = "pointer"; // Make it look clickable
-  changeText.className = "text-secondary"; // Add class for styling if needed
+  // Create the 'Change Avatar' label element
+  const changeLabel = document.createElement("label");
+  changeLabel.setAttribute("for", "avatarInput");
+  changeLabel.textContent = "Change Avatar";
+  changeLabel.style.cursor = "pointer"; // Make it look clickable
+  changeLabel.className = "text-secondary d-block"; // Add class for styling if needed
+  changeLabel.style.display = "none"; // Initially hide the label
 
   // Create the form
   const changeForm = document.createElement("form");
@@ -64,6 +72,7 @@ export async function currentProfile() {
 
   // Create the input field
   const imageInput = document.createElement("input");
+  imageInput.id = "avatarInput";
   imageInput.type = "text";
   imageInput.value = ""; // Initial value can be empty or set to the current image src
   changeForm.appendChild(imageInput);
@@ -91,7 +100,8 @@ export async function currentProfile() {
   });
 
   // Event listener to toggle the form visibility
-  changeText.addEventListener("click", function () {
+  changeLabel.addEventListener("click", function () {
+    // changeText.addEventListener("click", function () {
     changeForm.style.display =
       changeForm.style.display === "none" ? "block" : "none";
     imageInput.value = profileImage.src;
@@ -115,7 +125,8 @@ export async function currentProfile() {
   // Append elements
   colProfileInfo.appendChild(profileName);
   if (loggedInUser === currentProfileName) {
-    colProfileInfo.appendChild(changeText);
+    // colProfileInfo.appendChild(changeText);
+    colProfileInfo.appendChild(changeLabel);
   }
   colProfileInfo.appendChild(changeForm);
   colProfileInfo.appendChild(profileContact);

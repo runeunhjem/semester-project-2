@@ -4,6 +4,7 @@ import { excludedIds, loggedInUser } from "../variables/constants.mjs";
 import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs";
 import { loadFavorites } from "./create-favorites.mjs";
 import { editListingForm } from "../make-html/create-edit-listing.mjs";
+import { deleteListing } from "../api/delete-listing.mjs";
 
 // import { convertToShortDateFormat } from "../utils/date-converter.mjs";
 
@@ -52,7 +53,7 @@ export function createListingCard(listing) {
   if (loggedInUser === listing.seller.name) {
     // Create the edit button
     const editButton = document.createElement("button");
-    editButton.className = "btn btn-secondary text-white";
+    editButton.className = "btn btn-sm btn-secondary text-white";
     editButton.style.position = "absolute";
     editButton.style.top = "10px";
     editButton.style.left = "10px";
@@ -71,9 +72,27 @@ export function createListingCard(listing) {
       editListingForm(listing.id, listing);
     });
 
+    // Create the delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "btn btn-sm btn-danger text-white";
+    deleteButton.style.position = "absolute";
+    deleteButton.style.top = "10px";
+    deleteButton.style.right = "10px";
+    deleteButton.style.cursor = "pointer";
+    deleteButton.textContent = "Delete";
+    deleteButton.title = "Delete Listing";
+
+    // Event listener for delete action
+    deleteButton.addEventListener("click", function (event) {
+      event.stopPropagation(); // Prevent triggering any click events on parent elements
+      if (confirm("Are you sure you want to delete this listing?")) {
+        deleteListing(listing.id);
+      }
+    });
+
     // Append the edit button to the listing card
-    // Assuming `cardDiv` is your main card container
     cardDiv.appendChild(editButton);
+    cardDiv.appendChild(deleteButton);
   }
 
   // Create carousel-inner div
