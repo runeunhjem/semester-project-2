@@ -1,6 +1,9 @@
 import { getNewestBid } from "../utils/bids-get-highest.mjs";
-// import { convertToShortDateFormat } from "../utils/date-converter.mjs";
+import { getRandomId } from "../utils/excluded-picsum-ids.mjs";
+import { excludedIds } from "../variables/constants.mjs";
 import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs";
+import { loadFavorites } from "./create-favorites.mjs";
+// import { convertToShortDateFormat } from "../utils/date-converter.mjs";
 
 export function createListingCard(listing) {
   // Create the main column div
@@ -57,10 +60,23 @@ export function createListingCard(listing) {
       carouselInnerDiv.appendChild(carouselItemDiv);
 
       const img = document.createElement("img");
-      img.src = mediaUrl;
       img.className = "d-block w-100 carousel-image";
       img.alt = `Carousel image ${index + 1}`;
-      carouselItemDiv.appendChild(img);
+
+      img.onload = () => {
+        // Image loaded successfully
+        carouselItemDiv.appendChild(img);
+      };
+
+      img.onerror = () => {
+        // Image failed to load, use a default image
+        img.src = `https://picsum.photos/id/${getRandomId(
+          excludedIds
+        )}/200/300`;
+        carouselItemDiv.appendChild(img);
+      };
+
+      img.src = mediaUrl; // Set the src last to start loading the image
     });
   } else {
     // Add default image or placeholder
@@ -69,8 +85,7 @@ export function createListingCard(listing) {
     carouselInnerDiv.appendChild(carouselItemDiv);
 
     const img = document.createElement("img");
-    const uniqueQueryParam = Math.floor(Math.random() * (500 - 200 + 1) + 100);
-    img.src = `https://picsum.photos/id/${uniqueQueryParam}/200/300`;
+    img.src = `https://picsum.photos/id/${getRandomId(excludedIds)}/200/300`;
     img.className = "d-block w-100 carousel-image";
     img.alt = "Default image";
     carouselItemDiv.appendChild(img);
@@ -81,9 +96,38 @@ export function createListingCard(listing) {
   overlayDiv.className = "overlay-icon px-2 shadow";
   carouselDiv.appendChild(overlayDiv);
 
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   const starIcon = document.createElement("i");
-  starIcon.className = "bi bi-star";
+
+  // Set the initial class of the star icon based on whether the listing is in favorites
+  starIcon.className = favorites.some(favorite => favorite.id === listing.id)
+    ? "bi bi-star-fill"
+    : "bi bi-star";
   overlayDiv.appendChild(starIcon);
+
+  // Event listener for toggling favorites
+  starIcon.addEventListener("click", function (event) {
+    event.stopPropagation(); // Prevents the click from triggering other click events on parent elements
+
+    // Check if the listing is already in favorites
+    const isFavorite = favorites.some(favorite => favorite.id === listing.id);
+
+    if (isFavorite) {
+      // Remove from favorites
+      favorites = favorites.filter(favorite => favorite.id !== listing.id);
+      starIcon.className = "bi bi-star";
+      console.log("Removed from favorites:", listing);
+    } else {
+      // Add to favorites
+      favorites.push(listing);
+      starIcon.className = "bi bi-star-fill";
+      console.log("Added to favorites:", listing);
+    }
+
+    // Update the favorites in localStorage
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+    loadFavorites();
+  });
 
   // Title
   const titleRowDiv = document.createElement("div");
@@ -91,19 +135,28 @@ export function createListingCard(listing) {
   cardDiv.appendChild(titleRowDiv);
 
   const titleColDiv = document.createElement("div");
-  titleColDiv.className = "col title-listing";
+  titleColDiv.className =
+    "col title-listing d-flex justify-content-center ms-0";
   titleRowDiv.appendChild(titleColDiv);
 
   const titleH1 = document.createElement("h1");
   titleH1.className =
-    "py-1 mb-2 border-bottom text-center fs-3 listing-title align-items-center text-primary";
-  titleH1.textContent = listing.title;
-  titleH1.style.width = "235px";
+    "py-1 mb-2 border-bottom text-center fs-5 listing-title align-items-center text-primary ms-0";
+  titleH1.style.width = "235px"; // Set the width of the container
   titleColDiv.appendChild(titleH1);
 
-  // Check if title is too long
-  if (titleH1.scrollWidth > titleH1.clientWidth) {
-    titleH1.classList.add("scrolling-title");
+  const titleText = document.createElement("span"); // Create a child span for the text
+  if (listing.title) {
+    titleText.textContent = listing.title;
+  } else {
+    titleText.className = "text-danger";
+    titleText.textContent = "Untitled Listing";
+  }
+  titleH1.appendChild(titleText);
+
+  // Check if title character count is too long
+  if (listing.title.length > 24) {
+    titleText.classList.add("scrolling-text");
   }
 
   // Description

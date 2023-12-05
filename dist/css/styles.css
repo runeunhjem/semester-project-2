@@ -12768,6 +12768,20 @@ a {
   cursor: pointer;
 }
 
+.scrolling-text {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scrollTitle 11s linear infinite;
+}
+
+@keyframes scrollTitle {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
 .listing-gallery {
   width: 90%;
   max-width: 800px;
@@ -12815,11 +12829,12 @@ a {
 }
 
 .title-listing {
-  overflow: auto;
+  overflow: hidden;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
   height: 55px;
-  max-width: 100%;
+  min-height: 55px;
+  max-width: 100% !important;
 }
 
 .listing-title {

@@ -78,6 +78,7 @@ export async function currentProfile() {
   // Event listener to submit the form and change the avatar
   changeForm.addEventListener("submit", async function (event) {
     event.preventDefault();
+    changeForm.style.display = "none";
     const response = await doApiFetch(
       `${API_BASE_URL}${profilesInclude}/${currentProfileName}/media`,
       "PUT",

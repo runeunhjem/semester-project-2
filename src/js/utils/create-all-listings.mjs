@@ -5,7 +5,7 @@ import { populateCategories } from "../make-html/populate-categories.mjs";
 export async function displayAllListings() {
   try {
     const listings = await fetchAllListingsWithMedia();
-    console.log("All Listings with Media", listings);
+    // console.log("All Listings with Media", listings);
 
     if (window.location.pathname === "/index.html") {
       await populateCategories(listings, "categories");

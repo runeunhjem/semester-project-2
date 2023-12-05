@@ -2,6 +2,7 @@ export const loggedInUser = localStorage.getItem("loggedInUser");
 export const currentProfileName = localStorage.getItem("currentProfileName");
 export const accessToken = localStorage.getItem("accessToken");
 export const isLoggedIn = localStorage.getItem("isLoggedIn");
+export const favoritesLink = document.querySelector(".icon-favorites");
 
 export const pastelColors = [
   "#fbb4ae", // pastel pink
@@ -21,4 +22,10 @@ export const pastelColors = [
   "#fff2ae", // pastel banana
   "#f1e2cc", // pastel tan
   "#cccccc", // pastel grey
+];
+
+// List of Picsum Photo-IDs to exclude
+export const excludedIds = [
+  205, 207, 224, 226, 245, 246, 262, 285, 286, 298, 303, 332, 333, 346, 359,
+  394, 414, 422, 438, 462, 463, 470,
 ];

@@ -26,11 +26,24 @@ export async function updateProfileDisplay() {
   const profileImage = document.createElement("img");
   profileImage.className = "header-profile-image rounded-circle shadow";
 
+  // Create anchor elements
+  const profileNameLink = document.createElement("a");
+  profileNameLink.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
+  profileNameLink.appendChild(profileName); // Wrap the profileName element
+
+  const profileImageLink = document.createElement("a");
+  profileImageLink.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
+  profileImageLink.appendChild(profileImage); // Wrap the profileImage element
+
+  // Append the anchor elements instead of the direct elements
+
   // Append elements
-  colProfileInfo.appendChild(profileName);
+  // colProfileInfo.appendChild(profileName);
+  colProfileInfo.appendChild(profileNameLink);
   colProfileInfo.appendChild(profileListings);
   colProfileInfo.appendChild(profileCredits);
-  colProfilePic.appendChild(profileImage);
+  // colProfilePic.appendChild(profileImage);
+  colProfilePic.appendChild(profileImageLink);
   profileContainer.appendChild(colProfileInfo);
   profileContainer.appendChild(colProfilePic);
 

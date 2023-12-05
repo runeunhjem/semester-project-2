@@ -19,13 +19,18 @@ export function createBidEntry(bid) {
   // Second row div for bidder name and amount
   const secondRowDiv = document.createElement("div");
   secondRowDiv.className = "d-flex justify-content-between m-0 p-0";
-  const bidderNameSpan = document.createElement("span");
-  bidderNameSpan.textContent = `Name: ${bid.bidderName}`;
-  bidderNameSpan.className = "text-primary";
+
+  // Create an anchor tag for bidder name
+  const bidderNameLink = document.createElement("a");
+  bidderNameLink.href = `/src/html/profile/index.html?profile=${bid.bidderName}`; // Update the path as per your URL structure
+  bidderNameLink.textContent = `Name: ${bid.bidderName}`;
+  bidderNameLink.className = "text-primary";
+  secondRowDiv.appendChild(bidderNameLink);
+
+  // Amount span
   const amountSpan = document.createElement("span");
   amountSpan.textContent = `Amount: ${bid.amount}`;
   amountSpan.className = "fw-bold";
-  secondRowDiv.appendChild(bidderNameSpan);
   secondRowDiv.appendChild(amountSpan);
 
   bidEntry.appendChild(firstRowDiv);

@@ -40,7 +40,7 @@
             </div>
             <div class="row py-1 px-0 icons">
               <div class="col d-flex flex-nowrap text-primary justify-content-between justify-content-md-end gap-md-4 align-items-center me-md-3">
-                <a href="/src/html/auction/favorites.html" class="text-primary d-flex align-items-center icon-favorites">
+                <a href="#favorites" class="text-primary d-flex align-items-center icon-favorites" data-bs-toggle="collapse" data-bs-target="#favorites" aria-expanded="false">
                   <i class="bi fs-5 bi-star me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Favorites</span>
                 </a>
                 <a href="#" class="text-primary d-flex align-items-center mx-2 icon-add-listing" data-bs-toggle="collapse" data-bs-target="#create-new-listing" aria-expanded="false">
@@ -85,11 +85,28 @@
     <div class="container d-none collapse" id="create-new-listing">
       <div class="row">
         <div class="col max-width-300">
-          <div class="form-container" id="formContainer"></div>
+          <div class="form-container d-flex justify-content-center max-width-1200 mx-auto" id="formContainer"></div>
         </div>
       </div>
     </div>
     <!-- End Create new auction -->
+
+    <!-- Favorites -->
+    <div class="container-fluid max-width-1200 collapse" id="favorites">
+      <div class="row">
+        <div class="col">
+          <h1 class="text-center text-primary">Favorites</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="container-fluid d-flex flex-wrap justify-content-center" id="favorites-container">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Favorites -->
+
     <main class="mt-3 max-width-1200 mx-auto mb-3">
       <!-- Back-to-top -->
       <a href="#" aria-label="Go back to the top"><span class="out-of-view-menu-text text-black">Back to top</span>

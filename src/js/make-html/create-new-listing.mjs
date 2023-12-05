@@ -11,11 +11,11 @@ export function createNewListingForm(parentElementId) {
 
   // Main container div
   const mainDiv = document.createElement("div");
-  mainDiv.className = "mb-3 max-width-1200";
+  mainDiv.className = "mb-3 w-100";
 
   // Card body div
   const cardBodyDiv = document.createElement("div");
-  cardBodyDiv.className = "card-body collapse show";
+  cardBodyDiv.className = "card-body w-100 collapse show";
   cardBodyDiv.id = "createListingForm";
 
   // Card title

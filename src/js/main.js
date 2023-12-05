@@ -7,11 +7,12 @@ import { displayLatestListings } from "./utils/create-latest-listings.mjs";
 import { initializeAllCarousels } from "./utils/initialize-carousel.mjs";
 import { displayListingDetails } from "./utils/create-listing-details.mjs";
 import { displayAllListings } from "./utils/create-all-listings.mjs";
-import { isLoggedIn } from "./variables/constants.mjs";
+import { isLoggedIn, favoritesLink } from "./variables/constants.mjs";
 import { createNewListingForm } from "./make-html/create-new-listing.mjs";
 import { displayProfileListings } from "./utils/create-profile-listings.mjs";
 import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
 import { currentProfile } from "./make-html/profile-page.mjs";
+import { loadFavorites } from "./make-html/create-favorites.mjs";
 
 if (isLoggedIn) {
   listingsEndsSoon();
@@ -116,3 +117,16 @@ document.addEventListener("DOMContentLoaded", () => {
 if (window.location.pathname.includes("profile")) {
   displayProfileListings();
 }
+
+/**
+ * Display favorites for the current logged in user.
+ */
+// Add click event listener
+favoritesLink.addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent the default anchor action
+  if (!isLoggedIn) {
+    window.location.href = "/login.html";
+  } else {
+    loadFavorites();
+  }
+});
