@@ -15,7 +15,7 @@ export async function fetchAllListings() {
   // eslint-disable-next-line no-constant-condition
   while (true) {
     const response = await doApiFetch(
-      `${API_BASE_URL}${listingsUrl}${sellerInclude}${bidsInclude}&limit=${limit}&offset=${offset}${activeListings}`,
+      `${API_BASE_URL}${listingsUrl}${sellerInclude}${bidsInclude}&limit=${limit}&offset=${offset}${activeListings}&sort=created&sortOrder=asc`,
       "GET"
     );
 
@@ -30,6 +30,8 @@ export async function fetchAllListings() {
     offset += limit;
   }
 
-  // console.log("All active Listings", allListingsArray);
+  // Sort by 'created' in descending order (newest first)
+  allListingsArray.sort((a, b) => new Date(b.created) - new Date(a.created));
+  console.log("All active (listings-all)Listings", allListingsArray);
   return allListingsArray;
 }

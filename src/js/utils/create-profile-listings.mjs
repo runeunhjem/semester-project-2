@@ -31,6 +31,8 @@ export async function displayProfileListings() {
     allListingsArray = [...allListingsArray, ...listings];
     offset += limit;
   }
+  const spinner = document.getElementById("spinner");
+  spinner.classList.add("d-none");
   console.log("All profile Listings", allListingsArray);
 
   const profileAuctionsContainer = document.getElementById("profile-auctions");

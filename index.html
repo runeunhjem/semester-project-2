@@ -83,8 +83,8 @@
     <!-- End Mobileview searchbar -->
     <!-- Create new auction -->
     <div class="container d-none collapse" id="create-new-listing">
-      <div class="row">
-        <div class="col max-width-300">
+      <div class="row d-flex justify-content-center mx-auto">
+        <div class="col">
           <div class="form-container d-flex justify-content-center max-width-1200 mx-auto" id="formContainer"></div>
         </div>
       </div>
@@ -92,15 +92,15 @@
     <!-- End Create new auction -->
 
     <!-- Favorites -->
-    <div class="container-fluid max-width-1200 collapse" id="favorites">
+    <div class="container-fluid max-width-1200 collapse border-bottom mb-4" id="favorites">
       <div class="row">
         <div class="col">
-          <h1 class="text-center text-primary">Favorites</h1>
+          <h1 class="text-center text-primary mt-2">Favorites</h1>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <div class="container-fluid d-flex flex-wrap justify-content-center" id="favorites-container">
+          <div class="container-fluid d-flex flex-wrap justify-content-center mb-3" id="favorites-container">
           </div>
         </div>
       </div>
@@ -135,20 +135,19 @@
       <div class="categories-container container d-flex flex-nowrap pb-3 justify-content-start gap-3 overflow-x-auto max-width-300" id="categories"></div>
       <!-- End of categories -->
 
-      <!-- Listing Cards -->
+      <!-- 12 auctions ending soon -->
       <div class="container mx-auto p-3">
         <div class="row">
           <div class="col d-flex justify-content-center">
-            <h1 id="toggleLatestAuctions" class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-between flex-nowrap divider-title bg-secondary text-white text-center w-100 max-width-300">
-              Latest Auctions
-              <i class="bi bi-chevron-up" id="chevronIcon"></i>
+            <h1 id="toggleEndsSoonAuctions" class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-between flex-nowrap divider-title bg-secondary text-white text-center w-100 max-width-300">
+              12 that ends soon
+              <i class="bi bi-chevron-up" id="chevronIconEnds"></i>
             </h1>
-
           </div>
         </div>
-        <div class="row-fluid d-flex flex-nowrap overflow-auto latest-auctions bg-info rounded shadow-sm py-3 px-0" id="latest-auctions">
+        <div class="row-fluid d-flex flex-nowrap overflow-auto ends-soon-auctions bg-info rounded shadow-sm py-3 px-0" id="ends-soon-auctions">
           <!-- Spinner - Hide when loaded -->
-          <div class="d-flex w-100 justify-content-center" id="spinner">
+          <div class="row d-flex mx-auto justify-content-center py-3 w-100" id="spinner3">
             <div class="spinner-border" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
@@ -156,8 +155,32 @@
           <!-- End of spinner -->
         </div>
       </div>
-      <!-- End of listing cards -->
-      <!-- All listings with sort -->
+      <!-- End of ends soon -->
+
+      <!-- 12 Latest Auctions with Image Gallery -->
+      <div class="container mx-auto p-3">
+        <div class="row">
+          <div class="col d-flex justify-content-center">
+            <h1 id="toggleLatestAuctions" class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-between flex-nowrap divider-title bg-secondary text-white text-center w-100 max-width-300">
+              12 Latest Auctions with Image Gallery
+              <i class="bi bi-chevron-up" id="chevronIcon"></i>
+            </h1>
+
+          </div>
+        </div>
+        <div class="row-fluid d-flex flex-nowrap overflow-auto latest-auctions bg-info rounded shadow-sm py-3 px-0" id="latest-auctions">
+          <!-- Spinner - Hide when loaded -->
+          <div class="row d-flex mx-auto justify-content-center py-3 w-100" id="spinner">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <!-- End of spinner -->
+        </div>
+      </div>
+      <!-- End of latest 12 with image gallery -->
+
+      <!-- All listings -->
       <div class="container mx-auto p-3">
         <div class="row">
           <div class="col d-flex justify-content-center">
@@ -169,7 +192,7 @@
         </div>
         <div class="row-fluid d-flex flex-wrap overflow-hidden all-auctions bg-info rounded shadow-sm py-3 px-0" id="all-auctions">
           <!-- Spinner - Hide when loaded -->
-          <div class="d-flex w-100 justify-content-center" id="spinner2">
+          <div class="row d-flex mx-auto justify-content-center py-3 w-100" id="spinner2">
             <div class="spinner-border" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
@@ -177,7 +200,8 @@
           <!-- End of spinner -->
         </div>
       </div>
-      <!-- End of All listings with sort -->
+      <!-- End of All listings -->
+
     </main>
     <footer class="max-width-300">
       <div class="container my-2 pb-0 max-width-300 mx-auto">

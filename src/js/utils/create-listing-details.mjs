@@ -156,6 +156,7 @@ export async function displayListingDetails() {
         specDiv.appendChild(specLabel);
 
         const specValue = document.createElement("span");
+        specValue.className = "d-flex align-items-center"; // Adjusted for flex layout
         if (isMedia) {
           const mediaDiv = document.createElement("div");
           mediaDiv.style.overflowX = "auto";
@@ -190,7 +191,6 @@ export async function displayListingDetails() {
         { label: "ID", value: id },
         { label: "Description", value: description },
         { label: "Tags", value: tags.join(", ") },
-        // { label: "Media", value: media.join("\n"), isMedia: true },
         { label: "Created", value: new Date(created).toLocaleString() },
         { label: "Updated", value: new Date(updated).toLocaleString() },
         { label: "Ends At", value: new Date(endsAt).toLocaleString() },
@@ -207,16 +207,19 @@ export async function displayListingDetails() {
           "spec-entry d-flex flex-column my-1 border-bottom p-2";
         if (index % 2 === 1) {
           specEntry.style.backgroundColor = "#fff6ec";
-          // specEntry.style.backgroundColor = "#ecffff";
         }
 
         if (spec.isLink) {
+          const profileContainer = document.createElement("div");
+          profileContainer.className = "d-flex align-items-center";
+
           const sellerLink = document.createElement("a");
           sellerLink.href = `/src/html/profile/index.html?profile=${seller.name}`;
           sellerLink.textContent = `${seller.name} | View Profile`;
           sellerLink.className = "fw-bold";
-          sellerLink.setAttribute("id", "viewProfileLink");
-          specEntry.children[1].appendChild(sellerLink); // Append link to the value container
+          profileContainer.appendChild(sellerLink);
+
+          specEntry.children[1].appendChild(profileContainer); // Append container to the value container
         }
 
         specificationsContainer.appendChild(specEntry);

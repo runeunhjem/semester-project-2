@@ -13,6 +13,7 @@ import { displayProfileListings } from "./utils/create-profile-listings.mjs";
 import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
 import { currentProfile } from "./make-html/profile-page.mjs";
 import { loadFavorites } from "./make-html/create-favorites.mjs";
+import { displayEndsSoonListings } from "./utils/create-ends-soon-listings.mjs";
 
 if (isLoggedIn) {
   listingsEndsSoon();
@@ -48,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     !window.location.href.includes("profile")
   ) {
     displayLatestListings();
+    displayEndsSoonListings();
 
     setTimeout(() => {
       // Wait for images to load

@@ -1,10 +1,12 @@
-import { fetchAllListingsWithMedia } from "../api/listings-all-with-media.mjs";
+// import { fetchAllListingsWithMedia } from "../api/listings-all-with-media.mjs";
+import { fetchAllListings } from "../api/listings-all.mjs";
 import { createListingCard } from "../make-html/latest-listings-card.mjs";
 import { populateCategories } from "../make-html/populate-categories.mjs";
 
 export async function displayAllListings() {
   try {
-    const listings = await fetchAllListingsWithMedia();
+    const listings = await fetchAllListings();
+    // const listings = await fetchAllListingsWithMedia();
     // console.log("All Listings with Media", listings);
 
     if (window.location.pathname === "/index.html") {
@@ -19,7 +21,7 @@ export async function displayAllListings() {
     // Filter listings to include only those with valid media
     const listingsWithValidMedia = listings.filter(listing => {
       if (listing.media.length === 0) return false;
-      return listing.media.length > 1;
+      return listing.media.length >= 0;
     });
 
     // Sort by 'created' in descending order (newest first)

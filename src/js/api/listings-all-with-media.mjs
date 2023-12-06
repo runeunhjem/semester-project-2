@@ -15,7 +15,7 @@ export async function fetchAllListingsWithMedia() {
   // eslint-disable-next-line no-constant-condition
   while (true) {
     const response = await doApiFetch(
-      `${API_BASE_URL}${listingsUrl}${sellerInclude}${bidsInclude}&limit=${limit}&offset=${offset}${activeListings}`,
+      `${API_BASE_URL}${listingsUrl}${sellerInclude}${bidsInclude}&limit=${limit}&offset=${offset}${activeListings}&sort=created&sortOrder=desc`,
       "GET"
     );
 
@@ -32,9 +32,10 @@ export async function fetchAllListingsWithMedia() {
 
   // Filter listings to include only those with media
   const listingsWithMedia = allListingsArray.filter(
-    listing => listing.media && listing.media.length > 1
+    listing => listing.media && listing.media.length >= 2
   );
 
-  // console.log("All active Listings with Media", listingsWithMedia);
+  listingsWithMedia.sort((a, b) => new Date(b.created) - new Date(a.created));
+  console.log("All active Listings with Media", listingsWithMedia);
   return listingsWithMedia;
 }

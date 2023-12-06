@@ -50,13 +50,6 @@ export async function currentProfile() {
   profileName.className =
     "profile-name text-primary d-flex justify-content-center";
 
-  // Create the 'Change' text element
-  // const changeText = document.createElement("span");
-  // changeText.textContent = "Change Avatar";
-  // changeText.style.cursor = "pointer"; // Make it look clickable
-  // changeText.className = "text-secondary"; // Add class for styling if needed
-  // changeText.className = "text-secondary"; // Add class for styling if needed
-
   // Create the 'Change Avatar' label element
   const changeLabel = document.createElement("label");
   changeLabel.setAttribute("for", "avatarInput");
@@ -80,7 +73,7 @@ export async function currentProfile() {
   // Create the submit button
   const submitButton = document.createElement("button");
   submitButton.type = "submit";
-  submitButton.className = "btn btn-primary ms-3";
+  submitButton.className = "btn btn-primary ms-2 ms-md-3";
   submitButton.textContent = "Submit";
   changeForm.appendChild(submitButton);
 

@@ -1,6 +1,9 @@
 import { fetchAllListings } from "./listings-all.mjs";
 
 export async function listingsEndsSoon() {
+  if (window.location.href.includes("login")) {
+    return;
+  }
   try {
     let allListingsSortedArray = await fetchAllListings();
 

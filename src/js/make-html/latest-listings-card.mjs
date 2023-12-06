@@ -156,25 +156,31 @@ export function createListingCard(listing) {
 
   // Event listener for toggling favorites
   starIcon.addEventListener("click", function (event) {
-    event.stopPropagation(); // Prevents the click from triggering other click events on parent elements
+    event.stopPropagation();
 
-    // Check if the listing is already in favorites
-    const isFavorite = favorites.some(favorite => favorite.id === listing.id);
+    // Fetch the most current favorites from local storage
+    let currentFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    const isFavorite = currentFavorites.some(
+      favorite => favorite.id === listing.id
+    );
 
     if (isFavorite) {
       // Remove from favorites
-      favorites = favorites.filter(favorite => favorite.id !== listing.id);
+      currentFavorites = currentFavorites.filter(
+        favorite => favorite.id !== listing.id
+      );
       starIcon.className = "bi bi-star";
-      console.log("Removed from favorites:", listing);
     } else {
       // Add to favorites
-      favorites.push(listing);
+      currentFavorites.push(listing);
       starIcon.className = "bi bi-star-fill";
-      console.log("Added to favorites:", listing);
     }
 
-    // Update the favorites in localStorage
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    // Update the favorites in local storage
+    localStorage.setItem("favorites", JSON.stringify(currentFavorites));
+
+    // Reload favorites display if needed
     loadFavorites();
   });
 

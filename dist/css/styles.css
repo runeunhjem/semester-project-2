@@ -12684,7 +12684,9 @@ a {
 }
 
 .categories-container,
-.latest-auctions {
+.latest-auctions,
+.ends-soon-auctions,
+.profile-auctions {
   margin: 1em;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
@@ -12692,6 +12694,7 @@ a {
 
 .categories-container::-webkit-scrollbar,
 .latest-auctions::-webkit-scrollbar,
+.ends-soon-auctions::-webkit-scrollbar,
 .profile-auctions::-webkit-scrollbar,
 .listing-title::-webkit-scrollbar {
   display: none; /* Hide scrollbar by default in Safari and Chrome */
@@ -12701,6 +12704,7 @@ a {
 .categories-container:hover::-webkit-scrollbar,
 .listing-title:hover::-webkit-scrollbar,
 .latest-auctions:hover::-webkit-scrollbar,
+.ends-soon-auctions:hover::-webkit-scrollbar,
 .profile-auctions:hover::-webkit-scrollbar {
   display: block;
 }
@@ -12709,6 +12713,7 @@ a {
 .categories-container:hover,
 .listing-title:hover,
 .latest-auctions:hover,
+.ends-soon-auctions:hover,
 .profile-auctions:hover {
   scrollbar-width: auto;
 }
@@ -12716,6 +12721,7 @@ a {
 /* Optional: Add styles for the scrollbar thumb for better visibility */
 .categories-container::-webkit-scrollbar-thumb,
 .latest-auctions::-webkit-scrollbar-thumb,
+.ends-soon-auctions::-webkit-scrollbar-thumb,
 .profile-auctions::-webkit-scrollbar-thumb,
 .listing-title::-webkit-scrollbar-thumb {
   background-color: darkgrey;
@@ -12723,6 +12729,7 @@ a {
 }
 
 .latest-auctions,
+.ends-soon-auctions,
 .profile-auctions,
 .listing-details,
 .bid-details {

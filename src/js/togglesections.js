@@ -32,8 +32,15 @@
   // Setup toggle for latest auctions
   setupToggleButton(
     "toggleLatestAuctions",
-    [".latest-auctions"],
-    "chevronIcon"
+    [".latest-auctions"], // Make sure this is the correct class for "Latest Auctions"
+    "chevronIcon" // Ensure this is the unique ID for the chevron in "Latest Auctions"
+  );
+
+  // Setup toggle for ends soon auctions
+  setupToggleButton(
+    "toggleEndsSoonAuctions",
+    [".ends-soon-auctions"], // Make sure this is the correct class for "Ends Soon Auctions"
+    "chevronIconEnds" // Ensure this is the unique ID for the chevron in "Ends Soon Auctions"
   );
 
   // Setup toggle for profile auctions

@@ -27,5 +27,5 @@ export const pastelColors = [
 // List of Picsum Photo-IDs to exclude
 export const excludedIds = [
   205, 207, 224, 226, 245, 246, 262, 285, 286, 298, 303, 332, 333, 346, 359,
-  394, 414, 422, 438, 462, 463, 470,
+  394, 414, 422, 438, 462, 463, 470, 489,
 ];
