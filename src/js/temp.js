@@ -1,3 +1,4 @@
+//main.js
 import { toTopButton } from "./utils/back-to-top-button.mjs";
 import { attachLogoutEvent } from "./logout.js";
 import { applyBootstrapValidation } from "./utils/validation.mjs";

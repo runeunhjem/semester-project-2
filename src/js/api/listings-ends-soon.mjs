@@ -13,7 +13,7 @@ export async function listingsEndsSoon() {
     );
 
     // Get only the first 12 listings
-    const endsSoon12Listings = allListingsSortedArray.slice(0, 12);
+    const endsSoon12Listings = allListingsSortedArray.slice(0, 50);
     // console.log("12 Listings that ends soon", endsSoon12Listings);
 
     return endsSoon12Listings;

@@ -12876,7 +12876,8 @@ a {
 
 #toggleLatestAuctions,
 #toggleEndsSoonAuctions,
-#toggleProfileAuctions {
+#toggleProfileAuctions,
+.win-title {
   cursor: pointer;
 }
 

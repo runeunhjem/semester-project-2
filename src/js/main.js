@@ -10,14 +10,15 @@ import { displayAllListings } from "./utils/create-all-listings.mjs";
 import { isLoggedIn, favoritesLink } from "./variables/constants.mjs";
 import { createNewListingForm } from "./make-html/create-new-listing.mjs";
 import { displayProfileListings } from "./utils/create-profile-listings.mjs";
-import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
+// import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
 import { currentProfile } from "./make-html/profile-page.mjs";
 import { currentProfileHistory } from "./make-html/profile-history-section.mjs";
 import { loadFavorites } from "./make-html/create-favorites.mjs";
 import { displayEndsSoonListings } from "./utils/create-ends-soon-listings.mjs";
 
 if (isLoggedIn) {
-  listingsEndsSoon();
+  // listingsEndsSoon();
+  displayEndsSoonListings();
   // Select all elements with the class 'restricted'
   const restrictedElements = document.querySelectorAll(".restricted");
 
@@ -50,12 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
     !window.location.href.includes("profile")
   ) {
     displayLatestListings();
-    displayEndsSoonListings();
 
     setTimeout(() => {
       // Wait for images to load
       initializeAllCarousels();
-    }, 2000);
+    }, 4000);
   }
 });
 
@@ -83,9 +83,9 @@ if (currentPage === "listing.html") {
   displayListingDetails();
 } else if (currentPage === "index.html" || currentPage === "") {
   // Run on index page (or root)
-  displayAllListings();
-  currentProfile();
-  currentProfileHistory();
+  await displayAllListings();
+  await currentProfile();
+  await currentProfileHistory();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
  * Display listings for the current profile.
  */
 if (window.location.pathname.includes("profile")) {
-  displayProfileListings();
+  await displayProfileListings();
 }
 
 /**

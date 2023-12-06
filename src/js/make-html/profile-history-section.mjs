@@ -11,6 +11,7 @@ import { convertToShortDateFormat } from "../utils/date-converter.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);
 const currentProfileName = urlParams.get("profile");
+let getListingData = [];
 
 export async function currentProfileHistory() {
   const currentProfileContainer = document.getElementById(
@@ -73,10 +74,6 @@ export async function currentProfileHistory() {
         true
       ); // Notice the 'true' at the end
       console.log("getListingResponse Status:", getListingResponse.status);
-      console.log(
-        "getListingResponse StatusCode:",
-        getListingResponse.statusCode
-      );
 
       if (!getListingResponse.ok) {
         const statusCode = getListingResponse.status;
@@ -86,7 +83,7 @@ export async function currentProfileHistory() {
           throw new Error(`HTTP error! status: ${statusCode}`);
         }
       } else {
-        const getListingData = getListingResponse.data;
+        getListingData = getListingResponse.data;
         console.log("getListingData:", getListingData);
         displayWinEntry(getListingData, container);
       }
@@ -100,6 +97,7 @@ export async function currentProfileHistory() {
     // Main entry div
     const entryDiv = document.createElement("div");
     entryDiv.className = "row history-entry bg-wins rounded shadow-sm m-2 p-2";
+    entryDiv.addEventListener("mouseover", handleListingCardClick);
 
     // Column for Listing Image
     const imgCol = document.createElement("div");
@@ -107,7 +105,8 @@ export async function currentProfileHistory() {
     const img = document.createElement("img");
     img.src = listingData.media[0];
     img.style.height = "100px";
-    img.className = "shadow rounded";
+    img.className = "shadow rounded mb-2";
+    img.setAttribute("alt", `${listingData.title} image`);
     imgCol.appendChild(img);
     entryDiv.appendChild(imgCol);
 
@@ -122,9 +121,12 @@ export async function currentProfileHistory() {
     titleRow.className = "win-title text-primary fw-bold text-left ms-0 ps-0";
     titleRow.textContent = listingData.title;
     titleIdCol.appendChild(titleRow);
+    titleIdCol.addEventListener("click", () => {
+      window.location.href = `/src/html/auction/listing.html?id=${listingData.id}`;
+    });
 
     const idRow = document.createElement("div");
-    idRow.className = "win-id text-secondary text-left ms-0 ps-0";
+    idRow.className = "win-id text-left ms-0 ps-0";
     idRow.textContent = `ID: ${listingData.id.substring(0, 15)}`;
     titleIdCol.appendChild(idRow);
     outerDiv.appendChild(titleIdCol);
@@ -160,7 +162,8 @@ export async function currentProfileHistory() {
   function displayDeletedListing(container) {
     // Main entry div
     const entryDiv = document.createElement("div");
-    entryDiv.className = "row history-entry bg-wins rounded shadow-sm m-2 p-2";
+    entryDiv.className =
+      "row history-entry bg-warning rounded shadow-sm m-2 p-2";
 
     // Column for Listing Image Placeholder
     const imgCol = document.createElement("div");
@@ -179,12 +182,12 @@ export async function currentProfileHistory() {
     const titleIdCol = document.createElement("div");
     titleIdCol.className = "col-auto";
     const titleRow = document.createElement("div");
-    titleRow.className = "win-title text-primary fw-bold text-left ms-0 ps-0";
+    titleRow.className = "win-title fw-bold text-left ms-0 ps-0";
     titleRow.textContent = "Listing Deleted by Seller";
     titleIdCol.appendChild(titleRow);
 
     const idRow = document.createElement("div");
-    idRow.className = "win-id text-secondary text-left ms-0 ps-0";
+    idRow.className = "win-id text-dark text-left ms-0 ps-0";
     idRow.textContent = "ID: N/A"; // No ID available for deleted listings
     titleIdCol.appendChild(idRow);
     outerDiv.appendChild(titleIdCol);
@@ -208,4 +211,11 @@ export async function currentProfileHistory() {
     entryDiv.appendChild(outerDiv);
     container.appendChild(entryDiv);
   }
+}
+function handleListingCardClick() {
+  // const card = event.currentTarget;
+
+  localStorage.setItem("listingId", getListingData.id);
+  localStorage.setItem("listingBids", getListingData.bids.length);
+  localStorage.setItem("sellerName", getListingData.seller.name);
 }
