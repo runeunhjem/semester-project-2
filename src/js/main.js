@@ -17,7 +17,7 @@ import { loadFavorites } from "./make-html/create-favorites.mjs";
 import { displayEndsSoonListings } from "./utils/create-ends-soon-listings.mjs";
 
 if (isLoggedIn) {
-  listingsEndsSoon();
+  await listingsEndsSoon();
   // Select all elements with the class 'restricted'
   const restrictedElements = document.querySelectorAll(".restricted");
 
@@ -30,9 +30,8 @@ if (isLoggedIn) {
 /**
  * Update the header profile info depending on if user is logged in.
  */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   updateProfileDisplay();
-  // listingsEndsSoon();
 });
 
 /**
@@ -41,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
  * Display latest listings.
  * Initialize all carousels.
  */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   toggleSearchSection();
   applyBootstrapValidation();
 
@@ -49,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
     !window.location.href.includes("login") ||
     !window.location.href.includes("profile")
   ) {
-    displayLatestListings();
-    displayEndsSoonListings();
+    await displayLatestListings();
+    await displayEndsSoonListings();
 
     setTimeout(() => {
       // Wait for images to load
@@ -83,9 +82,8 @@ if (currentPage === "listing.html") {
   displayListingDetails();
 } else if (currentPage === "index.html" || currentPage === "") {
   // Run on index page (or root)
-  displayAllListings();
-  currentProfile();
-  currentProfileHistory();
+  await displayAllListings();
+  await currentProfile();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -119,7 +117,8 @@ document.addEventListener("DOMContentLoaded", () => {
  * Display listings for the current profile.
  */
 if (window.location.pathname.includes("profile")) {
-  displayProfileListings();
+  await displayProfileListings();
+  await currentProfileHistory();
 }
 
 /**

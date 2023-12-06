@@ -21,7 +21,7 @@ export async function fetchAllListings() {
 
     const listings = await response;
 
-    if (listings.length === 0 || listings.length < 100) {
+    if (listings.length === 0 || listings.length < limit) {
       allListingsArray = [...allListingsArray, ...listings];
       break;
     }

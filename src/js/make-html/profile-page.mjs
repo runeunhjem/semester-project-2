@@ -49,9 +49,9 @@ export async function currentProfile() {
   const profileName = document.createElement("h1");
   const profileAuctionsTitle = document.getElementById("toggleProfileAuctions");
   if (loggedInUser === currentProfileName) {
-    profileAuctionsTitle.textContent = `All your auctions`;
+    profileAuctionsTitle.innerHTML = `All your auctions <i class="bi bi-chevron-up" id="chevronIcon"></i>`;
   } else {
-    profileAuctionsTitle.textContent = `All ${currentProfileName}'s auctions`;
+    profileAuctionsTitle.innerHTML = `All ${currentProfileName}'s auctions <i class="bi bi-chevron-up" id="chevronIcon"></i>`;
   }
 
   profileName.className =
