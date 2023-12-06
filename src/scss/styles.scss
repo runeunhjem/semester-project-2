@@ -228,7 +228,8 @@ a {
   white-space: nowrap;
 }
 
-.current-bid-big {
+.current-bid-big,
+.bg-wins {
   background-color: var(--color-light-green);
 }
 
@@ -353,7 +354,9 @@ a {
   font-weight: bold;
 }
 
-#toggleLatestAuctions {
+#toggleLatestAuctions,
+#toggleEndsSoonAuctions,
+#toggleProfileAuctions {
   cursor: pointer;
 }
 

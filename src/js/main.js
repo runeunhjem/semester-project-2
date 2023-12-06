@@ -12,6 +12,7 @@ import { createNewListingForm } from "./make-html/create-new-listing.mjs";
 import { displayProfileListings } from "./utils/create-profile-listings.mjs";
 import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
 import { currentProfile } from "./make-html/profile-page.mjs";
+import { currentProfileHistory } from "./make-html/profile-history-section.mjs";
 import { loadFavorites } from "./make-html/create-favorites.mjs";
 import { displayEndsSoonListings } from "./utils/create-ends-soon-listings.mjs";
 
@@ -84,6 +85,7 @@ if (currentPage === "listing.html") {
   // Run on index page (or root)
   displayAllListings();
   currentProfile();
+  currentProfileHistory();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

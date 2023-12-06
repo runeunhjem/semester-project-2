@@ -25,6 +25,7 @@ export async function updateProfileDisplay() {
 
   const profileImage = document.createElement("img");
   profileImage.className = "header-profile-image rounded-circle shadow";
+  profileImage.setAttribute("alt", `${loggedInUser}'s Profile image`);
 
   // Create anchor elements
   const profileNameLink = document.createElement("a");

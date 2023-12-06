@@ -21,7 +21,7 @@ export async function fetchAllListingsWithMedia() {
 
     const listings = await response;
 
-    if (listings.length === 0 || listings.length < limit) {
+    if (listings.length === 0 || listings.length < 100) {
       allListingsArray = [...allListingsArray, ...listings];
       break;
     }

@@ -21,7 +21,7 @@ export async function fetchAllListings() {
 
     const listings = await response;
 
-    if (listings.length === 0 || listings.length < limit) {
+    if (listings.length === 0 || listings.length < 100) {
       allListingsArray = [...allListingsArray, ...listings];
       break;
     }
@@ -32,6 +32,6 @@ export async function fetchAllListings() {
 
   // Sort by 'created' in descending order (newest first)
   allListingsArray.sort((a, b) => new Date(b.created) - new Date(a.created));
-  console.log("All active (listings-all)Listings", allListingsArray);
+  // console.log("All active (listings-all)Listings", allListingsArray);
   return allListingsArray;
 }

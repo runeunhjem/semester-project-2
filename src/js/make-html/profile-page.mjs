@@ -47,6 +47,13 @@ export async function currentProfile() {
     "col-12 mx-0 profile-info d-flex flex-column align-items-md-start justify-content-start ps-md-5 ms-md-3";
 
   const profileName = document.createElement("h1");
+  const profileAuctionsTitle = document.getElementById("toggleProfileAuctions");
+  if (loggedInUser === currentProfileName) {
+    profileAuctionsTitle.textContent = `All your auctions`;
+  } else {
+    profileAuctionsTitle.textContent = `All ${currentProfileName}'s auctions`;
+  }
+
   profileName.className =
     "profile-name text-primary d-flex justify-content-center";
 

@@ -7,7 +7,7 @@ export async function displayEndsSoonListings() {
   }
   try {
     const listings = await listingsEndsSoon();
-    console.log("Listings that ends soon", listings);
+    // console.log("Listings that ends soon", listings);
 
     // Get the container where the listings should be displayed
     const endsSoonAuctionsContainer =
