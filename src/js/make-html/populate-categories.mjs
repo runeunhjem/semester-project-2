@@ -2,7 +2,6 @@ import { pastelColors } from "../variables/constants.mjs";
 
 export async function populateCategories(listingsData, containerId) {
   const tagCounts = new Map();
-
   // Process each listing
   const processListing = listing => {
     if (listing.tags && listing.tags.length > 0) {

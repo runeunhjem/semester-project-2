@@ -22,7 +22,7 @@ export function createBidEntry(bid) {
 
   // Create an anchor tag for bidder name
   const bidderNameLink = document.createElement("a");
-  bidderNameLink.href = `/src/html/profile/index.html?profile=${bid.bidderName}`; // Update the path as per your URL structure
+  bidderNameLink.href = `/src/html/profile/index.html?profile=${bid.bidderName}`;
   bidderNameLink.textContent = `Name: ${bid.bidderName}`;
   bidderNameLink.className = "text-primary";
   secondRowDiv.appendChild(bidderNameLink);

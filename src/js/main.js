@@ -7,7 +7,11 @@ import { displayLatestListings } from "./utils/create-latest-listings.mjs";
 import { initializeAllCarousels } from "./utils/initialize-carousel.mjs";
 import { displayListingDetails } from "./utils/create-listing-details.mjs";
 import { displayAllListings } from "./utils/create-all-listings.mjs";
-import { isLoggedIn, favoritesLink } from "./variables/constants.mjs";
+import {
+  isLoggedIn,
+  favoritesLink,
+  loggedInUser,
+} from "./variables/constants.mjs";
 import { createNewListingForm } from "./make-html/create-new-listing.mjs";
 import { displayProfileListings } from "./utils/create-profile-listings.mjs";
 // import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
@@ -16,34 +20,29 @@ import { currentProfileHistory } from "./make-html/profile-history-section.mjs";
 import { loadFavorites } from "./make-html/create-favorites.mjs";
 import { displayEndsSoonListings } from "./utils/create-ends-soon-listings.mjs";
 
+const loggedInUserProfileLink = document.querySelectorAll(".menu-profile a");
+loggedInUserProfileLink.forEach(profile => {
+  profile.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
+});
+
 if (isLoggedIn) {
-  // listingsEndsSoon();
-  displayEndsSoonListings();
   // Select all elements with the class 'restricted'
   const restrictedElements = document.querySelectorAll(".restricted");
-
-  // Loop through each element and remove the 'restricted' class
   restrictedElements.forEach(element => {
     element.classList.remove("restricted");
   });
 }
 
 /**
- * Update the header profile info depending on if user is logged in.
- */
-document.addEventListener("DOMContentLoaded", () => {
-  updateProfileDisplay();
-  // listingsEndsSoon();
-});
-
-/**
  * Toggle the search section on mobile.
+ * Update the header profile info depending on if user is logged in.
  * Apply Bootstrap validation to forms.
  * Display latest listings.
  * Initialize all carousels.
  */
 document.addEventListener("DOMContentLoaded", () => {
   toggleSearchSection();
+  updateProfileDisplay();
   applyBootstrapValidation();
 
   if (
@@ -86,6 +85,8 @@ if (currentPage === "listing.html") {
   await displayAllListings();
   await currentProfile();
   await currentProfileHistory();
+  // listingsEndsSoon();
+  displayEndsSoonListings();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

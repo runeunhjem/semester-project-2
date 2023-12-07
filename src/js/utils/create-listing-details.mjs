@@ -219,7 +219,7 @@ export async function displayListingDetails() {
           sellerLink.className = "fw-bold";
           profileContainer.appendChild(sellerLink);
 
-          specEntry.children[1].appendChild(profileContainer); // Append container to the value container
+          specEntry.children[1].appendChild(profileContainer);
         }
 
         specificationsContainer.appendChild(specEntry);
