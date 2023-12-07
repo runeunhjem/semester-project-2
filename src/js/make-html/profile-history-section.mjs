@@ -102,7 +102,11 @@ export async function currentProfileHistory() {
     const imgCol = document.createElement("div");
     imgCol.className = "col-auto px-0";
     const img = document.createElement("img");
-    img.src = listingData.media[0];
+    if (listingData.media.length === 0) {
+      img.src = "/images/404-not-found.jpg";
+    } else {
+      img.src = listingData.media[0];
+    }
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";
@@ -216,22 +220,23 @@ export async function currentProfileHistory() {
   // Fetch and display bid history
   await displayBidHistory(colBids.list, currentProfileName, colBids.title);
   // Bids History
+  // Bids History
   async function displayBidHistory(bidsList, profileName, titleElement) {
     const bidsURL = `${API_BASE_URL}${profilesInclude}/${profileName}/bids${listingsInclude}`;
-    // console.log("Bids URL:", bidsURL);
+    const processedListingIds = new Set(); // Set to track processed listing IDs
 
     try {
-      // console.log("Fetching bid history...");
       const bidResponse = await doApiFetch(bidsURL, "GET");
       const bidHistoryData = await bidResponse;
-      // console.log("Bid history data received:", bidHistoryData);
-
       titleElement.textContent = `Bid History (${bidHistoryData.length})`;
-      // console.log("Updating bid history title...");
 
       for (const bid of bidHistoryData) {
-        // console.log("Processing bid:", bid);
-        await processBidEntry(bid, bidsList);
+        const bidListingId = bid.listing.id;
+        if (!processedListingIds.has(bidListingId)) {
+          // Check if the listing ID is already processed
+          await processBidEntry(bid, bidsList);
+          processedListingIds.add(bidListingId); // Add the listing ID to the set
+        }
       }
     } catch (error) {
       console.error("Error fetching bid history:", error);
@@ -276,14 +281,18 @@ export async function currentProfileHistory() {
 
     // Main entry div
     const entryDiv = document.createElement("div");
-    entryDiv.className = "row history-entry bg-bids rounded shadow-sm m-2 p-2";
+    entryDiv.className = "row history-entry bg-info rounded shadow-sm m-2 p-2";
     entryDiv.addEventListener("mouseover", handleListingCardClick);
 
     // Column for Listing Image
     const imgCol = document.createElement("div");
     imgCol.className = "col-auto";
     const img = document.createElement("img");
-    img.src = media[0]; // Assuming the first media item is the image
+    if (media.length === 0) {
+      img.src = "/images/404-not-found.jpg";
+    } else {
+      img.src = media[0];
+    }
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";
@@ -303,9 +312,12 @@ export async function currentProfileHistory() {
     titleRow.className = "bid-title text-primary fw-bold text-left ms-0 ps-0";
     titleRow.textContent = title;
     titleIdCol.appendChild(titleRow);
-    titleIdCol.addEventListener("click", () => {
-      window.location.href = `/src/html/auction/listing.html?id=${listingId}`;
-    });
+    // Use an immediately invoked function expression (IIFE) to create a unique scope for each listingId
+    (function (localListingId) {
+      titleIdCol.addEventListener("click", () => {
+        window.location.href = `/src/html/auction/listing.html?id=${localListingId}`;
+      });
+    })(listingId);
 
     const idRow = document.createElement("div");
     idRow.className = "bid-id text-left ms-0 ps-0";
@@ -319,11 +331,12 @@ export async function currentProfileHistory() {
 
     const dateRow = document.createElement("div");
     dateRow.className = "bid-date text-left ms-0 ps-0";
-    dateRow.textContent = `Created: ${convertToShortDateFormat(created)}`;
+    dateRow.textContent = `Last bid: ${convertToShortDateFormat(created)}`;
     dateAmountCol.appendChild(dateRow);
 
     const bidsDiv = document.createElement("div");
-    bidsDiv.className = "bid-all text-left ms-0 ps-0 d-flex flex-column";
+    bidsDiv.className =
+      "bid-all text-left ms-0 ps-0 d-flex flex-column-reverse";
     bidsDiv.textContent = `All bids (${bids.length}): `;
     bids.forEach(bid => {
       const bidInfo = document.createElement("span");
