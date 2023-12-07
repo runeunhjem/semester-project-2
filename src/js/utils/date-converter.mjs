@@ -38,5 +38,24 @@ export function convertToShortDateFormat(dateString) {
   const monthName = monthNames[monthIndex];
   const daySuffix = getDaySuffix(day);
 
-  return `${year}, ${monthName} ${day}${daySuffix} @ ${hours}:${minutes}`;
+  return `${year} ${monthName} ${day}${daySuffix} @ ${hours}:${minutes}`;
+}
+
+export function timeSince(dateString) {
+  const now = new Date();
+  const past = new Date(dateString);
+  const msPerMinute = 60 * 1000;
+  const msPerHour = msPerMinute * 60;
+  const msPerDay = msPerHour * 24;
+  const elapsed = now - past;
+
+  if (elapsed < msPerMinute) {
+    return Math.round(elapsed / 1000) + " seconds ago";
+  } else if (elapsed < msPerHour) {
+    return Math.round(elapsed / msPerMinute) + " minutes ago";
+  } else if (elapsed < msPerDay) {
+    return Math.round(elapsed / msPerHour) + " hours ago";
+  } else {
+    return Math.round(elapsed / msPerDay) + " days ago";
+  }
 }

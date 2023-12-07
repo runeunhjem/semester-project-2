@@ -8,7 +8,10 @@ import {
 } from "../api/apiUrls.mjs";
 // import { loggedInUser } from "../variables/constants.mjs";
 import { doApiFetch } from "../api/doFetch.mjs";
-import { convertToShortDateFormat } from "../utils/date-converter.mjs";
+import {
+  convertToShortDateFormat,
+  timeSince,
+} from "../utils/date-converter.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);
 const currentProfileName = urlParams.get("profile");
@@ -162,6 +165,7 @@ export async function currentProfileHistory() {
 
     entryDiv.appendChild(outerDiv);
     container.appendChild(entryDiv);
+    container.prepend(entryDiv);
   }
 
   function displayDeletedListing(container) {
@@ -336,11 +340,18 @@ export async function currentProfileHistory() {
 
     const bidsDiv = document.createElement("div");
     bidsDiv.className =
-      "bid-all text-left ms-0 ps-0 d-flex flex-column-reverse";
+      "bid-all text-left text-nowrap ms-0 ps-0 d-flex flex-column-reverse";
     bidsDiv.textContent = `All bids (${bids.length}): `;
     bids.forEach(bid => {
       const bidInfo = document.createElement("span");
-      bidInfo.textContent = `$${bid.amount}.00 `;
+
+      // Format the bid date
+      const bidDate = timeSince(bid.created);
+
+      // Include both bid amount and date in the text content
+      bidInfo.textContent = `$${bid.amount}.00 - ${bidDate}`;
+      bidInfo.className = "my-1 border-bottom";
+
       bidsDiv.appendChild(bidInfo);
     });
     dateAmountCol.appendChild(bidsDiv);

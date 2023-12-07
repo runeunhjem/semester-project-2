@@ -30,8 +30,16 @@ export async function fetchAllListings() {
     offset += limit;
   }
 
+  // Filter out listings with media files ending in .png or .htm
+  const filteredListings = allListingsArray.filter(listing => {
+    return !listing.media.some(mediaUrl => {
+      const fileExtension = mediaUrl.split(".").pop().toLowerCase();
+      return fileExtension === "png" || fileExtension === "htm";
+    });
+  });
+
   // Sort by 'created' in descending order (newest first)
-  allListingsArray.sort((a, b) => new Date(b.created) - new Date(a.created));
-  // console.log("All active (listings-all)Listings", allListingsArray);
-  return allListingsArray;
+  filteredListings.sort((a, b) => new Date(b.created) - new Date(a.created));
+  // console.log("All active (listings-all)Listings", filteredListings);
+  return filteredListings;
 }

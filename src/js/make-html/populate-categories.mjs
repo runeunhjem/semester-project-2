@@ -1,5 +1,7 @@
 import { pastelColors } from "../variables/constants.mjs";
 
+const categoriesHeader = document.getElementById("categories-header");
+
 export async function populateCategories(listingsData, containerId) {
   const tagCounts = new Map();
   // Process each listing
@@ -21,11 +23,19 @@ export async function populateCategories(listingsData, containerId) {
     processListing(listingsData);
   }
 
+  // Update categories header with count
+  updateCategoriesHeader(tagCounts);
+
   // Populate the specified container
   const container = document.getElementById(containerId);
   if (container) {
     populateContainer(container, tagCounts);
   }
+}
+
+function updateCategoriesHeader(tagCounts) {
+  const totalCategories = tagCounts.size;
+  categoriesHeader.textContent = `Categories (${totalCategories})`;
 }
 
 function populateContainer(container, tagCounts) {

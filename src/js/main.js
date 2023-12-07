@@ -89,32 +89,31 @@ if (currentPage === "listing.html") {
   displayEndsSoonListings();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const addListingLink = document.querySelector(".icon-add-listing");
-  const addListingIcon = document.querySelector(".bi-plus-circle");
-  const createListingDiv = document.getElementById("create-new-listing");
-  const addListingText = document.querySelector(".add-listing");
+// Toggle Create New Listing
+const addListingLink = document.querySelector(".icon-add-listing");
+const addListingIcon = document.querySelector(".bi-plus-circle");
+const createListingDiv = document.getElementById("create-new-listing");
+const addListingText = document.querySelector(".add-listing");
 
-  if (addListingLink && createListingDiv) {
-    addListingLink.addEventListener("click", event => {
-      event.preventDefault(); // Prevent default link behavior
-      // Toggle the 'd-none' class on the createListingDiv
-      if (createListingDiv.classList.contains("d-none")) {
-        createListingDiv.classList.remove("d-none");
-        addListingIcon.classList.remove("bi-plus-circle");
-        addListingIcon.classList.add("bi-arrow-up-circle");
-        addListingText.textContent = "Hide Form";
-        addListingText.classList.add("text-danger");
-        createNewListingForm("formContainer"); // Call this only when showing the form
-      } else {
-        createListingDiv.classList.add("d-none");
-        addListingIcon.classList.add("bi-plus-circle");
-        addListingText.textContent = "Add Listing";
-        addListingText.classList.remove("text-danger");
-      }
-    });
-  }
-});
+if (addListingLink && createListingDiv) {
+  addListingLink.addEventListener("click", event => {
+    event.preventDefault(); // Prevent default link behavior
+    // Toggle the 'd-none' class on the createListingDiv
+    if (createListingDiv.classList.contains("d-none")) {
+      createListingDiv.classList.remove("d-none");
+      addListingIcon.classList.remove("bi-plus-circle");
+      addListingIcon.classList.add("bi-arrow-up-circle");
+      addListingText.textContent = "Hide Form";
+      addListingText.classList.add("text-danger");
+      createNewListingForm("formContainer"); // Call this only when showing the form
+    } else {
+      createListingDiv.classList.add("d-none");
+      addListingIcon.classList.add("bi-plus-circle");
+      addListingText.textContent = "Add Listing";
+      addListingText.classList.remove("text-danger");
+    }
+  });
+}
 
 /**
  * Display listings for the current profile.

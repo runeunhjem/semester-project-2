@@ -37,7 +37,7 @@ export function editListingForm(id, listing) {
     inputId,
     placeholder,
     isRequired,
-    value = "" // Add a new parameter for value
+    value = ""
   ) => {
     const div = document.createElement("div");
     div.className = "mb-3";
@@ -52,6 +52,7 @@ export function editListingForm(id, listing) {
       inputType === "textarea" ? "textarea" : "input"
     );
     if (inputId === "endsAt") {
+      input.disabled = true; // Disable the input field
       input.type = "datetime-local"; // Change to 'datetime-local' to capture both date and time
     }
     if (inputType !== "textarea") {
@@ -117,7 +118,7 @@ export function editListingForm(id, listing) {
 
   // Add end date input
   form.appendChild(
-    createInputGroup("End Date", "datetime-local", "endsAt", "", true)
+    createInputGroup("End Date", "datetime-local", "endsAt", "", true, true)
   );
 
   form.appendChild(

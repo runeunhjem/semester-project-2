@@ -67,9 +67,14 @@ export function createListingCard(listing) {
     // Event listener for edit action
     editButton.addEventListener("click", function (event) {
       event.stopPropagation(); // Prevent triggering any click events on parent elements
-      // Logic to handle the edit action, e.g., redirect to an edit page or open an edit modal
       console.log("Editing listing", listing.id);
       editListingForm(listing.id, listing);
+
+      // Scroll to the top of the edit form
+      const editForm = document.getElementById("edit-listing");
+      if (editForm) {
+        editForm.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
     });
 
     // Create the delete button
