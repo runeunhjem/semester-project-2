@@ -13,6 +13,8 @@ const urlParams = new URLSearchParams(window.location.search);
 const listingIdParam = urlParams.get("id");
 
 export async function displayListingDetails() {
+  const spinner = document.getElementById("spinner");
+  spinner.classList.remove("d-none");
   try {
     const listing = await fetchSingleListingById(listingIdParam);
 
@@ -25,7 +27,7 @@ export async function displayListingDetails() {
       const listingTitle = document.getElementById("listingTitle");
       if (listingTitle) {
         listingTitle.textContent =
-          listing.title.length > 30
+          listing.title.length > 130
             ? listing.title.slice(0, 30) + "..."
             : listing.title;
       }
@@ -224,6 +226,7 @@ export async function displayListingDetails() {
 
         specificationsContainer.appendChild(specEntry);
       });
+      spinner.classList.add("d-none");
     }
   } catch (error) {
     console.error("Error displaying listing details:", error);

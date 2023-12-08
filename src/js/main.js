@@ -40,7 +40,7 @@ if (isLoggedIn) {
  * Display latest listings.
  * Initialize all carousels.
  */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   toggleSearchSection();
   updateProfileDisplay();
   applyBootstrapValidation();
@@ -49,7 +49,9 @@ document.addEventListener("DOMContentLoaded", () => {
     !window.location.href.includes("login") ||
     !window.location.href.includes("profile")
   ) {
-    displayLatestListings();
+    await displayLatestListings();
+    await displayAllListings();
+    await displayEndsSoonListings();
 
     setTimeout(() => {
       // Wait for images to load
@@ -57,6 +59,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 4000);
   }
 });
+
+if (window.location.href.includes("profile")) {
+  await currentProfile();
+  await currentProfileHistory();
+  await displayProfileListings();
+
+  setTimeout(() => {
+    // Wait for images to load
+    initializeAllCarousels();
+  }, 2000);
+}
+
+if (window.location.href.includes("listing")) {
+  await displayListingDetails();
+  setTimeout(() => {
+    // Wait for images to load
+    initializeAllCarousels();
+  }, 2000);
+}
 
 /**
  * Add a "Back to Top" button to the page.
@@ -67,27 +88,6 @@ toTopButton();
  * Attach logout event to logout links.
  */
 attachLogoutEvent();
-
-// Function to get the current page name from the URL
-function getCurrentPage() {
-  const path = window.location.pathname;
-  return path.substring(path.lastIndexOf("/") + 1);
-}
-
-// Run specific functions based on the current page
-const currentPage = getCurrentPage();
-
-if (currentPage === "listing.html") {
-  // Run on listing page
-  displayListingDetails();
-} else if (currentPage === "index.html" || currentPage === "") {
-  // Run on index page (or root)
-  await displayAllListings();
-  await currentProfile();
-  await currentProfileHistory();
-  // listingsEndsSoon();
-  displayEndsSoonListings();
-}
 
 // Toggle Create New Listing
 const addListingLink = document.querySelector(".icon-add-listing");
@@ -113,13 +113,6 @@ if (addListingLink && createListingDiv) {
       addListingText.classList.remove("text-danger");
     }
   });
-}
-
-/**
- * Display listings for the current profile.
- */
-if (window.location.pathname.includes("profile")) {
-  await displayProfileListings();
 }
 
 /**

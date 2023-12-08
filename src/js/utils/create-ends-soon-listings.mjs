@@ -2,10 +2,16 @@ import { listingsEndsSoon } from "../api/listings-ends-soon.mjs";
 import { createListingCard } from "../make-html/latest-listings-card.mjs";
 
 export async function displayEndsSoonListings() {
-  if (window.location.href.includes("login")) {
+  if (
+    window.location.href.includes("login") ||
+    window.location.href.includes("profile") ||
+    window.location.href.includes("listing")
+  ) {
     return;
   }
   try {
+    const spinner3 = document.getElementById("spinner3");
+    spinner3.classList.remove("d-none");
     const listings = await listingsEndsSoon();
     // console.log("Listings that ends soon", listings);
 
@@ -21,8 +27,7 @@ export async function displayEndsSoonListings() {
       const listingCard = createListingCard(listing);
       endsSoonAuctionsContainer.appendChild(listingCard);
     });
-    const spinner = document.getElementById("spinner3");
-    spinner.classList.add("d-none");
+    spinner3.classList.add("d-none");
   } catch (error) {
     console.error("Error displaying latest listings:", error);
   }

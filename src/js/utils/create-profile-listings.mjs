@@ -2,12 +2,18 @@ import { API_BASE_URL, listingsUrl, profilesInclude } from "../api/apiUrls.mjs";
 import { doApiFetch } from "../api/doFetch.mjs";
 import { createListingCard } from "../make-html/latest-listings-card.mjs";
 import { populateCategories } from "../make-html/populate-categories.mjs";
+import {
+  globalLimit,
+  globalMaxTotalListings,
+} from "../variables/constants.mjs";
 
 export async function displayProfileListings() {
   let allListingsArray = [];
-  const limit = 100;
+  const limit =
+    globalLimit > 0
+      ? Math.min(globalLimit, globalMaxTotalListings)
+      : globalMaxTotalListings;
   let offset = 0;
-  // const currentProfileName = localStorage.getItem("currentProfileName");
   const urlParams = new URLSearchParams(window.location.search);
   const currentProfileName = urlParams.get("profile");
 
@@ -17,22 +23,24 @@ export async function displayProfileListings() {
     return [];
   }
 
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
+  while (allListingsArray.length < globalMaxTotalListings) {
     const url = `${API_BASE_URL}${profilesInclude}/${currentProfileName}${listingsUrl}?_seller=true&_bids=true&limit=${limit}&offset=${offset}&sort=updated&sortOrder=desc`;
     const response = await doApiFetch(url, "GET");
     const listings = await response;
 
-    if (listings.length === 0 || listings.length < limit) {
-      allListingsArray = [...allListingsArray, ...listings];
-      break;
-    }
+    if (listings.length === 0) break;
 
     allListingsArray = [...allListingsArray, ...listings];
     offset += limit;
+
+    if (allListingsArray.length >= globalMaxTotalListings) {
+      allListingsArray = allListingsArray.slice(0, globalMaxTotalListings); // Truncate array to maximum size
+      break;
+    }
   }
+
   const spinner = document.getElementById("spinner");
-  spinner.classList.add("d-none");
+  if (spinner) spinner.classList.add("d-none");
   console.log("All profile Listings", allListingsArray);
 
   const profileAuctionsContainer = document.getElementById("profile-auctions");

@@ -74,7 +74,7 @@ export async function currentProfileHistory() {
         "GET",
         null,
         true
-      ); // Notice the 'true' at the end
+      );
       // console.log("getListingResponse Status:", getListingResponse.status);
 
       if (!getListingResponse.ok) {
@@ -99,7 +99,6 @@ export async function currentProfileHistory() {
     // Main entry div
     const entryDiv = document.createElement("div");
     entryDiv.className = "row history-entry bg-wins rounded shadow-sm m-2 p-2";
-    entryDiv.addEventListener("mouseover", handleListingCardClick);
 
     // Column for Listing Image
     const imgCol = document.createElement("div");
@@ -122,21 +121,30 @@ export async function currentProfileHistory() {
     const outerDiv = document.createElement("div");
     outerDiv.className = "col w-100";
 
+    // URL for navigating to the listing detail page
+    const goToWinListingURL = `../auction/listing.html?id=${listingData.id}`;
+
     // Column for Listing Title and ID
     const titleIdCol = document.createElement("div");
     titleIdCol.className = "col-auto";
-    const titleRow = document.createElement("div");
-    titleRow.className = "win-title text-primary fw-bold text-left ms-0 ps-0";
-    titleRow.textContent = listingData.title;
-    titleIdCol.appendChild(titleRow);
-    titleIdCol.addEventListener("click", () => {
-      window.location.href = `/src/html/auction/listing.html?id=${listingData.id}`;
-    });
 
+    // Create an anchor (link) element for the title
+    const titleLink = document.createElement("a");
+    titleLink.className = "win-title text-primary fw-bold text-left ms-0 ps-0";
+    titleLink.textContent = listingData.title;
+    titleLink.href = goToWinListingURL; // Set the link's destination
+    titleLink.style.textDecoration = "none"; // Optional: to remove underline from link
+
+    // Append the title link to the column
+    titleIdCol.appendChild(titleLink);
+
+    // ID Row
     const idRow = document.createElement("div");
     idRow.className = "win-id text-left ms-0 ps-0";
     idRow.textContent = `ID: ${listingData.id.substring(0, 15)}`;
     titleIdCol.appendChild(idRow);
+
+    // Append the titleIdCol to the outerDiv
     outerDiv.appendChild(titleIdCol);
 
     // Column for Created Date and Amount
@@ -177,7 +185,7 @@ export async function currentProfileHistory() {
     // Column for Listing Image Placeholder
     const imgCol = document.createElement("div");
     imgCol.className = "col-auto";
-    const imgPlaceholder = document.createElement("div"); // Placeholder instead of an actual image
+    const imgPlaceholder = document.createElement("div");
     imgPlaceholder.style.height = "100px";
     imgPlaceholder.className = "shadow rounded bg-light";
     imgCol.appendChild(imgPlaceholder);
@@ -197,7 +205,7 @@ export async function currentProfileHistory() {
 
     const idRow = document.createElement("div");
     idRow.className = "win-id text-dark text-left ms-0 ps-0";
-    idRow.textContent = "ID: N/A"; // No ID available for deleted listings
+    idRow.textContent = "ID: N/A";
     titleIdCol.appendChild(idRow);
     outerDiv.appendChild(titleIdCol);
 
@@ -223,7 +231,7 @@ export async function currentProfileHistory() {
 
   // Fetch and display bid history
   await displayBidHistory(colBids.list, currentProfileName, colBids.title);
-  // Bids History
+
   // Bids History
   async function displayBidHistory(bidsList, profileName, titleElement) {
     const bidsURL = `${API_BASE_URL}${profilesInclude}/${profileName}/bids${listingsInclude}`;
@@ -239,7 +247,7 @@ export async function currentProfileHistory() {
         if (!processedListingIds.has(bidListingId)) {
           // Check if the listing ID is already processed
           await processBidEntry(bid, bidsList);
-          processedListingIds.add(bidListingId); // Add the listing ID to the set
+          processedListingIds.add(bidListingId);
         }
       }
     } catch (error) {
@@ -286,7 +294,6 @@ export async function currentProfileHistory() {
     // Main entry div
     const entryDiv = document.createElement("div");
     entryDiv.className = "row history-entry bg-info rounded shadow-sm m-2 p-2";
-    entryDiv.addEventListener("mouseover", handleListingCardClick);
 
     // Column for Listing Image
     const imgCol = document.createElement("div");
@@ -309,24 +316,30 @@ export async function currentProfileHistory() {
     const outerDiv = document.createElement("div");
     outerDiv.className = "col w-100";
 
+    // URL for navigating to the listing detail page
+    const goToBidListingURL = `/src/html/auction/listing.html?id=${listingId}`;
+
     // Column for Listing Title and ID
     const titleIdCol = document.createElement("div");
     titleIdCol.className = "col-auto";
-    const titleRow = document.createElement("div");
-    titleRow.className = "bid-title text-primary fw-bold text-left ms-0 ps-0";
-    titleRow.textContent = title;
-    titleIdCol.appendChild(titleRow);
-    // Use an immediately invoked function expression (IIFE) to create a unique scope for each listingId
-    (function (localListingId) {
-      titleIdCol.addEventListener("click", () => {
-        window.location.href = `/src/html/auction/listing.html?id=${localListingId}`;
-      });
-    })(listingId);
 
+    // Create an anchor (link) element for the title
+    const titleLink = document.createElement("a");
+    titleLink.className = "bid-title text-primary fw-bold text-left ms-0 ps-0";
+    titleLink.textContent = title;
+    titleLink.href = goToBidListingURL; // Set the link's destination
+    titleLink.style.textDecoration = "none"; // Optional: to remove underline from link
+
+    // Append the title link to the column
+    titleIdCol.appendChild(titleLink);
+
+    // ID Row
     const idRow = document.createElement("div");
     idRow.className = "bid-id text-left ms-0 ps-0";
     idRow.textContent = `ID: ${listingId.substring(0, 15)}`;
     titleIdCol.appendChild(idRow);
+
+    // Append the titleIdCol to the outerDiv
     outerDiv.appendChild(titleIdCol);
 
     // Column for Created Date and All Bids
@@ -342,28 +355,18 @@ export async function currentProfileHistory() {
     bidsDiv.className =
       "bid-all text-left text-nowrap ms-0 ps-0 d-flex flex-column-reverse";
     bidsDiv.textContent = `All bids (${bids.length}): `;
+
     bids.forEach(bid => {
       const bidInfo = document.createElement("span");
-
-      // Format the bid date
       const bidDate = timeSince(bid.created);
-
-      // Include both bid amount and date in the text content
       bidInfo.textContent = `$${bid.amount}.00 - ${bidDate}`;
       bidInfo.className = "my-1 border-bottom";
-
       bidsDiv.appendChild(bidInfo);
     });
-    dateAmountCol.appendChild(bidsDiv);
 
+    dateAmountCol.appendChild(bidsDiv);
     outerDiv.appendChild(dateAmountCol);
     entryDiv.appendChild(outerDiv);
     container.appendChild(entryDiv);
   }
-}
-
-function handleListingCardClick() {
-  localStorage.setItem("listingId", getListingData.id);
-  localStorage.setItem("listingBids", getListingData.bids.length);
-  localStorage.setItem("sellerName", getListingData.seller.name);
 }

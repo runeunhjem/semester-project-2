@@ -6,40 +6,48 @@ import {
   activeListings,
 } from "./apiUrls.mjs";
 import { doApiFetch } from "./doFetch.mjs";
+import {
+  globalLimit,
+  globalMaxTotalListings,
+} from "../variables/constants.mjs";
 
 export async function fetchAllListings() {
+  if (
+    window.location.href.includes("login") ||
+    window.location.href.includes("profile") ||
+    window.location.href.includes("listing")
+  ) {
+    return;
+  }
   let allListingsArray = [];
-  const limit = 100;
-  let offset = 0;
 
-  // eslint-disable-next-line no-constant-condition
-  while (true) {
+  const limit = globalLimit > 0 ? globalLimit : 100; // Use globalLimit if set, else default to 100
+  let offset = 0;
+  // const spinner = document.getElementById("spinner");
+  // spinner.classList.remove("d-none");
+
+  while (allListingsArray.length < globalMaxTotalListings) {
     const response = await doApiFetch(
-      `${API_BASE_URL}${listingsUrl}${sellerInclude}${bidsInclude}&limit=${limit}&offset=${offset}${activeListings}&sort=created&sortOrder=asc`,
+      `${API_BASE_URL}${listingsUrl}${sellerInclude}${bidsInclude}&limit=${limit}&offset=${offset}${activeListings}&sort=created&sortOrder=desc`,
       "GET"
     );
 
     const listings = await response;
 
-    if (listings.length === 0 || listings.length < limit) {
-      allListingsArray = [...allListingsArray, ...listings];
-      break;
-    }
+    if (listings.length === 0) break;
 
     allListingsArray = [...allListingsArray, ...listings];
     offset += limit;
+
+    if (allListingsArray.length >= globalMaxTotalListings) {
+      allListingsArray = allListingsArray.slice(0, globalMaxTotalListings); // Truncate array to maximum size
+      break;
+    }
   }
 
-  // Filter out listings with media files ending in .png or .htm
-  const filteredListings = allListingsArray.filter(listing => {
-    return !listing.media.some(mediaUrl => {
-      const fileExtension = mediaUrl.split(".").pop().toLowerCase();
-      return fileExtension === "png" || fileExtension === "htm";
-    });
-  });
-
-  // Sort by 'created' in descending order (newest first)
-  filteredListings.sort((a, b) => new Date(b.created) - new Date(a.created));
-  // console.log("All active (listings-all)Listings", filteredListings);
-  return filteredListings;
+  // // Sort by 'created' in descending order (newest first)
+  // allListingsArray.sort((a, b) => new Date(b.created) - new Date(a.created));
+  console.log("All active Listings", allListingsArray);
+  // spinner.classList.remove("d-none");
+  return allListingsArray;
 }
