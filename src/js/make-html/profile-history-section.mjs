@@ -280,16 +280,10 @@ export async function currentProfileHistory() {
 
   async function displayBidEntry(bid, listingData, container) {
     const { created } = bid;
-    // console.log("Bid created date:", created, "Listing data:", listingData);
-    const { media, title, id: listingId, bids } = listingData;
-    // console.log(
-    //   "Listing media:",
-    //   media,
-    //   "Listing title:",
-    //   title,
-    //   "Listing Bids:",
-    //   bids
-    // );
+    const { media, title, id: listingId, bids, endsAt } = listingData;
+
+    // Check if the listing has ended
+    const hasEnded = new Date(endsAt) < new Date();
 
     // Main entry div
     const entryDiv = document.createElement("div");
@@ -299,11 +293,7 @@ export async function currentProfileHistory() {
     const imgCol = document.createElement("div");
     imgCol.className = "col-auto";
     const img = document.createElement("img");
-    if (media.length === 0) {
-      img.src = "/images/404-not-found.jpg";
-    } else {
-      img.src = media[0];
-    }
+    img.src = media.length === 0 ? "/images/404-not-found.jpg" : media[0];
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";
@@ -316,30 +306,31 @@ export async function currentProfileHistory() {
     const outerDiv = document.createElement("div");
     outerDiv.className = "col w-100";
 
-    // URL for navigating to the listing detail page
-    const goToBidListingURL = `/src/html/auction/listing.html?id=${listingId}`;
-
     // Column for Listing Title and ID
     const titleIdCol = document.createElement("div");
     titleIdCol.className = "col-auto";
-
-    // Create an anchor (link) element for the title
     const titleLink = document.createElement("a");
     titleLink.className = "bid-title text-primary fw-bold text-left ms-0 ps-0";
     titleLink.textContent = title;
-    titleLink.href = goToBidListingURL; // Set the link's destination
-    titleLink.style.textDecoration = "none"; // Optional: to remove underline from link
-
-    // Append the title link to the column
+    titleLink.href = `/src/html/auction/listing.html?id=${listingId}`;
+    titleLink.style.textDecoration = "none";
     titleIdCol.appendChild(titleLink);
 
     // ID Row
     const idRow = document.createElement("div");
     idRow.className = "bid-id text-left ms-0 ps-0";
     idRow.textContent = `ID: ${listingId.substring(0, 15)}`;
-    titleIdCol.appendChild(idRow);
 
-    // Append the titleIdCol to the outerDiv
+    // Apply bg-danger if the listing has ended
+    if (hasEnded) {
+      idRow.classList.add("text-danger");
+      idRow.textContent = `Status: Ended`;
+    } else {
+      idRow.classList.add("text-success");
+      idRow.textContent = `Status: Active`;
+    }
+
+    titleIdCol.appendChild(idRow);
     outerDiv.appendChild(titleIdCol);
 
     // Column for Created Date and All Bids
@@ -356,11 +347,23 @@ export async function currentProfileHistory() {
       "bid-all text-left text-nowrap ms-0 ps-0 d-flex flex-column-reverse";
     bidsDiv.textContent = `All bids (${bids.length}): `;
 
+    let highestBid = bids[0];
+
     bids.forEach(bid => {
       const bidInfo = document.createElement("span");
       const bidDate = timeSince(bid.created);
       bidInfo.textContent = `$${bid.amount}.00 - ${bidDate}`;
       bidInfo.className = "my-1 border-bottom";
+
+      // Check if this bid is the highest and the auction has ended
+      if (
+        hasEnded &&
+        bid.bidderName === currentProfileName &&
+        bid.amount >= highestBid.amount
+      ) {
+        bidInfo.classList.add("text-success", "fw-bold");
+      }
+
       bidsDiv.appendChild(bidInfo);
     });
 
