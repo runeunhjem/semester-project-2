@@ -1,11 +1,12 @@
 import { pastelColors } from "../variables/constants.mjs";
 
-export async function populateCategories(listingsData) {
-  const tagCounts = new Map();
+const categoriesHeader = document.getElementById("categories-header");
 
+export async function populateCategories(listingsData, containerId) {
+  const tagCounts = new Map();
   // Process each listing
   const processListing = listing => {
-    if (listing.tags.length > 0) {
+    if (listing.tags && listing.tags.length > 0) {
       listing.tags.forEach(tag => {
         tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
       });
@@ -22,22 +23,23 @@ export async function populateCategories(listingsData) {
     processListing(listingsData);
   }
 
-  // Populate containers
-  const categoriesContainerIndex = document.getElementById("categories");
-  if (categoriesContainerIndex) {
-    populateContainer(categoriesContainerIndex, tagCounts);
-  }
+  // Update categories header with count
+  updateCategoriesHeader(tagCounts);
 
-  const categoriesContainerListing =
-    document.getElementById("categories-listing");
-  if (categoriesContainerListing) {
-    populateContainer(categoriesContainerListing, tagCounts);
+  // Populate the specified container
+  const container = document.getElementById(containerId);
+  if (container) {
+    populateContainer(container, tagCounts);
   }
+}
+
+function updateCategoriesHeader(tagCounts) {
+  const totalCategories = tagCounts.size;
+  categoriesHeader.textContent = `Categories (${totalCategories})`;
 }
 
 function populateContainer(container, tagCounts) {
   container.innerHTML = "";
-
   let colorIndex = 0; // To keep track of which color to apply
 
   Array.from(tagCounts)

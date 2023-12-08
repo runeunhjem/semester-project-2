@@ -1,6 +1,12 @@
 import { getNewestBid } from "../utils/bids-get-highest.mjs";
-// import { convertToShortDateFormat } from "../utils/date-converter.mjs";
+import { getRandomId } from "../utils/excluded-picsum-ids.mjs";
+import { excludedIds, loggedInUser } from "../variables/constants.mjs";
 import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs";
+import { loadFavorites } from "./create-favorites.mjs";
+import { editListingForm } from "../make-html/create-edit-listing.mjs";
+import { deleteListing } from "../api/delete-listing.mjs";
+
+// import { convertToShortDateFormat } from "../utils/date-converter.mjs";
 
 export function createListingCard(listing) {
   // Create the main column div
@@ -43,34 +49,145 @@ export function createListingCard(listing) {
   carouselDiv.setAttribute("data-bs-ride", "carousel");
   cardDiv.appendChild(carouselDiv);
 
+  // Check if the loggedInUser is the seller
+  if (loggedInUser === listing.seller.name) {
+    // Create the edit button
+    const editButton = document.createElement("button");
+    editButton.className = "btn btn-sm btn-secondary text-white";
+    editButton.style.position = "absolute";
+    editButton.style.top = "10px";
+    editButton.style.left = "10px";
+    editButton.style.cursor = "pointer";
+    editButton.textContent = "Edit"; // Adding text to the button
+    editButton.setAttribute("data-bs-toggle", "collapse");
+    editButton.setAttribute("data-bs-target", "#edit-listing");
+    editButton.setAttribute("aria-expanded", "false");
+    editButton.title = "Edit Listing";
+
+    // Event listener for edit action
+    editButton.addEventListener("click", function (event) {
+      event.stopPropagation(); // Prevent triggering any click events on parent elements
+      console.log("Editing listing", listing.id);
+      editListingForm(listing.id, listing);
+
+      // Scroll to the top of the edit form
+      const editForm = document.getElementById("edit-listing");
+      if (editForm) {
+        editForm.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+
+    // Create the delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.className = "btn btn-sm btn-danger text-white";
+    deleteButton.style.position = "absolute";
+    deleteButton.style.top = "10px";
+    deleteButton.style.right = "10px";
+    deleteButton.style.cursor = "pointer";
+    deleteButton.textContent = "Delete";
+    deleteButton.title = "Delete Listing";
+
+    // Event listener for delete action
+    deleteButton.addEventListener("click", function (event) {
+      event.stopPropagation(); // Prevent triggering any click events on parent elements
+      if (confirm("Are you sure you want to delete this listing?")) {
+        deleteListing(listing.id);
+      }
+    });
+
+    // Append the edit button to the listing card
+    cardDiv.appendChild(editButton);
+    cardDiv.appendChild(deleteButton);
+  }
+
   // Create carousel-inner div
   const carouselInnerDiv = document.createElement("div");
   carouselInnerDiv.className = "carousel-inner rounded-top";
   carouselDiv.appendChild(carouselInnerDiv);
 
   // Create carousel items
-  listing.media.forEach((mediaUrl, index) => {
+  if (listing.media && listing.media.length > 0) {
+    listing.media.forEach((mediaUrl, index) => {
+      const carouselItemDiv = document.createElement("div");
+      carouselItemDiv.className =
+        "carousel-item" + (index === 0 ? " active" : "");
+      carouselInnerDiv.appendChild(carouselItemDiv);
+
+      const img = document.createElement("img");
+      img.className = "d-block w-100 carousel-image";
+      img.alt = `Carousel image ${index + 1}`;
+
+      img.onload = () => {
+        // Image loaded successfully
+        carouselItemDiv.appendChild(img);
+      };
+
+      img.onerror = () => {
+        // Image failed to load, use a default image
+        img.src = `https://picsum.photos/id/${getRandomId(
+          excludedIds
+        )}/200/300`;
+        carouselItemDiv.appendChild(img);
+      };
+
+      img.src = mediaUrl; // Set the src last to start loading the image
+    });
+  } else {
+    // Add default image or placeholder
     const carouselItemDiv = document.createElement("div");
-    carouselItemDiv.className =
-      "carousel-item" + (index === 0 ? " active" : "");
+    carouselItemDiv.className = "carousel-item active";
     carouselInnerDiv.appendChild(carouselItemDiv);
 
     const img = document.createElement("img");
-
-    img.src = mediaUrl;
+    img.src = `https://picsum.photos/id/${getRandomId(excludedIds)}/200/300`;
     img.className = "d-block w-100 carousel-image";
-    img.alt = `Carousel image ${index + 1}`;
+    img.alt = "Default image";
     carouselItemDiv.appendChild(img);
-  });
+  }
 
   // Overlay icon
   const overlayDiv = document.createElement("div");
   overlayDiv.className = "overlay-icon px-2 shadow";
   carouselDiv.appendChild(overlayDiv);
 
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   const starIcon = document.createElement("i");
-  starIcon.className = "bi bi-star";
+
+  // Set the initial class of the star icon based on whether the listing is in favorites
+  starIcon.className = favorites.some(favorite => favorite.id === listing.id)
+    ? "bi bi-star-fill"
+    : "bi bi-star";
   overlayDiv.appendChild(starIcon);
+
+  // Event listener for toggling favorites
+  starIcon.addEventListener("click", function (event) {
+    event.stopPropagation();
+
+    // Fetch the most current favorites from local storage
+    let currentFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    const isFavorite = currentFavorites.some(
+      favorite => favorite.id === listing.id
+    );
+
+    if (isFavorite) {
+      // Remove from favorites
+      currentFavorites = currentFavorites.filter(
+        favorite => favorite.id !== listing.id
+      );
+      starIcon.className = "bi bi-star";
+    } else {
+      // Add to favorites
+      currentFavorites.push(listing);
+      starIcon.className = "bi bi-star-fill";
+    }
+
+    // Update the favorites in local storage
+    localStorage.setItem("favorites", JSON.stringify(currentFavorites));
+
+    // Reload favorites display if needed
+    loadFavorites();
+  });
 
   // Title
   const titleRowDiv = document.createElement("div");
@@ -78,14 +195,29 @@ export function createListingCard(listing) {
   cardDiv.appendChild(titleRowDiv);
 
   const titleColDiv = document.createElement("div");
-  titleColDiv.className = "col title-listing";
+  titleColDiv.className =
+    "col title-listing d-flex justify-content-center ms-0";
   titleRowDiv.appendChild(titleColDiv);
 
   const titleH1 = document.createElement("h1");
   titleH1.className =
-    "py-1 mb-2 border-bottom text-center fs-3 listing-title align-items-center text-primary";
-  titleH1.textContent = listing.title; // Use listing title
+    "py-1 mb-2 border-bottom text-center fs-5 listing-title align-items-center text-primary ms-0";
+  titleH1.style.width = "235px"; // Set the width of the container
   titleColDiv.appendChild(titleH1);
+
+  const titleText = document.createElement("span"); // Create a child span for the text
+  if (listing.title) {
+    titleText.textContent = listing.title;
+  } else {
+    titleText.className = "text-danger";
+    titleText.textContent = "Untitled Listing";
+  }
+  titleH1.appendChild(titleText);
+
+  // Check if title character count is too long
+  if (listing.title.length > 24) {
+    titleText.classList.add("scrolling-text");
+  }
 
   // Description
   const descRowDiv = document.createElement("div");
@@ -189,6 +321,7 @@ export async function handleListingCardClick(event) {
   localStorage.setItem("listingId", listingId);
   localStorage.setItem("listingBids", listingBids);
   localStorage.setItem("sellerName", sellerName);
+  localStorage.setItem("currentProfileName", sellerName);
   localStorage.setItem("sellerAvatar", sellerAvatar);
   localStorage.setItem("sellerWins", sellerWins);
 

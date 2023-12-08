@@ -6,8 +6,9 @@ import {
 } from "./apiUrls.mjs";
 import { doApiFetch } from "./doFetch.mjs";
 
-const listingId = localStorage.getItem("listingId");
-let id = localStorage.getItem("listingId", listingId);
+const urlParams = new URLSearchParams(window.location.search);
+const listingId = urlParams.get("id");
+const id = listingId;
 
 export async function fetchSingleListingById() {
   if (!id) {
@@ -18,6 +19,6 @@ export async function fetchSingleListingById() {
     "GET"
   );
   const listing = await response;
-  // console.log("Single Listing", listing);
+  console.log("Single Listing", listing);
   return listing;
 }

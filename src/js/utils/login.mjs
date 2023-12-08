@@ -33,12 +33,9 @@ export async function loginUser(url, userData) {
     const json = await response.json();
 
     if (response.status >= 200 && response.status <= 299) {
-      // Needed for smooth sailing after login
-      // const accessToken = json.accessToken;
       localStorage.setItem("accessToken", json.accessToken);
       localStorage.setItem("loggedInUser", json.name);
       localStorage.setItem("currentProfileName", json.name);
-      localStorage.setItem("URLProfilename", json.name);
       localStorage.setItem("isLoggedIn", true);
 
       if (document.getElementById("remember").checked) {

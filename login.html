@@ -5,8 +5,8 @@
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="favicon.ico">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="keywords" content="Auctioneer, Auction, Marketplace, Sell, Buy, Gifts, Bootstrap, JavaScript, Noroff">
-  <meta name="description" content="Find your next drem item! Been looking for that special item? Dead sick of that old one? We can fix that!">
+  <meta name="keywords" content="DreamBids, Auction, Marketplace, Sell, Buy, Gifts, Bootstrap, JavaScript, Noroff">
+  <meta name="description" content="Find your next dream item! Been looking for that special item? Dead sick of that old one? We can fix that!">
   <link href="/dist/css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
@@ -40,10 +40,10 @@
             </div>
             <div class="row py-1 px-0 icons">
               <div class="col d-flex flex-nowrap text-primary justify-content-between justify-content-md-end gap-md-4 align-items-center me-md-3">
-                <a href="/src/html/auction/favorites.html" class="text-primary d-flex align-items-center icon-favorites">
+                <a href="#favorites" class="text-primary d-flex align-items-center icon-favorites" data-bs-toggle="collapse" data-bs-target="#favorites" aria-expanded="false">
                   <i class="bi fs-5 bi-star me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Favorites</span>
                 </a>
-                <a href="/src/html/auction/new-listing.html" class="text-primary d-flex align-items-center icon-add-listing">
+                <a href="#" class="text-primary d-flex align-items-center mx-2 icon-add-listing" data-bs-toggle="collapse" data-bs-target="#create-new-listing" aria-expanded="false">
                   <i class="bi fs-5 bi-plus-circle me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex add-listing">Add listing</span>
                 </a>
                 <div class="searchbar text-primary d-md-none d-flex align-items-center">
@@ -51,7 +51,6 @@
                 </div>
                 <nav class="text-primary">
                   <div class="dropdown d-flex align-items-center">
-                    <!-- <i class="bi fs-3 bi-list me-2 icon-link icon-link-hover"></i><span class="d-none d-md-inline-flex">Menu</span> -->
                     <i class="bi fs-3 bi-list me-2 my-2 dropdown-toggle icon-link icon-link-hover" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false"></i><span class="dropdown-toggle d-none d-md-inline-flex" data-bs-toggle="dropdown">Menu</span>
                     <ul class="dropdown-menu border-primary" aria-labelledby="dropdownMenuButton">
                       <li class=" menu-home"><a class="dropdown-item" href="/index.html">Home</a></li>

@@ -9,6 +9,8 @@ export function updateCountdownDisplay(
 
   if (timeLeft <= 0) {
     countdownElement.textContent = "Auction ended";
+    countdownElement.className =
+      "countdown-display bg-warning rounded shadow-sm fw-bold py-2";
     clearInterval(countdownInterval); // Stop the interval
     return;
   }
