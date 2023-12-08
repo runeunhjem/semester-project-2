@@ -11,10 +11,7 @@ import {
   globalMaxTotalListings,
 } from "../variables/constants.mjs";
 
-export async function fetchAllListings() {
-  const spinner4 = document.getElementById("spinner4");
-  if (!spinner4) return;
-  spinner4.classList.remove("d-none");
+export async function fetchForSearchMain() {
   if (
     window.location.href.includes("login") ||
     window.location.href.includes("profile") ||
@@ -26,10 +23,8 @@ export async function fetchAllListings() {
 
   const limit = globalLimit > 0 ? globalLimit : 100; // Use globalLimit if set, else default to 100
   let offset = 0;
-  const spinner = document.getElementById("spinner");
-  // spinner.classList.remove("d-none");
 
-  while (allListingsArray.length < limit) {
+  while (allListingsArray.length < globalMaxTotalListings) {
     const response = await doApiFetch(
       `${API_BASE_URL}${listingsUrl}${sellerInclude}${bidsInclude}&limit=${limit}&offset=${offset}${activeListings}&sort=created&sortOrder=desc`,
       "GET"
@@ -50,7 +45,6 @@ export async function fetchAllListings() {
 
   // // Sort by 'created' in descending order (newest first)
   // allListingsArray.sort((a, b) => new Date(b.created) - new Date(a.created));
-  console.log("All active Listings", allListingsArray);
-  spinner.classList.add("d-none");
+  console.log("All search Listings", allListingsArray);
   return allListingsArray;
 }

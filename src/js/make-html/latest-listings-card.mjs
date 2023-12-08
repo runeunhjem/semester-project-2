@@ -5,10 +5,10 @@ import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs";
 import { loadFavorites } from "./create-favorites.mjs";
 import { editListingForm } from "../make-html/create-edit-listing.mjs";
 import { deleteListing } from "../api/delete-listing.mjs";
-
+import { highlightQuery } from "../utils/highlight-search-term.mjs";
 // import { convertToShortDateFormat } from "../utils/date-converter.mjs";
 
-export function createListingCard(listing) {
+export function createListingCard(listing, query) {
   // Create the main column div
   const colDiv = document.createElement("div");
   colDiv.className = "col ms-1 my-3 p-0 latest-auctions-card";
@@ -207,7 +207,8 @@ export function createListingCard(listing) {
 
   const titleText = document.createElement("span"); // Create a child span for the text
   if (listing.title) {
-    titleText.textContent = listing.title;
+    // Use highlightQuery to highlight the query in the title
+    titleText.innerHTML = highlightQuery(listing.title, query);
   } else {
     titleText.className = "text-danger";
     titleText.textContent = "Untitled Listing";
@@ -230,7 +231,12 @@ export function createListingCard(listing) {
 
   const descP = document.createElement("p");
   descP.className = "text-start lh-sm px-2 mb-1 listing-description";
-  descP.textContent = listing.description; // Use listing description
+  if (listing.description) {
+    // Use highlightQuery to highlight the query in the description
+    descP.innerHTML = highlightQuery(listing.description, query);
+  } else {
+    descP.textContent = "No description provided."; // Default text if no description
+  }
   descColDiv.appendChild(descP);
 
   // Bid and ID info

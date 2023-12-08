@@ -59,4 +59,11 @@
 
   // Setup toggle for all auctions
   setupToggleButton("toggleAllAuctions", [".all-auctions"], "chevronRight");
+
+  // Setup toggle for search auctions
+  setupToggleButton(
+    "toggleSearchAuctions",
+    [".search-auctions"],
+    "chevronSearch"
+  );
 })();

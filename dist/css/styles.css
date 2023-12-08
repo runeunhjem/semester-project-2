@@ -12521,12 +12521,17 @@ fieldset:disabled .btn {
 }
 :root {
   --color-light-green: #c3ffce;
+  --color-yellow: #ffff00;
   --primary-font: "Arial", sans-serif;
   --secondary-font: "Iceberg", sans-serif;
 }
 
 body {
   font-family: "Arial", sans-serif;
+}
+
+.highlight {
+  background-color: var(--color-yellow);
 }
 
 .restricted {

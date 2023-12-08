@@ -14,11 +14,11 @@ import {
 } from "./variables/constants.mjs";
 import { createNewListingForm } from "./make-html/create-new-listing.mjs";
 import { displayProfileListings } from "./utils/create-profile-listings.mjs";
-// import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
 import { currentProfile } from "./make-html/profile-page.mjs";
 import { currentProfileHistory } from "./make-html/profile-history-section.mjs";
 import { loadFavorites } from "./make-html/create-favorites.mjs";
 import { displayEndsSoonListings } from "./utils/create-ends-soon-listings.mjs";
+import { initializeSearch } from "./utils/search-main.mjs";
 
 const loggedInUserProfileLink = document.querySelectorAll(".menu-profile a");
 loggedInUserProfileLink.forEach(profile => {
@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   toggleSearchSection();
   updateProfileDisplay();
   applyBootstrapValidation();
+  initializeSearch();
 
   if (
     !window.location.href.includes("login") ||
