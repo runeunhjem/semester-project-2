@@ -3,8 +3,8 @@ export const currentProfileName = localStorage.getItem("currentProfileName");
 export const accessToken = localStorage.getItem("accessToken");
 export const isLoggedIn = localStorage.getItem("isLoggedIn");
 export const favoritesLink = document.querySelector(".icon-favorites");
-export const globalLimit = 0;
-export const globalMaxTotalListings = 100;
+export const globalLimit = 100;
+export const globalMaxTotalListings = 1000;
 
 export const pastelColors = [
   "#fbb4ae", // pastel pink
