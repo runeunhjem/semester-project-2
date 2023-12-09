@@ -178,7 +178,7 @@ export async function displayListingDetails() {
         title,
         description,
         tags,
-        media,
+        // media,
         created,
         updated,
         endsAt,

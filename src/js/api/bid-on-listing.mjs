@@ -18,7 +18,8 @@ export async function bidOnListing(bidAmount, id) {
     bidData
   );
   const listing = await response;
-  // console.log("Bid success", listing);
-  window.location.reload();
+  setTimeout(() => {
+    window.location.reload();
+  }, 5000);
   return listing;
 }

@@ -12535,7 +12535,7 @@ body {
 }
 
 .restricted {
-  display: none;
+  display: none !important;
 }
 
 main {

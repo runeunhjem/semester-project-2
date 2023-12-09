@@ -2,6 +2,13 @@ import { fetchAllListingsWithMedia } from "../api/listings-all-with-media.mjs";
 import { createListingCard } from "../make-html/latest-listings-card.mjs";
 
 export async function displayLatestListings() {
+  if (
+    window.location.href.includes("login") ||
+    window.location.href.includes("profile") ||
+    window.location.href.includes("listing")
+  ) {
+    return;
+  }
   const spinner = document.getElementById("spinner");
   spinner.classList.remove("d-none");
   try {

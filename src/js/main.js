@@ -128,3 +128,15 @@ favoritesLink.addEventListener("click", function (event) {
     loadFavorites();
   }
 });
+
+// Select the element with the specific ID
+const countdownDisplay = document.querySelector(".countdown-display");
+
+// Check if the element exists and its text content includes 'auction ended'
+if (
+  countdownDisplay &&
+  countdownDisplay.textContent.includes("Auction ended")
+) {
+  // Add the 'disabled' class to the element
+  countdownDisplay.classList.add("disabled");
+}

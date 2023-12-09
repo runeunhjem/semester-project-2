@@ -37,9 +37,11 @@ export function createBidContainer(highestBid) {
   submitButton.textContent = "Place Bid";
   submitButton.className = "btn btn-primary mx-2";
   const listingId = localStorage.getItem("listingId");
-  submitButton.addEventListener("click", () =>
-    bidOnListing(amountInput.value, listingId)
-  );
+  submitButton.addEventListener("click", () => {
+    bidOnListing(amountInput.value, listingId);
+    submitButton.classList.add("bg-success");
+    submitButton.textContent = "Bid Placed";
+  });
 
   inputButtonRowDiv.appendChild(amountInput);
   inputButtonRowDiv.appendChild(submitButton);

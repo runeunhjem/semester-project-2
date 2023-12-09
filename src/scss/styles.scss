@@ -17,7 +17,7 @@ body {
   background-color: var(--color-yellow);
 }
 .restricted {
-  display: none;
+  display: none !important;
 }
 
 main {
