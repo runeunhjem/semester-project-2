@@ -17,7 +17,12 @@ export function createListingCard(listing, query) {
   colDiv.setAttribute("data-post-sellerAvatar", listing.seller.avatar);
   colDiv.setAttribute("data-post-sellerWins", listing.seller.wins.length);
   colDiv.setAttribute("data-post-listingBids", listing._count.bids);
-  colDiv.setAttribute("data-category", listing.tags.join(","));
+  // Set data-category attribute based on tags
+  const category =
+    listing.tags && listing.tags.length > 0
+      ? listing.tags.join(",")
+      : "Uncategorized";
+  colDiv.setAttribute("data-category", category);
 
   colDiv.addEventListener("mouseover", handleListingCardClick);
   colDiv.addEventListener("click", handleListingCardClick);

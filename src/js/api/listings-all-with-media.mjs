@@ -50,7 +50,7 @@ export async function fetchAllListingsWithMedia() {
   }
 
   allListingsArray.sort((a, b) => new Date(b.created) - new Date(a.created));
-  console.log("Latest 12 Listings with image gallery", allListingsArray);
+  console.log("Latest Listings with image gallery", allListingsArray);
   spinner2.classList.add("d-none");
   return allListingsArray;
 }

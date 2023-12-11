@@ -55,7 +55,7 @@ export async function listingsEndsSoon() {
 
     // Get only the first 12 listings
     const endsSoon12Listings = listingsWithEndDates.slice(0, 12);
-    console.log("12 Listings that end soon", endsSoon12Listings);
+    console.log("Listings that end soon", endsSoon12Listings);
 
     return endsSoon12Listings;
   } catch (error) {
