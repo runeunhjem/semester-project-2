@@ -201,7 +201,7 @@ export function createListingCard(listing, query) {
 
   const titleH1 = document.createElement("h1");
   titleH1.className =
-    "py-1 mb-2 border-bottom text-center fs-5 listing-title align-items-center text-primary ms-0";
+    "py-1 my-2 border-bottom text-center fs-5 listing-title align-items-center text-primary ms-0";
   titleH1.style.width = "235px"; // Set the width of the container
   titleColDiv.appendChild(titleH1);
 

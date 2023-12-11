@@ -7,6 +7,7 @@ import { createBidContainer } from "../make-html/create-bid-container.mjs";
 import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs"; // Adjust path as necessary
 import { createBidEntry } from "../make-html/create-bid-history-entry.mjs";
 import { populateCategories } from "../make-html/populate-categories.mjs";
+import { loggedInUser } from "../variables/constants.mjs";
 // import { viewProfile } from "../utils/view-profile.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -213,12 +214,22 @@ export async function displayListingDetails() {
 
         if (spec.isLink) {
           const profileContainer = document.createElement("div");
+          const placeBidSection = document.getElementById("place-bid");
+          if (loggedInUser === seller.name) {
+            placeBidSection.innerHTML = "";
+            placeBidSection.textContent = "You cannot bid on your own listing.";
+            placeBidSection.classList.add(
+              "d-flex",
+              "justify-content-center",
+              "text-danger"
+            );
+          }
           profileContainer.className = "d-flex align-items-center";
 
           const sellerLink = document.createElement("a");
           sellerLink.href = `/src/html/profile/index.html?profile=${seller.name}`;
           sellerLink.textContent = `${seller.name} | View Profile`;
-          sellerLink.className = "fw-bold";
+          sellerLink.className = "fw-bold seller-name";
           profileContainer.appendChild(sellerLink);
 
           specEntry.children[1].appendChild(profileContainer);

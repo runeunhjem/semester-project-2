@@ -1,5 +1,6 @@
 // make-html/create-bid-container.mjs
 import { bidOnListing } from "../api/bid-on-listing.mjs";
+// import { loggedInUser } from "../variables/constants.mjs";
 
 export function createBidContainer(highestBid) {
   const bidContainer = document.getElementById("place-bid");
@@ -17,7 +18,6 @@ export function createBidContainer(highestBid) {
   amountLabel.setAttribute("for", "bidAmount");
   amountLabel.className =
     "form-label fw-bold text-black mx-auto align-self-center";
-
   labelRowDiv.appendChild(amountLabel);
 
   // Create input and button row
@@ -31,22 +31,32 @@ export function createBidContainer(highestBid) {
   amountInput.style.width = "80px";
   amountInput.className = "form-control mx-2";
   amountInput.placeholder = "Enter your bid";
-  amountInput.value = highestBid + 1; // Set initial value to highest bid + 1
+  amountInput.value = highestBid + 1;
+  inputButtonRowDiv.appendChild(amountInput);
 
   const submitButton = document.createElement("button");
   submitButton.textContent = "Place Bid";
-  submitButton.className = "btn btn-primary mx-2";
-  const listingId = localStorage.getItem("listingId");
+  submitButton.type = "submit";
+  submitButton.className = "btn btn-primary mx-2 place-bid";
+  submitButton.setAttribute("id", "bid-button");
+
+  // // Check if the user is the seller
+  // const sellerNameElement = document.querySelector(".seller-name");
+  // if (
+  //   sellerNameElement &&
+  //   sellerNameElement.textContent.includes(loggedInUser)
+  // ) {
+  //   submitButton.disabled = true;
+  //   submitButton.textContent = "You cannot bid on your own listing.";
+  // }
+
   submitButton.addEventListener("click", () => {
-    bidOnListing(amountInput.value, listingId);
+    bidOnListing(amountInput.value, localStorage.getItem("listingId"));
     submitButton.classList.add("bg-success");
     submitButton.textContent = "Bid Placed";
   });
 
-  inputButtonRowDiv.appendChild(amountInput);
   inputButtonRowDiv.appendChild(submitButton);
-
-  // Append rows to the container
   bidContainer.appendChild(labelRowDiv);
   bidContainer.appendChild(inputButtonRowDiv);
 }

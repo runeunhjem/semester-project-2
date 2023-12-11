@@ -146,21 +146,8 @@ if (
   countdownDisplay.textContent.includes("Auction ended")
 ) {
   // Add the 'disabled' class to the element
-  countdownDisplay.classList.add("disabled");
+  countdownDisplay.classList.add("bg-warning", "disabled");
+  // const bidButton = document.querySelector(".place-bid");
+  // bidButton.disabled = true;
+  // console.log("Auction ended");
 }
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Select all images in the document
-  var images = document.getElementsByTagName("img");
-
-  // Iterate through each image
-  for (var i = 0; i < images.length; i++) {
-    var image = images[i];
-
-    // Check if the image source contains 'http://'
-    if (image.src.startsWith("http://")) {
-      // Replace 'http://' with 'https://'
-      image.src = image.src.replace("http://", "https://");
-    }
-  }
-});

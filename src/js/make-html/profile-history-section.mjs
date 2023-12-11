@@ -205,7 +205,7 @@ export async function currentProfileHistory() {
 
     const idRow = document.createElement("div");
     idRow.className = "win-id text-dark text-left ms-0 ps-0";
-    idRow.textContent = "ID: N/A";
+    idRow.textContent = `ID: N/A`;
     titleIdCol.appendChild(idRow);
     outerDiv.appendChild(titleIdCol);
 
@@ -297,7 +297,7 @@ export async function currentProfileHistory() {
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";
-    img.className = "img-fluid shadow rounded m-2 mt-0 object-fit-cover";
+    img.className = "img-fluid shadow rounded m-2 ms-0 mt-0 object-fit-cover";
     img.setAttribute("alt", `${title} image`);
     imgCol.appendChild(img);
     entryDiv.appendChild(imgCol);
