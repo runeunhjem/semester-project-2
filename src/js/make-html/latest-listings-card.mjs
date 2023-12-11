@@ -17,6 +17,8 @@ export function createListingCard(listing, query) {
   colDiv.setAttribute("data-post-sellerAvatar", listing.seller.avatar);
   colDiv.setAttribute("data-post-sellerWins", listing.seller.wins.length);
   colDiv.setAttribute("data-post-listingBids", listing._count.bids);
+  colDiv.setAttribute("data-category", listing.tags.join(","));
+
   colDiv.addEventListener("mouseover", handleListingCardClick);
   colDiv.addEventListener("click", handleListingCardClick);
   colDiv.addEventListener("click", () => {

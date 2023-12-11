@@ -40,22 +40,35 @@ function updateCategoriesHeader(tagCounts) {
 
 function populateContainer(container, tagCounts) {
   container.innerHTML = "";
-  let colorIndex = 0; // To keep track of which color to apply
+  let colorIndex = 0;
 
   Array.from(tagCounts)
-    .sort((a, b) => a[0].localeCompare(b[0])) // Sort by tag name
+    .sort((a, b) => a[0].localeCompare(b[0]))
     .forEach(([tag, count]) => {
       const categoryButton = document.createElement("button");
       categoryButton.className =
         "category-button text-nowrap rounded border text-center btn btn-group text-capitalize";
       categoryButton.textContent = `${tag} (${count})`;
-
-      // Set background color
       categoryButton.style.backgroundColor = pastelColors[colorIndex];
-
-      // Move to the next color, loop back if at the end
       colorIndex = (colorIndex + 1) % pastelColors.length;
+
+      // Add click event listener to filter listings
+      categoryButton.addEventListener("click", () => {
+        filterCardsByCategory(tag);
+      });
 
       container.appendChild(categoryButton);
     });
+}
+
+function filterCardsByCategory(category) {
+  const allCards = document.querySelectorAll(".latest-auctions-card");
+  allCards.forEach(card => {
+    const cardCategories = card.getAttribute("data-category").split(",");
+    if (cardCategories.includes(category) || category === "All") {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
 }
