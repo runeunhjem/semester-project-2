@@ -12887,6 +12887,16 @@ a {
   cursor: pointer;
 }
 
+.about-images {
+  max-height: 180px;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  opacity: 0.8;
+}
+
 .listing-title {
   font-size: 20px;
   font-weight: bold;

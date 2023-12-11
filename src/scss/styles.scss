@@ -371,6 +371,13 @@ a {
 //   object-fit: cover; /* Keeps the aspect ratio while filling the container */
 //   border-radius: 50%;
 // }
+.about-images {
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.8;
+}
 
 .listing-title {
   font-size: 20px;

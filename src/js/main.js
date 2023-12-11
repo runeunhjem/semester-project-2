@@ -52,7 +52,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (
     !window.location.href.includes("login") ||
-    !window.location.href.includes("profile")
+    !window.location.href.includes("profile") ||
+    !window.location.href.includes("about") ||
+    !window.location.href.includes("contact")
   ) {
     await displayLatestListings();
     await displayAllListings();

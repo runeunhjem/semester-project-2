@@ -11,9 +11,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="/src/js/main.js" type="module"></script>
-  <script src="/src/js/login.js" type="module"></script>
-  <script src="/src/js/register.js" type="module"></script>
-  <title>DreamBids | Login</title>
+  <!-- <script src="/src/js/login.js" type="module"></script>
+  <script src="/src/js/register.js" type="module"></script> -->
+  <title>DreamBids | About us</title>
 </head>
 <body class="h-100">
   <header class="container-fluid border-bottom border-primary py-1 max-width-1200">
@@ -80,130 +80,36 @@
     </div>
   </section>
   <main class="mt-3 max-width-800 mx-auto">
-      <div class="container mb-5">
+      <div class="container mb-3">
         <div class="container">
           <div class="row d-flex justify-content-center">
-            <div class="col bg-info mb-3 rounded shadow-sm">
+            <div class="col mb-3 mb-0 pb-0">
               <h1>Buying and selling on <span class="text-logo">Dream</span><span class="text-primary text-logo">Bids</span></h1>
-              <p class="my-3">Please log in or register to get full access to bidding, creating your own listings, selling, account and profile details on <span class="text-logo">Dream</span><span class="text-primary text-logo">Bids</span></p>
-              <p class="my-3">We are one the most-visited sought after marketplaces in FED2 2023 for special objects, offering new objects for auction each day.</p>
+              <!-- <p class="my-3">Please log in or register to get full access to bidding, creating your own listings, selling, account and profile details on <span class="text-logo">Dream</span><span class="text-primary text-logo">Bids</span></p> -->
+              <p class="my-3 mb-0">We are one the most-visited sought after marketplaces in FED2 2023 for special objects, offering new objects for auction each day.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <img src="/images/playstation-controllers.avif" alt="Gaming Controllers" class="about-images gaming img-fluid">
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center">
+            <div class="col mb-0 pb-0">
+              <p class="my-3">Our mission is to provide an exciting and seamless experience to our customers for buying and selling special, hard-to-find objects.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <img src="/images/watch.avif" alt="Watches" class="about-images gaming img-fluid">
             </div>
           </div>
         </div>
-        <div class="container px-0">
-          <div class="row">
-            <div class="col">
-              <ul class="nav nav-tabs " id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-tab-pane" type="button" role="tab" aria-controls="login-tab-pane" aria-current="page" aria-selected="true">Log In</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="signup-tab" data-bs-toggle="tab" data-bs-target="#signup-tab-pane" type="button" role="tab" aria-controls="signup-tab-pane" aria-selected="false">Sign Up</button>
-                </li>
-              </ul>
-            <div class="tab-content" id="myTabContent">
-              <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel" aria-labelledby="login-tab" tabindex="0">
-                <div class="container my-5">
-                  <div class="row justify-content-center md-6">
-                    <div class="col-md-6 auth-form">
-                      <div class="card">
-                        <div class="card-header form-header bg-secondary text-white fw-bold">
-                            Login
-                        </div>
-                        <div class="card-body">
-                          <!-- Login form -->
-                          <form id="login-form" action="https://api.noroff.dev/api/v1/auction/auth/login" method="post" class="needs-validation" novalidate>
-                            <div class="mb-3">
-                              <label for="loginEmail" class="form-label">Valid Noroff Email</label>
-                              <input type="email" class="bg-info form-control" id="loginEmail" name="email" autocomplete="email" required pattern="^[a-zA-Z0-9._%+\-]+@(stud\.noroff\.no)$" placeholder="@stud.noroff.no" >
-                              <div class="valid-feedback">
-                                Looks good!
-                              </div>
-                              <div class="invalid-feedback" id="invalid-login-email">
-                                Please enter a valid Noroff mail address.
-                              </div>
-                            </div>
-                            <div class="mb-3">
-                              <label for="loginPassword" class="form-label">Password</label>
-                              <input type="password" class="bg-info form-control" id="loginPassword" name="password" autocomplete="current-password" required placeholder="Minimum 8 characters" minlength="8">
-                              <div class="valid-feedback">
-                                Looks good!
-                              </div>
-                              <div class="invalid-feedback"  id="invalid-login-password">
-                                Password must be at least 8 characters long.
-                              </div>
-                            </div>
-                            <div class="mb-3 form-check">
-                              <input type="checkbox" class="form-check-input" id="remember">
-                              <label class="form-check-label" for="remember">Remember me</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary text-white" id="login-button">Login</button>
-                          </form>
-                          <!-- End of Login -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class=" mb-6 tab-pane fade show" id="signup-tab-pane" role="tabpanel" aria-labelledby="signup-tab" tabindex="0">
-                <div class="container my-5">
-                  <div class="row justify-content-center">
-                    <div class="col-md-6 auth-form">
-                      <div class="card">
-                        <div class="card-header form-header bg-secondary text-white fw-bold">
-                          Sign Up
-                        </div>
-                        <div class="card-body">
-                          <!-- Register form -->
-                          <form id="signup-form" action="https://api.noroff.dev/api/v1/auction/auth/register" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
-                            <div class="mb-3">
-                              <label for="registerName" class="form-label">Name</label>
-                              <input type="text" class="bg-info form-control" id="registerName" name="name" required pattern="[a-zA-Z0-9_]+" placeholder="Name or Nickname" aria-label="Choose Username">
-                              <div class="valid-feedback">
-                                Looks good!
-                              </div>
-                              <div class="invalid-feedback" id="name-input-error">
-                                No symbols apart from underscore (_).
-                              </div>
-                            </div>
-                            <div class="mb-3">
-                              <label for="registerEmail" class="form-label">Email</label>
-                              <input type="email" class="bg-info form-control" id="registerEmail" name="email" autocomplete="email" required pattern="^[a-zA-Z0-9._%+\-]+@(stud\.noroff\.no)$" placeholder="@stud.noroff.no" aria-label="Valid Noroff Email Address">
-                              <div class="valid-feedback">
-                                Looks good!
-                              </div>
-                              <div class="invalid-feedback" id="register-email-input-error">
-                                Please enter a valid Noroff email address.
-                              </div>
-                            </div>
-                            <div class="mb-3">
-                              <label for="password" class="form-label">Password</label>
-                              <input type="password" class="bg-info form-control" id="password" name="password" autocomplete="new-password" required placeholder="Minimum 8 characters" minlength="8">
-                              <div class="valid-feedback">
-                                Looks good!
-                              </div>
-                              <div class="invalid-feedback" id="register-password-error">
-                                Password must be at least 8 characters long.
-                              </div>
-                            </div>
-                            <div class="mb-3">
-                              <label for="avatar" class="form-label">Avatar (Optional link to Image)</label>
-                              <input type="url" class="bg-info form-control" id="avatar" name="avatar" placeholder="https://example.com/image.jpg">
-                              <div class="invalid-feedback">
-                                Please enter a valid URL for your avatar image.
-                              </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary text-white" id="registerButton">Sign Up</button>
-                          </form>
-                          <!-- End of Register -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="row d-flex justify-content-center">
+          <div class="col mb-0 pb-0">
+            <p class="my-3 mb-0 mx-3 ">Founded in 2023 with a mission to make special objects more accessible. DreamBids now offers many new auctions each week, across multiple categories such as accessories, art, wine, gaming, toys and more.</p>
+            <p class="my-3 mb-0 mx-3">DreamBids now offers many new auctions each week, across multiple categories such as accessories, art, wine, gaming, toys and more.</p>
+            <p class="my-3 mb-0 mx-3">Hopefully you'll find that next dream item !</p>
           </div>
         </div>
       </div>
