@@ -44,7 +44,7 @@ if (isLoggedIn) {
  * Display latest listings.
  * Initialize all carousels.
  */
-// document.addEventListener("DOMContentLoaded", async () => {
+// document.addEventListener("DOMContentLoaded", async () => { // NOT COMPATIBLE WITH IOS !!!
 toggleSearchSection();
 updateProfileDisplay();
 applyBootstrapValidation();
