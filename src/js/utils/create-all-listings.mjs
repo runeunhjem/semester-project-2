@@ -14,8 +14,8 @@ export async function displayAllListings() {
     return;
   }
   try {
-    if (!spinner2) return; // Exit if the spinner is not found (e.g. on the login page
     const spinner2 = document.getElementById("spinner2");
+    if (!spinner2) return; // Exit if the spinner is not found (e.g. on the login page
     spinner2.classList.remove("d-none");
     const listings = await fetchAllListings();
 

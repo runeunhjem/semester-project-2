@@ -41,7 +41,7 @@ export async function fetchAllListings() {
 
     allListingsArray = [...allListingsArray, ...listings];
     offset += limit;
-
+    console.log("allListingsArray.length", allListingsArray.length);
     if (allListingsArray.length >= globalMaxTotalListings) {
       allListingsArray = allListingsArray.slice(0, globalMaxTotalListings); // Truncate array to maximum size
       break;

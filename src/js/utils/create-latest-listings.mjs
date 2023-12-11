@@ -12,8 +12,8 @@ export async function displayLatestListings() {
     console.log("window.location.href: ", window.location.href);
     return;
   }
-  if (!spinner) return; // Exit if the spinner is not found (e.g. on the login page
   const spinner = document.getElementById("spinner");
+  if (!spinner) return; // Exit if the spinner is not found (e.g. on the login page
   spinner.classList.remove("d-none");
   try {
     const listings = await fetchAllListingsWithMedia();

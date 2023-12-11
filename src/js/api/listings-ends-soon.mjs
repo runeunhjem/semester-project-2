@@ -1,4 +1,8 @@
 import {
+  globalLimit,
+  globalMaxTotalListings,
+} from "../variables/constants.mjs";
+import {
   API_BASE_URL,
   listingsUrl,
   sellerInclude,
@@ -27,10 +31,16 @@ export async function listingsEndsSoon() {
       const response = await doApiFetch(url, "GET");
       const listings = await response;
 
-      if (listings.length === 0) break;
+      if (listings.length === 0 || listings.length > globalLimit) break;
 
       allListingsArray = [...allListingsArray, ...listings];
       offset += limit;
+      if (allListingsArray.length >= globalMaxTotalListings) {
+        allListingsArray = allListingsArray.slice(0, globalMaxTotalListings); // Truncate array to maximum size
+        break;
+      }
+      console.log("listings.length", listings.length);
+      console.log("allListingsArray.length", allListingsArray.length);
     }
 
     // Ensure that listings with a defined 'endsAt' are considered

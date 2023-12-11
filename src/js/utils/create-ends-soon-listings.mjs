@@ -12,8 +12,8 @@ export async function displayEndsSoonListings() {
     return;
   }
   try {
-    if (!spinner3) return; // Exit if the spinner is not found (e.g. on the login page
     const spinner3 = document.getElementById("spinner3");
+    if (!spinner3) return; // Exit if the spinner is not found (e.g. on the login page
     spinner3.classList.remove("d-none");
     const listings = await listingsEndsSoon();
     // console.log("Listings that ends soon", listings);
