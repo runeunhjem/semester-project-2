@@ -54,11 +54,12 @@ if (
   !window.location.href.includes("login") ||
   !window.location.href.includes("profile") ||
   !window.location.href.includes("about") ||
-  !window.location.href.includes("contact")
+  !window.location.href.includes("contact") ||
+  !window.location.href.includes("listing")
 ) {
+  await displayEndsSoonListings();
   await displayLatestListings();
   await displayAllListings();
-  await displayEndsSoonListings();
 
   setTimeout(() => {
     // Wait for images to load
@@ -68,9 +69,9 @@ if (
 // });
 
 if (window.location.href.includes("profile")) {
+  await displayProfileListings();
   await currentProfile();
   await currentProfileHistory();
-  await displayProfileListings();
 
   setTimeout(() => {
     // Wait for images to load
