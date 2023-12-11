@@ -50,21 +50,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   applyBootstrapValidation();
   initializeSearch();
 
-  if (
-    !window.location.href.includes("login") ||
-    !window.location.href.includes("profile") ||
-    !window.location.href.includes("about") ||
-    !window.location.href.includes("contact")
-  ) {
-    await displayLatestListings();
-    await displayAllListings();
-    await displayEndsSoonListings();
+  // if (
+  //   !window.location.href.includes("login") ||
+  //   !window.location.href.includes("profile") ||
+  //   !window.location.href.includes("about") ||
+  //   !window.location.href.includes("contact")
+  // ) {
+  await displayLatestListings();
+  await displayAllListings();
+  await displayEndsSoonListings();
 
-    setTimeout(() => {
-      // Wait for images to load
-      initializeAllCarousels();
-    }, 4000);
-  }
+  setTimeout(() => {
+    // Wait for images to load
+    initializeAllCarousels();
+  }, 4000);
+  // }
 });
 
 if (window.location.href.includes("profile")) {

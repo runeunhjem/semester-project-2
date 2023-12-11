@@ -31,6 +31,7 @@ export async function doApiFetch(
   } catch (error) {
     console.log(error);
     if (fullResponse) {
+      console.log("fullResponse", fullResponse);
       return { data: null, status: "Network Error", ok: false };
     } else {
       return null; // Or handle this case appropriately

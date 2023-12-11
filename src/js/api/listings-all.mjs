@@ -15,9 +15,12 @@ export async function fetchAllListings() {
   const spinner4 = document.getElementById("spinner4");
   if (!spinner4) return;
   spinner4.classList.remove("d-none");
+  spinner4.classList.textContent = "Loading Listings...";
   if (
     window.location.href.includes("login") ||
     window.location.href.includes("profile") ||
+    window.location.href.includes("about") ||
+    window.location.href.includes("contact") ||
     window.location.href.includes("listing")
   ) {
     return;
