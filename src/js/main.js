@@ -26,6 +26,10 @@ loggedInUserProfileLink.forEach(profile => {
 });
 
 if (isLoggedIn) {
+  const hideLoginLinks = document.querySelectorAll(".menu-login");
+  hideLoginLinks.forEach(link => {
+    link.classList.add("d-none");
+  });
   // Select all elements with the class 'restricted'
   const restrictedElements = document.querySelectorAll(".restricted");
   restrictedElements.forEach(element => {
@@ -98,6 +102,10 @@ const addListingText = document.querySelector(".add-listing");
 
 if (addListingLink && createListingDiv) {
   addListingLink.addEventListener("click", event => {
+    if (!loggedInUser) {
+      console.log("User is not logged in.");
+      window.location.href = "/login.html";
+    }
     event.preventDefault(); // Prevent default link behavior
     // Toggle the 'd-none' class on the createListingDiv
     if (createListingDiv.classList.contains("d-none")) {
