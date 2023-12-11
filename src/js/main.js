@@ -44,18 +44,18 @@ if (isLoggedIn) {
  * Display latest listings.
  * Initialize all carousels.
  */
-document.addEventListener("DOMContentLoaded", async () => {
-  toggleSearchSection();
-  updateProfileDisplay();
-  applyBootstrapValidation();
-  initializeSearch();
+// document.addEventListener("DOMContentLoaded", async () => {
+toggleSearchSection();
+updateProfileDisplay();
+applyBootstrapValidation();
+initializeSearch();
 
-  // if (
-  //   !window.location.href.includes("login") ||
-  //   !window.location.href.includes("profile") ||
-  //   !window.location.href.includes("about") ||
-  //   !window.location.href.includes("contact")
-  // ) {
+if (
+  !window.location.href.includes("login") ||
+  !window.location.href.includes("profile") ||
+  !window.location.href.includes("about") ||
+  !window.location.href.includes("contact")
+) {
   await displayLatestListings();
   await displayAllListings();
   await displayEndsSoonListings();
@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Wait for images to load
     initializeAllCarousels();
   }, 4000);
-  // }
-});
+}
+// });
 
 if (window.location.href.includes("profile")) {
   await currentProfile();
