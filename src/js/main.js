@@ -42,27 +42,12 @@ if (isLoggedIn) {
   restrictedElements.forEach(element => {
     element.classList.remove("restricted");
   });
+  const unRestrictedElements = document.querySelectorAll(".unrestricted");
+  unRestrictedElements.forEach(element => {
+    element.classList.add("d-none");
+  });
 }
 
-/**
- * Toggle the search section on mobile.
- * Update the header profile info depending on if user is logged in.
- * Apply Bootstrap validation to forms.
- * Display latest listings.
- * Initialize all carousels.
- */
-// document.addEventListener("DOMContentLoaded", async () => { // NOT COMPATIBLE WITH IOS !!!
-
-// const closeSearchResults = document.getElementById("closeSearchResults");
-// const searchListingsContainer = document.getElementById(
-//   "search-listings-container"
-// );
-
-// if (closeSearchResults && searchListingsContainer) {
-//   closeSearchResults.addEventListener("click", () => {
-//     searchListingsContainer.classList.add("d-none");
-//   });
-// }
 const closeIcons = document.querySelectorAll(".close-section");
 
 closeIcons.forEach(icon => {
@@ -138,8 +123,7 @@ if (addListingLink && createListingDiv) {
       console.log("User is not logged in.");
       window.location.href = "/login.html";
     }
-    event.preventDefault(); // Prevent default link behavior
-    // Toggle the 'd-none' class on the createListingDiv
+    event.preventDefault();
     if (createListingDiv.classList.contains("d-none")) {
       createListingDiv.classList.remove("d-none");
       addListingIcon.classList.remove("bi-plus-circle");
@@ -161,7 +145,7 @@ if (addListingLink && createListingDiv) {
  */
 // Add click event listener
 favoritesLink.addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent the default anchor action
+  event.preventDefault();
   if (!isLoggedIn) {
     window.location.href = "/login.html";
   } else {
@@ -169,17 +153,10 @@ favoritesLink.addEventListener("click", function (event) {
   }
 });
 
-// Select the element with the specific ID
 const countdownDisplay = document.querySelector(".countdown-display");
-
-// Check if the element exists and its text content includes 'auction ended'
 if (
   countdownDisplay &&
   countdownDisplay.textContent.includes("Auction ended")
 ) {
-  // Add the 'disabled' class to the element
   countdownDisplay.classList.add("bg-warning", "disabled");
-  // const bidButton = document.querySelector(".place-bid");
-  // bidButton.disabled = true;
-  // console.log("Auction ended");
 }

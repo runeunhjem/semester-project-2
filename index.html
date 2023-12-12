@@ -212,16 +212,27 @@
       <!-- All listings -->
       <div class="section-container container mx-auto p-3" id="all-listings-container">
         <div class="row">
-          <div class="col d-flex justify-content-center">
+          <div class="col d-flex justify-content-between">
             <h1 id="toggleAllAuctions" class="fs-4 px-4 py-1 rounded cursor-pointer d-flex justify-content-between flex-nowrap divider-title bg-secondary text-white text-center w-100 max-width-300">
               All Auctions
               <div class="d-flex align-items-center">
-              <i class="bi bi-x-circle fs-5 close-section" id="closeAllResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
-              <i class="bi bi-chevron-up" id="chevronRight"></i>
+                <i class="bi bi-x-circle fs-5 close-section" id="closeAllResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
+                <i class="bi bi-chevron-up" id="chevronRight"></i>
               </div>
             </h1>
           </div>
         </div>
+        <form action="" class="sort py-2">
+          <label for="sortAll" class="visually-hidden">Sort by</label>
+          <select name="sortAll" id="sortAll" class="form-select form-select-sm p-2">
+            <option value="">Sort By</option>
+            <option value="ending_soon">Ending soon</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="price_low">Price low</option>
+            <option value="price_high">Price high</option>
+          </select>
+        </form>
         <div class="row-fluid d-flex flex-wrap overflow-hidden all-auctions bg-info rounded shadow-sm py-3 px-0" id="all-auctions">
           <!-- Spinner - Hide when loaded -->
           <div class="row d-flex mx-auto justify-content-center py-3 w-100" id="spinner2">
@@ -233,6 +244,7 @@
         </div>
       </div>
       <!-- End of All listings -->
+      
 
     </main>
     <footer class="max-width-300">

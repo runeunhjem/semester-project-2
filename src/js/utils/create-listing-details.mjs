@@ -227,9 +227,13 @@ export async function displayListingDetails() {
           profileContainer.className = "d-flex align-items-center";
 
           const sellerLink = document.createElement("a");
-          sellerLink.href = `/src/html/profile/index.html?profile=${seller.name}`;
+          if (loggedInUser) {
+            sellerLink.href = `/src/html/profile/index.html?profile=${seller.name}`;
+          } else {
+            sellerLink.href = "/login.html";
+          }
           sellerLink.textContent = `${seller.name} | View Profile`;
-          sellerLink.className = "fw-bold seller-name";
+          sellerLink.className = "fw-bold seller-name viewProfileLink";
           profileContainer.appendChild(sellerLink);
 
           specEntry.children[1].appendChild(profileContainer);

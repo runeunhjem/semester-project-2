@@ -27,7 +27,7 @@ export async function listingsEndsSoon() {
 
     // eslint-disable-next-line no-constant-condition
     while (true) {
-      const url = `${API_BASE_URL}${listingsUrl}${sellerInclude}${bidsInclude}&limit=${limit}&offset=${offset}${activeListings}&sort=created&sortOrder=asc`;
+      const url = `${API_BASE_URL}${listingsUrl}${sellerInclude}${bidsInclude}&limit=${limit}&offset=${offset}${activeListings}&sort=created&sortOrder=desc`;
       const response = await doApiFetch(url, "GET");
       const listings = await response;
 
