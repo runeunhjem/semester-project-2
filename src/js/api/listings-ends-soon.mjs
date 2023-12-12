@@ -15,6 +15,8 @@ export async function listingsEndsSoon() {
   if (
     window.location.href.includes("login") ||
     window.location.href.includes("profile") ||
+    window.location.href.includes("about") ||
+    window.location.href.includes("contact") ||
     window.location.href.includes("listing")
   ) {
     return;
@@ -41,7 +43,7 @@ export async function listingsEndsSoon() {
         break;
       }
       // console.log("listings.length", listings.length);
-      // console.log("allListingsArray.length", allListingsArray.length);
+      console.log("allListingsArray.length", allListingsArray.length);
     }
 
     // Ensure that listings with a defined 'endsAt' are considered

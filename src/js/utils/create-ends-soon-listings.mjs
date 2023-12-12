@@ -16,6 +16,7 @@ export async function displayEndsSoonListings() {
     if (!spinner3) return; // Exit if the spinner is not found (e.g. on the login page
     spinner3.classList.remove("d-none");
     const listings = await listingsEndsSoon();
+    // const listings = await listingsEndsSoon();
     console.log("Listings that ends soon", listings);
 
     // Get the container where the listings should be displayed
