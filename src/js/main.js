@@ -64,23 +64,24 @@ updateProfileDisplay();
 applyBootstrapValidation();
 initializeSearch();
 
-if (
-  !window.location.href.includes("login") ||
-  !window.location.href.includes("profile") ||
-  !window.location.href.includes("about") ||
-  !window.location.href.includes("contact") ||
-  !window.location.href.includes("listing")
-) {
-  await displayEndsSoonListings();
-  await displayLatestListings();
-  await displayAllListings();
+document.addEventListener("DOMContentLoaded", async () => {
+  if (
+    !window.location.href.includes("login") ||
+    !window.location.href.includes("profile") ||
+    !window.location.href.includes("about") ||
+    !window.location.href.includes("contact") ||
+    !window.location.href.includes("listing")
+  ) {
+    await displayEndsSoonListings();
+    await displayLatestListings();
+    await displayAllListings();
 
-  setTimeout(() => {
-    // Wait for images to load
-    initializeAllCarousels();
-  }, 4000);
-}
-// });
+    setTimeout(() => {
+      // Wait for images to load
+      initializeAllCarousels();
+    }, 4000);
+  }
+});
 
 if (window.location.href.includes("profile")) {
   await displayProfileListings();

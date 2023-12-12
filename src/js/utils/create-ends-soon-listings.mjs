@@ -23,7 +23,7 @@ export async function displayEndsSoonListings() {
       document.getElementById("ends-soon-auctions");
     if (!endsSoonAuctionsContainer) return; // Exit if the container is not found
     // Clear previous content (if necessary)
-    // endsSoonAuctionsContainer.innerHTML = "";
+    endsSoonAuctionsContainer.innerHTML = "";
 
     // Append each listing card to the container
     listings.forEach(listing => {
