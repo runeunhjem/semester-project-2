@@ -23,7 +23,7 @@ export async function listingsEndsSoon() {
   try {
     let allListingsArray = [];
     let offset = 0;
-    const limit = 100; // Set a reasonable limit for each API call
+    const limit = globalLimit > 0 ? globalLimit : 100; // Use globalLimit if set, else default to 100
 
     // eslint-disable-next-line no-constant-condition
     while (true) {
@@ -31,7 +31,8 @@ export async function listingsEndsSoon() {
       const response = await doApiFetch(url, "GET");
       const listings = await response;
 
-      if (listings.length === 0 || listings.length > globalLimit) break;
+      if (listings.length === 0 || listings.length > globalMaxTotalListings)
+        break;
 
       allListingsArray = [...allListingsArray, ...listings];
       offset += limit;

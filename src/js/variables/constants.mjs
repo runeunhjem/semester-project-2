@@ -4,7 +4,7 @@ export const accessToken = localStorage.getItem("accessToken");
 export const isLoggedIn = localStorage.getItem("isLoggedIn");
 export const favoritesLink = document.querySelector(".icon-favorites");
 export const globalLimit = 100;
-export const globalMaxTotalListings = 500;
+export const globalMaxTotalListings = 300;
 export const maxSearchResults = 500;
 
 export const pastelColors = [
