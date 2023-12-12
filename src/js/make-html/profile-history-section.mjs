@@ -98,7 +98,8 @@ export async function currentProfileHistory() {
   function displayWinEntry(listingData, container) {
     // Main entry div
     const entryDiv = document.createElement("div");
-    entryDiv.className = "row history-entry bg-wins rounded shadow-sm m-2 p-2";
+    entryDiv.className =
+      "row history-entry bg-wins rounded shadow-sm m-2 mb-3 p-2";
 
     // Column for Listing Image
     const imgCol = document.createElement("div");
@@ -180,7 +181,7 @@ export async function currentProfileHistory() {
     // Main entry div
     const entryDiv = document.createElement("div");
     entryDiv.className =
-      "row history-entry bg-warning rounded shadow-sm m-2 p-2";
+      "row history-entry bg-warning rounded shadow-sm m-2 mb-3 p-2";
 
     // Column for Listing Image Placeholder
     const imgCol = document.createElement("div");
@@ -287,7 +288,8 @@ export async function currentProfileHistory() {
 
     // Main entry div
     const entryDiv = document.createElement("div");
-    entryDiv.className = "row history-entry bg-info rounded shadow-sm m-2 p-2";
+    entryDiv.className =
+      "row history-entry bg-info rounded shadow-sm m-2 mb-3 p-2";
 
     // Column for Listing Image
     const imgCol = document.createElement("div");

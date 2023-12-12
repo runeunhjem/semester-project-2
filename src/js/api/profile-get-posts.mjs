@@ -9,7 +9,7 @@ export async function fetchProfileListings() {
   const response = await doApiFetch(url, "GET");
 
   const listings = await response;
-  console.log("All profile Listings", listings);
+  // console.log("All profile Listings", listings);
   return listings;
 }
 // fetchProfileListings();

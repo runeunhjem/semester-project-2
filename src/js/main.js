@@ -21,8 +21,15 @@ import { displayEndsSoonListings } from "./utils/create-ends-soon-listings.mjs";
 import { initializeSearch } from "./utils/search-main.mjs";
 
 const loggedInUserProfileLink = document.querySelectorAll(".menu-profile a");
+
 loggedInUserProfileLink.forEach(profile => {
-  profile.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
+  if (!loggedInUser) {
+    // If loggedInUser is not defined, set the link to point to login page
+    profile.href = "/login.html";
+  } else {
+    // If loggedInUser is defined, set the link to the profile page with the user's profile
+    profile.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
+  }
 });
 
 if (isLoggedIn) {
@@ -45,6 +52,28 @@ if (isLoggedIn) {
  * Initialize all carousels.
  */
 // document.addEventListener("DOMContentLoaded", async () => { // NOT COMPATIBLE WITH IOS !!!
+
+// const closeSearchResults = document.getElementById("closeSearchResults");
+// const searchListingsContainer = document.getElementById(
+//   "search-listings-container"
+// );
+
+// if (closeSearchResults && searchListingsContainer) {
+//   closeSearchResults.addEventListener("click", () => {
+//     searchListingsContainer.classList.add("d-none");
+//   });
+// }
+const closeIcons = document.querySelectorAll(".close-section");
+
+closeIcons.forEach(icon => {
+  icon.addEventListener("click", function () {
+    const sectionToClose = this.closest(".section-container");
+    if (sectionToClose) {
+      sectionToClose.classList.add("d-none");
+    }
+  });
+});
+
 toggleSearchSection();
 updateProfileDisplay();
 applyBootstrapValidation();

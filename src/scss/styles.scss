@@ -47,9 +47,21 @@ a {
   text-decoration: none;
 }
 
+.close-section {
+  font-size: 0.9rem !important;
+  align-items: center !important;
+}
 .bi:hover {
-  color: #0400ff !important;
-  transform: scale(1.2) !important;
+  color: #ffffff !important;
+  // transform: scale(1.03) !important;
+  // font-weight: 700 !important;
+  cursor: pointer;
+}
+header {
+  .bi:hover {
+    color: #0400ff !important;
+    transform: scale(1.2) !important;
+  }
 }
 
 .header-profile-image {

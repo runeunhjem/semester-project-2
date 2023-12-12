@@ -41,7 +41,7 @@ export async function displayProfileListings() {
 
   const spinner = document.getElementById("spinner");
   if (spinner) spinner.classList.add("d-none");
-  console.log("All profile Listings", allListingsArray);
+  // console.log("All profile Listings", allListingsArray);
 
   const profileAuctionsContainer = document.getElementById("profile-auctions");
   if (!profileAuctionsContainer) {

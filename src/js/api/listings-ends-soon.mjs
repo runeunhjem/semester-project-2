@@ -39,8 +39,8 @@ export async function listingsEndsSoon() {
         allListingsArray = allListingsArray.slice(0, globalMaxTotalListings); // Truncate array to maximum size
         break;
       }
-      console.log("listings.length", listings.length);
-      console.log("allListingsArray.length", allListingsArray.length);
+      // console.log("listings.length", listings.length);
+      // console.log("allListingsArray.length", allListingsArray.length);
     }
 
     // Ensure that listings with a defined 'endsAt' are considered
@@ -55,7 +55,7 @@ export async function listingsEndsSoon() {
 
     // Get only the first 12 listings
     const endsSoon12Listings = listingsWithEndDates.slice(0, 12);
-    console.log("Listings that end soon", endsSoon12Listings);
+    // console.log("Listings that end soon", endsSoon12Listings);
 
     return endsSoon12Listings;
   } catch (error) {

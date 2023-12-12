@@ -11,7 +11,7 @@ import { highlightQuery } from "../utils/highlight-search-term.mjs";
 export function createListingCard(listing, query) {
   // Create the main column div
   const colDiv = document.createElement("div");
-  colDiv.className = "col ms-1 my-3 p-0 latest-auctions-card";
+  colDiv.className = "col ms-1 my-3 p-0 latest-auctions-card listing-card";
   colDiv.setAttribute("data-post-id", listing.id);
   colDiv.setAttribute("data-post-sellerName", listing.seller.name);
   colDiv.setAttribute("data-post-sellerAvatar", listing.seller.avatar);
@@ -208,7 +208,7 @@ export function createListingCard(listing, query) {
 
   const titleH1 = document.createElement("h1");
   titleH1.className =
-    "py-1 my-2 border-bottom text-center fs-5 listing-title align-items-center text-primary ms-0";
+    "py-1 my-2 border-bottom text-center fs-5 listing-title align-items-center text-primary ms-0 card-title";
   titleH1.style.width = "235px"; // Set the width of the container
   titleColDiv.appendChild(titleH1);
 
@@ -237,7 +237,8 @@ export function createListingCard(listing, query) {
   descRowDiv.appendChild(descColDiv);
 
   const descP = document.createElement("p");
-  descP.className = "text-start lh-sm px-2 mb-1 listing-description";
+  descP.className =
+    "text-start lh-sm px-2 mb-1 listing-description card-description";
   if (listing.description) {
     // Use highlightQuery to highlight the query in the description
     descP.innerHTML = highlightQuery(listing.description, query);

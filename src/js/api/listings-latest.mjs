@@ -24,7 +24,7 @@ export async function latestListings() {
     // Get only the latest 12 listings
     const latest12Listings = listingsWithValidMedia.slice(0, 12);
     spinner.classList.add("d-none");
-    console.log("Latest Listings with media", latest12Listings);
+    // console.log("Latest Listings with media", latest12Listings);
     return latest12Listings;
   } catch (error) {
     console.error("Error fetching and sorting listings:", error);

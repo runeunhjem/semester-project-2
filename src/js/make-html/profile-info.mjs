@@ -29,11 +29,19 @@ export async function updateProfileDisplay() {
 
   // Create anchor elements
   const profileNameLink = document.createElement("a");
-  profileNameLink.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
-  profileNameLink.appendChild(profileName); // Wrap the profileName element
-
   const profileImageLink = document.createElement("a");
-  profileImageLink.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
+
+  if (!loggedInUser) {
+    // If loggedInUser is not defined, set the links to point to login page
+    profileNameLink.href = "/login.html";
+    profileImageLink.href = "/login.html";
+  } else {
+    // If loggedInUser is defined, set the links to the profile page with the user's profile
+    profileNameLink.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
+    profileImageLink.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
+  }
+
+  profileNameLink.appendChild(profileName); // Wrap the profileName element
   profileImageLink.appendChild(profileImage); // Wrap the profileImage element
 
   // Append the anchor elements instead of the direct elements
@@ -58,7 +66,7 @@ export async function updateProfileDisplay() {
     const loggedInUserData = JSON.stringify(data);
     localStorage.setItem("loggedInUserData", loggedInUserData);
 
-    console.log("Logged in user data", data);
+    // console.log("Logged in user data", data);
 
     profileName.textContent = loggedInUser;
     profileListings.textContent = `Listings: ${data._count.listings}`;

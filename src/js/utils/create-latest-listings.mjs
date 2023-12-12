@@ -9,7 +9,7 @@ export async function displayLatestListings() {
     window.location.href.includes("about") ||
     window.location.href.includes("contact")
   ) {
-    console.log("window.location.href: ", window.location.href);
+    // console.log("window.location.href: ", window.location.href);
     return;
   }
   const spinner = document.getElementById("spinner");

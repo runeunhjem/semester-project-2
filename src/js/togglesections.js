@@ -17,9 +17,9 @@
 
       const chevronIcon = document.getElementById(chevronIconId);
       // Toggle chevron icon direction
-      if (
-        document.querySelector(targetSelectors[0]).classList.contains("d-none")
-      ) {
+      const targetElement = document.querySelector(targetSelectors[0]);
+
+      if (targetElement && targetElement.classList.contains("d-none")) {
         chevronIcon.classList.remove("bi-chevron-up");
         chevronIcon.classList.add("bi-chevron-down");
       } else {

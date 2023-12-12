@@ -4,7 +4,8 @@ export const accessToken = localStorage.getItem("accessToken");
 export const isLoggedIn = localStorage.getItem("isLoggedIn");
 export const favoritesLink = document.querySelector(".icon-favorites");
 export const globalLimit = 100;
-export const globalMaxTotalListings = 100;
+export const globalMaxTotalListings = 200;
+export const maxSearchResults = 500;
 
 export const pastelColors = [
   "#fbb4ae", // pastel pink
