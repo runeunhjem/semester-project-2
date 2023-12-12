@@ -215,4 +215,4 @@ My music project on Spotify - [Rune Unhjem | -=ThE rUnIcOrN=-](https://open.spot
 [license-url]: https://github.com/runeunhjem/semester-project-2/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/runeunhjem
-[product-screenshot]: ./img/semester-project-2
+[product-screenshot]: ./images/dreambids-home.png

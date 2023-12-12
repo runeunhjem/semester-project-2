@@ -49,9 +49,15 @@ export async function currentProfile() {
   const profileName = document.createElement("h1");
   const profileAuctionsTitle = document.getElementById("toggleProfileAuctions");
   if (loggedInUser === currentProfileName) {
-    profileAuctionsTitle.innerHTML = `All your auctions <i class="bi bi-chevron-up" id="chevronIcon"></i>`;
+    profileAuctionsTitle.innerHTML = `All your auctions <div class="d-flex align-items-center">
+              <i class="bi bi-x-circle fs-5 close-section" id="closeSearchResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
+              <i class="bi bi-chevron-up" id="chevronIcon"></i>
+              </div>`;
   } else {
-    profileAuctionsTitle.innerHTML = `All ${currentProfileName}'s auctions <i class="bi bi-chevron-up" id="chevronIcon"></i>`;
+    profileAuctionsTitle.innerHTML = `All ${currentProfileName}'s auctions <div class="d-flex align-items-center">
+              <i class="bi bi-x-circle fs-5 close-section" id="closeSearchResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
+              <i class="bi bi-chevron-up" id="chevronIcon"></i>
+              </div>`;
   }
 
   profileName.className =
@@ -147,7 +153,7 @@ export async function currentProfile() {
     const currentProfileData = JSON.stringify(data);
     localStorage.setItem("currentProfileData", currentProfileData);
 
-    console.log("Current Profile data", data);
+    // console.log("Current Profile data", data);
 
     profileName.textContent = currentProfileName;
     profileContact.innerHTML = `Contact: <a href="mailto:${data.mail}">${data.email}</a>`;

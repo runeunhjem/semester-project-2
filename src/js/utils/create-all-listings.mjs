@@ -7,12 +7,15 @@ export async function displayAllListings() {
   if (
     window.location.href.includes("login") ||
     window.location.href.includes("profile") ||
-    window.location.href.includes("listing")
+    window.location.href.includes("listing") ||
+    window.location.href.includes("about") ||
+    window.location.href.includes("contact")
   ) {
     return;
   }
   try {
     const spinner2 = document.getElementById("spinner2");
+    if (!spinner2) return; // Exit if the spinner is not found (e.g. on the login page
     spinner2.classList.remove("d-none");
     const listings = await fetchAllListings();
 

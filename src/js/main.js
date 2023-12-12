@@ -14,18 +14,29 @@ import {
 } from "./variables/constants.mjs";
 import { createNewListingForm } from "./make-html/create-new-listing.mjs";
 import { displayProfileListings } from "./utils/create-profile-listings.mjs";
-// import { listingsEndsSoon } from "./api/listings-ends-soon.mjs";
 import { currentProfile } from "./make-html/profile-page.mjs";
 import { currentProfileHistory } from "./make-html/profile-history-section.mjs";
 import { loadFavorites } from "./make-html/create-favorites.mjs";
 import { displayEndsSoonListings } from "./utils/create-ends-soon-listings.mjs";
+import { initializeSearch } from "./utils/search-main.mjs";
 
 const loggedInUserProfileLink = document.querySelectorAll(".menu-profile a");
+
 loggedInUserProfileLink.forEach(profile => {
-  profile.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
+  if (!loggedInUser) {
+    // If loggedInUser is not defined, set the link to point to login page
+    profile.href = "/login.html";
+  } else {
+    // If loggedInUser is defined, set the link to the profile page with the user's profile
+    profile.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
+  }
 });
 
 if (isLoggedIn) {
+  const hideLoginLinks = document.querySelectorAll(".menu-login");
+  hideLoginLinks.forEach(link => {
+    link.classList.add("d-none");
+  });
   // Select all elements with the class 'restricted'
   const restrictedElements = document.querySelectorAll(".restricted");
   restrictedElements.forEach(element => {
@@ -40,30 +51,56 @@ if (isLoggedIn) {
  * Display latest listings.
  * Initialize all carousels.
  */
-document.addEventListener("DOMContentLoaded", async () => {
-  toggleSearchSection();
-  updateProfileDisplay();
-  applyBootstrapValidation();
+// document.addEventListener("DOMContentLoaded", async () => { // NOT COMPATIBLE WITH IOS !!!
 
-  if (
-    !window.location.href.includes("login") ||
-    !window.location.href.includes("profile")
-  ) {
-    await displayLatestListings();
-    await displayAllListings();
-    await displayEndsSoonListings();
+// const closeSearchResults = document.getElementById("closeSearchResults");
+// const searchListingsContainer = document.getElementById(
+//   "search-listings-container"
+// );
 
-    setTimeout(() => {
-      // Wait for images to load
-      initializeAllCarousels();
-    }, 4000);
-  }
+// if (closeSearchResults && searchListingsContainer) {
+//   closeSearchResults.addEventListener("click", () => {
+//     searchListingsContainer.classList.add("d-none");
+//   });
+// }
+const closeIcons = document.querySelectorAll(".close-section");
+
+closeIcons.forEach(icon => {
+  icon.addEventListener("click", function () {
+    const sectionToClose = this.closest(".section-container");
+    if (sectionToClose) {
+      sectionToClose.classList.add("d-none");
+    }
+  });
 });
 
+toggleSearchSection();
+updateProfileDisplay();
+applyBootstrapValidation();
+initializeSearch();
+
+if (
+  !window.location.href.includes("login") ||
+  !window.location.href.includes("profile") ||
+  !window.location.href.includes("about") ||
+  !window.location.href.includes("contact") ||
+  !window.location.href.includes("listing")
+) {
+  await displayEndsSoonListings();
+  await displayLatestListings();
+  await displayAllListings();
+
+  setTimeout(() => {
+    // Wait for images to load
+    initializeAllCarousels();
+  }, 4000);
+}
+// });
+
 if (window.location.href.includes("profile")) {
+  await displayProfileListings();
   await currentProfile();
   await currentProfileHistory();
-  await displayProfileListings();
 
   setTimeout(() => {
     // Wait for images to load
@@ -97,6 +134,10 @@ const addListingText = document.querySelector(".add-listing");
 
 if (addListingLink && createListingDiv) {
   addListingLink.addEventListener("click", event => {
+    if (!loggedInUser) {
+      console.log("User is not logged in.");
+      window.location.href = "/login.html";
+    }
     event.preventDefault(); // Prevent default link behavior
     // Toggle the 'd-none' class on the createListingDiv
     if (createListingDiv.classList.contains("d-none")) {
@@ -127,3 +168,18 @@ favoritesLink.addEventListener("click", function (event) {
     loadFavorites();
   }
 });
+
+// Select the element with the specific ID
+const countdownDisplay = document.querySelector(".countdown-display");
+
+// Check if the element exists and its text content includes 'auction ended'
+if (
+  countdownDisplay &&
+  countdownDisplay.textContent.includes("Auction ended")
+) {
+  // Add the 'disabled' class to the element
+  countdownDisplay.classList.add("bg-warning", "disabled");
+  // const bidButton = document.querySelector(".place-bid");
+  // bidButton.disabled = true;
+  // console.log("Auction ended");
+}

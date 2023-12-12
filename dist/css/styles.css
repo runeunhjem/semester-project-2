@@ -12521,6 +12521,7 @@ fieldset:disabled .btn {
 }
 :root {
   --color-light-green: #c3ffce;
+  --color-yellow: #ffff00;
   --primary-font: "Arial", sans-serif;
   --secondary-font: "Iceberg", sans-serif;
 }
@@ -12529,8 +12530,12 @@ body {
   font-family: "Arial", sans-serif;
 }
 
+.highlight {
+  background-color: var(--color-yellow);
+}
+
 .restricted {
-  display: none;
+  display: none !important;
 }
 
 main {
@@ -12560,7 +12565,17 @@ a {
   text-decoration: none;
 }
 
+.close-section {
+  font-size: 0.9rem !important;
+  align-items: center !important;
+}
+
 .bi:hover {
+  color: #ffffff !important;
+  cursor: pointer;
+}
+
+header .bi:hover {
   color: #0400ff !important;
   transform: scale(1.2) !important;
 }
@@ -12882,10 +12897,19 @@ a {
   cursor: pointer;
 }
 
+.about-images {
+  max-height: 180px;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  opacity: 0.8;
+}
+
 .listing-title {
   font-size: 20px;
   font-weight: bold;
-  font-family: garamond, serif;
 }
 
 #listingCarouselSlidesOnly {

@@ -5,18 +5,25 @@ import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs";
 import { loadFavorites } from "./create-favorites.mjs";
 import { editListingForm } from "../make-html/create-edit-listing.mjs";
 import { deleteListing } from "../api/delete-listing.mjs";
-
+import { highlightQuery } from "../utils/highlight-search-term.mjs";
 // import { convertToShortDateFormat } from "../utils/date-converter.mjs";
 
-export function createListingCard(listing) {
+export function createListingCard(listing, query) {
   // Create the main column div
   const colDiv = document.createElement("div");
-  colDiv.className = "col ms-1 my-3 p-0 latest-auctions-card";
+  colDiv.className = "col ms-1 my-3 p-0 latest-auctions-card listing-card";
   colDiv.setAttribute("data-post-id", listing.id);
   colDiv.setAttribute("data-post-sellerName", listing.seller.name);
   colDiv.setAttribute("data-post-sellerAvatar", listing.seller.avatar);
   colDiv.setAttribute("data-post-sellerWins", listing.seller.wins.length);
   colDiv.setAttribute("data-post-listingBids", listing._count.bids);
+  // Set data-category attribute based on tags
+  const category =
+    listing.tags && listing.tags.length > 0
+      ? listing.tags.join(",")
+      : "Uncategorized";
+  colDiv.setAttribute("data-category", category);
+
   colDiv.addEventListener("mouseover", handleListingCardClick);
   colDiv.addEventListener("click", handleListingCardClick);
   colDiv.addEventListener("click", () => {
@@ -201,13 +208,14 @@ export function createListingCard(listing) {
 
   const titleH1 = document.createElement("h1");
   titleH1.className =
-    "py-1 mb-2 border-bottom text-center fs-5 listing-title align-items-center text-primary ms-0";
+    "py-1 my-2 border-bottom text-center fs-5 listing-title align-items-center text-primary ms-0 card-title";
   titleH1.style.width = "235px"; // Set the width of the container
   titleColDiv.appendChild(titleH1);
 
   const titleText = document.createElement("span"); // Create a child span for the text
   if (listing.title) {
-    titleText.textContent = listing.title;
+    // Use highlightQuery to highlight the query in the title
+    titleText.innerHTML = highlightQuery(listing.title, query);
   } else {
     titleText.className = "text-danger";
     titleText.textContent = "Untitled Listing";
@@ -229,8 +237,14 @@ export function createListingCard(listing) {
   descRowDiv.appendChild(descColDiv);
 
   const descP = document.createElement("p");
-  descP.className = "text-start lh-sm px-2 mb-1 listing-description";
-  descP.textContent = listing.description; // Use listing description
+  descP.className =
+    "text-start lh-sm px-2 mb-1 listing-description card-description";
+  if (listing.description) {
+    // Use highlightQuery to highlight the query in the description
+    descP.innerHTML = highlightQuery(listing.description, query);
+  } else {
+    descP.textContent = "No description provided."; // Default text if no description
+  }
   descColDiv.appendChild(descP);
 
   // Bid and ID info
