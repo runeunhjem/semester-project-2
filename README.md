@@ -70,7 +70,7 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://runeunhjem-sp2.netlify.app/)
+[![Product Name Screen Shot][(/images/dreambids-home.png)]](https://runeunhjem-sp2.netlify.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

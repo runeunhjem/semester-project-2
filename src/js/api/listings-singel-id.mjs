@@ -19,6 +19,6 @@ export async function fetchSingleListingById() {
     "GET"
   );
   const listing = await response;
-  console.log("Single Listing", listing);
+  // console.log("Single Listing", listing);
   return listing;
 }
