@@ -12520,10 +12520,25 @@ fieldset:disabled .btn {
   }
 }
 :root {
+  --color-primary: #0057ff;
+  --color-secondary: #1572b9;
+  --color-success: #2b8023;
+  --color-info: #ecf8ff;
+  --color-warning: #ffbcbc;
+  --color-danger: #c00000;
+  --color-light: #faf8f8;
+  --color-dark: #343a40;
+  --color-white: #ffffff;
+  --color-black: #000000;
   --color-light-green: #c3ffce;
   --color-yellow: #ffff00;
+  --color-dark-grey: #8b8c8d;
+  --color-dark-red: #c20000;
+  --color-overlay-icon: #1684d8;
   --primary-font: "Arial", sans-serif;
   --secondary-font: "Iceberg", sans-serif;
+  --shadow-box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-box-shadow-sm: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -12539,12 +12554,12 @@ body {
 }
 
 main {
-  border-bottom: 1px solid #0400ff;
+  border-bottom: 1px solid var(--color-primary);
   padding-bottom: 3em;
 }
 
 .text-logo {
-  font-family: "Iceberg", sans-serif;
+  font-family: var(--secondary-font);
 }
 
 .header-logo {
@@ -12571,12 +12586,12 @@ a {
 }
 
 .bi:hover {
-  color: #ffffff !important;
+  color: var(--color-white) !important;
   cursor: pointer;
 }
 
 header .bi:hover {
-  color: #0400ff !important;
+  color: var(--color-primary) !important;
   transform: scale(1.2) !important;
 }
 
@@ -12631,7 +12646,7 @@ header .bi:hover {
 }
 
 .dropdown-menu {
-  background-color: #ecf8ff;
+  background-color: var(--color-info);
 }
 .dropdown-menu a:hover {
   background-color: #cbe5ff;
@@ -12640,7 +12655,7 @@ header .bi:hover {
 
 .mobile-search {
   width: 100%;
-  background-color: #ecf8ff;
+  background-color: var(--color-info);
 }
 .mobile-search input {
   text-indent: 10px;
@@ -12672,8 +12687,8 @@ header .bi:hover {
 }
 
 .back-to-top-button:hover {
-  background-color: #0400ff !important;
-  color: white !important;
+  background-color: var(--color-primary) !important;
+  color: var(--color-white) !important;
 }
 
 .back-to-top-button-show {
@@ -12739,7 +12754,7 @@ header .bi:hover {
 .ends-soon-auctions::-webkit-scrollbar-thumb,
 .profile-auctions::-webkit-scrollbar-thumb,
 .listing-title::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
+  background-color: var(--color-dark-grey);
   border-radius: 10px;
 }
 
@@ -12779,8 +12794,8 @@ header .bi:hover {
 .latest-auctions-card .countdown-display {
   font-weight: 400 !important;
   font-size: 0.9rem !important;
-  color: #c20000 !important;
-  background-color: #ffffff !important;
+  color: var(--color-dark-red) !important;
+  background-color: var(--color-white) !important;
   box-shadow: 0 0 0 !important;
   margin: 2px 0 0 5px !important;
   padding: 0 !important;
@@ -12920,8 +12935,8 @@ header .bi:hover {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background-color: #1684d8;
-  color: white;
+  background-color: var(--color-overlay-icon);
+  color: var(--color-white);
   padding: 5px;
   border-radius: 12px;
   display: flex;
@@ -12930,14 +12945,14 @@ header .bi:hover {
   font-size: 1em;
 }
 .overlay-icon .bi:hover {
-  color: #ffffff !important;
+  color: var(--color-white) !important;
 }
 
 .footer-nav li:hover {
-  background-color: #1684d8;
-  color: #ffffff !important;
+  background-color: var(--color-overlay-icon);
+  color: var(--color-white) !important;
   border-radius: 12px;
 }
 .footer-nav a:hover {
-  color: #ffffff !important;
+  color: var(--color-white) !important;
 } /*# sourceMappingURL=styles.css.map */

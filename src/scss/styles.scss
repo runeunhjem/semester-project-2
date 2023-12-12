@@ -3,10 +3,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Iceberg&display=swap");
 
 :root {
+  --color-primary: #0057ff; // Dark blue
+  --color-secondary: #1572b9; // Favorite Blue
+  --color-success: #2b8023; // Green
+  --color-info: #ecf8ff; // Light blue
+  --color-warning: #ffbcbc; // Light red
+  --color-danger: #c00000; // Red
+  --color-light: #faf8f8; // Light grey
+  --color-dark: #343a40; // Dark
+  --color-white: #ffffff; // White
+  --color-black: #000000; // Black
   --color-light-green: #c3ffce;
   --color-yellow: #ffff00;
+  --color-dark-grey: #8b8c8d; // Dark grey
+  --color-dark-red: #c20000; // Dark red
+  --color-overlay-icon: #1684d8; // Medium blue
   --primary-font: "Arial", sans-serif;
   --secondary-font: "Iceberg", sans-serif;
+  --shadow-box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-box-shadow-sm: 2px 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -21,12 +36,12 @@ body {
 }
 
 main {
-  border-bottom: 1px solid #0400ff;
+  border-bottom: 1px solid var(--color-primary);
   padding-bottom: 3em;
 }
 
 .text-logo {
-  font-family: "Iceberg", sans-serif;
+  font-family: var(--secondary-font);
 }
 
 .header-logo {
@@ -52,14 +67,14 @@ a {
   align-items: center !important;
 }
 .bi:hover {
-  color: #ffffff !important;
+  color: var(--color-white) !important;
   // transform: scale(1.03) !important;
   // font-weight: 700 !important;
   cursor: pointer;
 }
 header {
   .bi:hover {
-    color: #0400ff !important;
+    color: var(--color-primary) !important;
     transform: scale(1.2) !important;
   }
 }
@@ -115,7 +130,7 @@ header {
 }
 
 .dropdown-menu {
-  background-color: #ecf8ff; // Light blue background
+  background-color: var(--color-info); // Light blue background
   a:hover {
     background-color: #cbe5ff; // Light blue background
     color: #000000; /* Optional: Change text color if needed */
@@ -124,7 +139,7 @@ header {
 
 .mobile-search {
   width: 100%;
-  background-color: #ecf8ff; // Light blue background
+  background-color: var(--color-info); // Light blue background
   input {
     text-indent: 10px;
   }
@@ -156,8 +171,8 @@ header {
   content: "\25B2";
 }
 .back-to-top-button:hover {
-  background-color: #0400ff !important;
-  color: white !important;
+  background-color: var(--color-primary) !important;
+  color: var(--color-white) !important;
 }
 
 .back-to-top-button-show {
@@ -223,7 +238,7 @@ header {
 .ends-soon-auctions::-webkit-scrollbar-thumb,
 .profile-auctions::-webkit-scrollbar-thumb,
 .listing-title::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
+  background-color: var(--color-dark-grey);
   border-radius: 10px;
 }
 
@@ -257,8 +272,8 @@ header {
   .countdown-display {
     font-weight: 400 !important;
     font-size: 0.9rem !important;
-    color: #c20000 !important;
-    background-color: #ffffff !important;
+    color: var(--color-dark-red) !important;
+    background-color: var(--color-white) !important;
     box-shadow: 0 0 0 !important;
     margin: 2px 0 0 5px !important;
     padding: 0 !important;
@@ -378,11 +393,6 @@ header {
   cursor: pointer;
 }
 
-// .seller-avatar {
-//   height: 60px; /* Adjust as needed */
-//   object-fit: cover; /* Keeps the aspect ratio while filling the container */
-//   border-radius: 50%;
-// }
 .about-images {
   max-height: 180px;
   width: 100%;
@@ -394,8 +404,6 @@ header {
 .listing-title {
   font-size: 20px;
   font-weight: bold;
-  // font-family: garamond, serif;
-  // font-family: "Iceberg", sans-serif;
 }
 
 #listingCarouselSlidesOnly {
@@ -406,8 +414,8 @@ header {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background-color: #1684d8;
-  color: white;
+  background-color: var(--color-overlay-icon);
+  color: var(--color-white);
   padding: 5px;
   border-radius: 12px;
   display: flex;
@@ -415,17 +423,17 @@ header {
   justify-content: center;
   font-size: 1em;
   .bi:hover {
-    color: #ffffff !important;
+    color: var(--color-white) !important;
   }
 }
 
 .footer-nav {
   li:hover {
-    background-color: #1684d8; // Light blue background
-    color: #ffffff !important;
+    background-color: var(--color-overlay-icon); // Light blue background
+    color: var(--color-white) !important;
     border-radius: 12px;
   }
   a:hover {
-    color: #ffffff !important;
+    color: var(--color-white) !important;
   }
 }
