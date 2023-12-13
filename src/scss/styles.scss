@@ -293,20 +293,20 @@ header {
   }
 }
 
-.scrolling-text {
-  display: inline-block;
-  white-space: nowrap;
-  animation: scrollTitle 11s linear infinite;
-}
+// .scrolling-text {
+//   display: inline-block;
+//   white-space: nowrap;
+//   animation: scrollTitle 11s linear infinite;
+// }
 
-@keyframes scrollTitle {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
+// @keyframes scrollTitle {
+//   0% {
+//     transform: translateX(100%);
+//   }
+//   100% {
+//     transform: translateX(-100%);
+//   }
+// }
 
 .listing-gallery {
   width: 90%;

@@ -222,9 +222,11 @@ export function createListingCard(listing, query) {
   }
   titleH1.appendChild(titleText);
 
-  // Check if title character count is too long
-  if (listing.title.length > 24) {
-    titleText.classList.add("scrolling-text");
+  // Assuming 'listing.title' contains the title text
+  if (listing.title.length > 20) {
+    titleText.textContent = listing.title.substring(0, 20) + "...";
+  } else {
+    titleText.textContent = listing.title;
   }
 
   // Description
