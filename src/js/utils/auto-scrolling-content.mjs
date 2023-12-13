@@ -2,7 +2,6 @@ export function loopScroll(element, speed) {
   let startPos = 0;
   let scrollEnd = element.scrollWidth - element.clientWidth;
   let autoScrollActive = true;
-  let scrollTimeout;
 
   function step() {
     if (autoScrollActive) {
@@ -18,17 +17,20 @@ export function loopScroll(element, speed) {
     requestAnimationFrame(step);
   }
 
-  function resumeAutoScroll() {
+  // Event listeners to pause and resume scrolling
+  element.addEventListener("mouseenter", () => {
+    autoScrollActive = false;
+  });
+
+  element.addEventListener("mouseleave", () => {
+    autoScrollActive = true;
+  });
+
+  // Update startPos on manual scroll
+  element.addEventListener("scroll", () => {
     if (!autoScrollActive) {
-      autoScrollActive = true;
       startPos = element.scrollLeft;
     }
-  }
-
-  element.addEventListener("scroll", () => {
-    autoScrollActive = false;
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(resumeAutoScroll, 0); // Pause for 1 second before resuming
   });
 
   requestAnimationFrame(step);

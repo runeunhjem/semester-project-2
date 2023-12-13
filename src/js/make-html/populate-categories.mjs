@@ -7,8 +7,12 @@ export async function populateCategories(listingsData, containerId) {
   // Process each listing
   const processListing = listing => {
     if (listing.tags && listing.tags.length > 0) {
-      listing.tags.forEach(tag => {
-        tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+      listing.tags.forEach(tagString => {
+        // Splitting tags by commas and spaces, and filtering out empty strings
+        const tags = tagString.split(/[\s,]+/).filter(tag => tag.trim() !== "");
+        tags.forEach(tag => {
+          tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+        });
       });
     } else {
       // Handle listings with no tags

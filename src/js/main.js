@@ -78,12 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await displayAllListings();
     // await autoScroll(element, speed);
     const elements = document.querySelectorAll(".categories-container");
-    elements.forEach(el => loopScroll(el, 2));
-
-    const elements2 = document.querySelectorAll(
-      ".latest-auctions, .ends-soon-auctions, .profile-auctions"
-    );
-    elements2.forEach(el => loopScroll(el, 0.5));
+    elements.forEach(el => loopScroll(el, 1));
 
     setTimeout(() => {
       // Wait for images to load

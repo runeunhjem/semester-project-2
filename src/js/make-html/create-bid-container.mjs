@@ -38,6 +38,7 @@ export function createBidContainer(highestBid) {
   submitButton.textContent = "Place Bid";
   submitButton.type = "submit";
   submitButton.className = "btn btn-primary mx-2 place-bid";
+  submitButton.style.width = "100px";
   submitButton.setAttribute("id", "bid-button");
 
   // // Check if the user is the seller
@@ -51,9 +52,29 @@ export function createBidContainer(highestBid) {
   // }
 
   submitButton.addEventListener("click", () => {
-    bidOnListing(amountInput.value, localStorage.getItem("listingId"));
-    submitButton.classList.add("bg-success");
-    submitButton.textContent = "Bid Placed";
+    const bidValue = parseFloat(amountInput.value);
+    if (bidValue <= highestBid || bidValue <= 0) {
+      // Invalid bid
+      submitButton.className = "btn btn-danger mx-2 place-bid";
+      submitButton.textContent = "Invalid";
+
+      // Reset after 2 seconds
+      setTimeout(() => {
+        submitButton.className = "btn btn-primary mx-2 place-bid";
+        submitButton.textContent = "Place Bid";
+      }, 2000);
+    } else {
+      // Valid bid
+      bidOnListing(bidValue, localStorage.getItem("listingId"));
+      submitButton.className = "btn btn-success mx-2 place-bid";
+      submitButton.textContent = "Bid Placed";
+
+      // Reset after 2 seconds
+      setTimeout(() => {
+        submitButton.className = "btn btn-primary mx-2 place-bid";
+        submitButton.textContent = "Place Bid";
+      }, 2000);
+    }
   });
 
   inputButtonRowDiv.appendChild(submitButton);
