@@ -12581,6 +12581,7 @@ a {
 }
 
 .close-section {
+  font: var(--primary-font);
   font-size: 0.9rem !important;
   align-items: center !important;
 }
@@ -12707,6 +12708,7 @@ header .bi:hover {
   object-fit: cover;
   -o-object-position: center;
   object-position: center;
+  border-radius: 50%;
 }
 .profile-picture img {
   border-radius: 50%;

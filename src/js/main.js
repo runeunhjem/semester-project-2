@@ -19,6 +19,7 @@ import { currentProfileHistory } from "./make-html/profile-history-section.mjs";
 import { loadFavorites } from "./make-html/create-favorites.mjs";
 import { displayEndsSoonListings } from "./utils/create-ends-soon-listings.mjs";
 import { initializeSearch } from "./utils/search-main.mjs";
+import { loopScroll } from "./utils/auto-scrolling-content.mjs";
 
 const loggedInUserProfileLink = document.querySelectorAll(".menu-profile a");
 
@@ -75,6 +76,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     await displayEndsSoonListings();
     await displayLatestListings();
     await displayAllListings();
+    // await autoScroll(element, speed);
+    const elements = document.querySelectorAll(
+      ".categories-container"
+      // ".categories-container, .latest-auctions, .ends-soon-auctions, .profile-auctions"
+    );
+    elements.forEach(el => loopScroll(el, 1.5));
+
+    const elements2 = document.querySelectorAll(
+      ".latest-auctions, .ends-soon-auctions, .profile-auctions"
+    );
+    elements2.forEach(el => loopScroll(el, 0.5));
 
     setTimeout(() => {
       // Wait for images to load
