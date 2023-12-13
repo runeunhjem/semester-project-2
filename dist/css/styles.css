@@ -12704,15 +12704,16 @@ header .bi:hover {
 .profile-picture {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  -o-object-position: center;
-  object-position: center;
   border-radius: 50%;
 }
 .profile-picture img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: top;
+  object-position: top;
   border-radius: 50%;
   height: 200px;
+  width: 200px;
 }
 
 .categories-container,
@@ -12888,9 +12889,6 @@ header .bi:hover {
   font-weight: bold;
 }
 
-#toggleLatestAuctions,
-#toggleEndsSoonAuctions,
-#toggleProfileAuctions,
 .win-title,
 .bid-title {
   cursor: pointer;

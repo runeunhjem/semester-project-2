@@ -12,6 +12,7 @@ import {
   convertToShortDateFormat,
   timeSince,
 } from "../utils/date-converter.mjs";
+import { isValidImage } from "../utils/validate-image.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);
 const currentProfileName = urlParams.get("profile");
@@ -68,6 +69,10 @@ export async function currentProfileHistory() {
 
   async function processWinEntry(winId, container) {
     const getListingURL = `${API_BASE_URL}${listingsUrl}/${winId}${sellerInclude}${bidsInclude}`;
+    if (!winId) {
+      console.error("No win ID provided.");
+      return;
+    }
     try {
       const getListingResponse = await doApiFetch(
         getListingURL,
@@ -79,7 +84,7 @@ export async function currentProfileHistory() {
 
       if (!getListingResponse.ok) {
         const statusCode = getListingResponse.status;
-        if (statusCode === 404) {
+        if (statusCode >= 400 || statusCode < 500) {
           displayDeletedListing(container);
         } else {
           throw new Error(`HTTP error! status: ${statusCode}`);
@@ -105,11 +110,17 @@ export async function currentProfileHistory() {
     const imgCol = document.createElement("div");
     imgCol.className = "col-auto px-0";
     const img = document.createElement("img");
-    if (listingData.media.length === 0) {
-      img.src = "/images/404-not-found.jpg";
-    } else {
-      img.src = listingData.media[0];
-    }
+
+    isValidImage(listingData.media, isValid => {
+      if (isValid) {
+        // The URL is a valid image
+        img.src = listingData.media;
+      } else {
+        // The URL is not a valid image, use fallback
+        img.src = "/images/404-not-found.jpg";
+      }
+    });
+
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";
@@ -263,6 +274,10 @@ export async function currentProfileHistory() {
     // console.log("Processing bid entry for listing ID:", bidListingId);
 
     const getListingURL = `${API_BASE_URL}${listingsUrl}/${bidListingId}${sellerInclude}${bidsInclude}`;
+    if (!bidListingId) {
+      console.error("No bid ID provided.");
+      return;
+    }
     // console.log("Listing URL for bid entry:", getListingURL);
 
     try {
@@ -281,6 +296,7 @@ export async function currentProfileHistory() {
 
   async function displayBidEntry(bid, listingData, container) {
     const { created } = bid;
+    // eslint-disable-next-line no-unused-vars
     const { media, title, id: listingId, bids, endsAt } = listingData;
 
     // Check if the listing has ended
@@ -295,7 +311,16 @@ export async function currentProfileHistory() {
     const imgCol = document.createElement("div");
     imgCol.className = "col-auto";
     const img = document.createElement("img");
-    img.src = media.length === 0 ? "/images/404-not-found.jpg" : media[0];
+    // img.src = media.length === 0 ? "/images/404-not-found.jpg" : media[0];
+    isValidImage(listingData.media, isValid => {
+      if (isValid) {
+        // The URL is a valid image
+        img.src = listingData.media;
+      } else {
+        // The URL is not a valid image, use fallback
+        img.src = "/images/404-not-found.jpg";
+      }
+    });
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";
@@ -323,7 +348,7 @@ export async function currentProfileHistory() {
     idRow.className = "bid-id text-left ms-0 ps-0";
     idRow.textContent = `ID: ${listingId.substring(0, 15)}`;
 
-    // Apply bg-danger if the listing has ended
+    // Apply text-danger if the listing has ended
     if (hasEnded) {
       idRow.classList.add("text-danger");
       idRow.textContent = `Status: Ended`;

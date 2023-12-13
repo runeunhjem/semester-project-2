@@ -61,7 +61,7 @@ export async function currentProfile() {
   }
 
   profileName.className =
-    "profile-name text-primary d-flex justify-content-center";
+    "profile-name text-dark d-flex justify-content-center";
 
   // Create the 'Change Avatar' label element
   const changeLabel = document.createElement("label");
