@@ -43,7 +43,7 @@ export async function listingsEndsSoon() {
         break;
       }
       // console.log("listings.length", listings.length);
-      console.log("allListingsArray.length", allListingsArray.length);
+      // console.log("allListingsArray.length", allListingsArray.length);
     }
 
     // Ensure that listings with a defined 'endsAt' are considered

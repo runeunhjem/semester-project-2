@@ -57,6 +57,7 @@ export async function currentProfileHistory() {
     try {
       const winResponse = await doApiFetch(winsURL, "GET");
       const winHistoryData = await winResponse;
+      titleElement.classList.remove("text-primary");
       titleElement.textContent = `Win History (${winHistoryData.wins.length})`;
 
       for (const win of winHistoryData.wins) {
@@ -252,12 +253,16 @@ export async function currentProfileHistory() {
     try {
       const bidResponse = await doApiFetch(bidsURL, "GET");
       const bidHistoryData = await bidResponse;
-      titleElement.textContent = `Bid History (${bidHistoryData.length})`;
+      // Filter bids for the current profile
+      const filteredBids = bidHistoryData.filter(
+        bid => bid.bidderName === currentProfileName
+      );
+      titleElement.classList.remove("text-primary");
+      titleElement.textContent = `Bid History (${filteredBids.length})`;
 
-      for (const bid of bidHistoryData) {
+      for (const bid of filteredBids) {
         const bidListingId = bid.listing.id;
         if (!processedListingIds.has(bidListingId)) {
-          // Check if the listing ID is already processed
           await processBidEntry(bid, bidsList);
           processedListingIds.add(bidListingId);
         }
@@ -271,23 +276,24 @@ export async function currentProfileHistory() {
     const {
       listing: { id: bidListingId },
     } = bid;
-    // console.log("Processing bid entry for listing ID:", bidListingId);
 
     const getListingURL = `${API_BASE_URL}${listingsUrl}/${bidListingId}${sellerInclude}${bidsInclude}`;
     if (!bidListingId) {
       console.error("No bid ID provided.");
       return;
     }
-    // console.log("Listing URL for bid entry:", getListingURL);
 
     try {
-      // console.log("Fetching listing data for bid entry...");
       const getListingResponse = await doApiFetch(getListingURL, "GET");
-      // console.log("getListingResponse (Goes wrong here?):", getListingResponse);
       const listingData = await getListingResponse;
-      // console.log("Listing data received for bid entry:", listingData);
 
-      displayBidEntry(bid, listingData, container);
+      // Filter the bids to only include those made by the current profile
+      const filteredBids = listingData.bids.filter(
+        b => b.bidderName === currentProfileName
+      );
+
+      // Now pass only the filtered bids to the displayBidEntry function
+      displayBidEntry(bid, { ...listingData, bids: filteredBids }, container);
     } catch (error) {
       console.error("Error fetching listing data for bid entry:", error);
       displayDeletedListing(container);
@@ -374,7 +380,9 @@ export async function currentProfileHistory() {
       "bid-all text-left text-nowrap ms-0 ps-0 d-flex flex-column-reverse";
     bidsDiv.textContent = `All bids (${bids.length}): `;
 
-    let highestBid = bids[0];
+    // Determine the highest bid amount for the listing
+    let highestBidAmount = Math.max(...bids.map(bid => bid.amount));
+    // console.log("highestBidAmount:", highestBidAmount);
 
     bids.forEach(bid => {
       const bidInfo = document.createElement("span");
@@ -382,11 +390,10 @@ export async function currentProfileHistory() {
       bidInfo.textContent = `$${bid.amount}.00 - ${bidDate}`;
       bidInfo.className = "my-1 border-bottom";
 
-      // Check if this bid is the highest and the auction has ended
+      // Check if the bid is the highest and made by currentProfileName
       if (
-        hasEnded &&
-        bid.bidderName === currentProfileName &&
-        bid.amount >= highestBid.amount
+        bid.amount === highestBidAmount &&
+        bid.bidderName === currentProfileName
       ) {
         bidInfo.classList.add("text-success", "fw-bold");
       }

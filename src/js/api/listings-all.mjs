@@ -29,8 +29,8 @@ export async function fetchAllListings() {
 
   const limit = globalLimit > 0 ? globalLimit : 100; // Use globalLimit if set, else default to 100
   let offset = 0;
-  const spinner = document.getElementById("spinner");
-  spinner.classList.remove("d-none");
+  const spinner2 = document.getElementById("spinner2");
+  spinner2.classList.remove("d-none");
 
   while (allListingsArray.length < globalMaxTotalListings - 1) {
     const response = await doApiFetch(
@@ -55,7 +55,7 @@ export async function fetchAllListings() {
   // allListingsArray.sort((a, b) => new Date(b.created) - new Date(a.created));
   // console.log("allListingsArray.length", allListingsArray.length);
   // console.log("globalMaxTotalListings", globalMaxTotalListings);
-  console.log("All active Listings", allListingsArray);
-  spinner.classList.add("d-none");
+  // console.log("All active Listings", allListingsArray);
+  spinner2.classList.add("d-none");
   return allListingsArray;
 }

@@ -85,26 +85,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       initializeAllCarousels();
     }, 4000);
   }
+
+  if (window.location.href.includes("profile")) {
+    await displayProfileListings();
+    await currentProfile();
+    await currentProfileHistory();
+
+    setTimeout(() => {
+      // Wait for images to load
+      initializeAllCarousels();
+    }, 2000);
+  }
+
+  if (window.location.href.includes("listing")) {
+    await displayListingDetails();
+    setTimeout(() => {
+      // Wait for images to load
+      initializeAllCarousels();
+    }, 2000);
+  }
 });
-
-if (window.location.href.includes("profile")) {
-  await displayProfileListings();
-  await currentProfile();
-  await currentProfileHistory();
-
-  setTimeout(() => {
-    // Wait for images to load
-    initializeAllCarousels();
-  }, 2000);
-}
-
-if (window.location.href.includes("listing")) {
-  await displayListingDetails();
-  setTimeout(() => {
-    // Wait for images to load
-    initializeAllCarousels();
-  }, 2000);
-}
 
 /**
  * Add a "Back to Top" button to the page.

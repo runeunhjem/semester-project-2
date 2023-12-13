@@ -62,8 +62,19 @@ export async function displayListingDetails() {
 
     // Update the current bid and the name of the highest bidder
     if (currentBidElement) currentBidElement.textContent = highestBid;
-    if (currentLeaderElement)
-      currentLeaderElement.textContent = highestBidderName;
+    if (currentLeaderElement) {
+      // Clear previous content
+      currentLeaderElement.textContent = "";
+
+      // Create a link to the bidder's profile
+      const bidderProfileLink = document.createElement("a");
+      bidderProfileLink.href = `/src/html/profile/index.html?profile=${highestBidderName}`; // Adjust URL as needed
+      bidderProfileLink.textContent = highestBidderName;
+      bidderProfileLink.className = "profile-link-class"; // Add any classes for styling
+
+      // Append the link to the currentLeaderElement
+      currentLeaderElement.appendChild(bidderProfileLink);
+    }
 
     // Create and display countdown
     const countdownContainer = document.getElementById("countdown-container");

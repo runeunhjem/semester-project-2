@@ -53,11 +53,31 @@ export async function currentProfile() {
               <i class="bi bi-x-circle fs-5 close-section" id="closeSearchResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
               <i class="bi bi-chevron-up" id="chevronIcon"></i>
               </div>`;
+    const closeIcons = document.querySelectorAll(".close-section");
+
+    closeIcons.forEach(icon => {
+      icon.addEventListener("click", function () {
+        const sectionToClose = this.closest(".section-container");
+        if (sectionToClose) {
+          sectionToClose.classList.add("d-none");
+        }
+      });
+    });
   } else {
     profileAuctionsTitle.innerHTML = `All ${currentProfileName}'s auctions <div class="d-flex align-items-center">
               <i class="bi bi-x-circle fs-5 close-section" id="closeSearchResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
               <i class="bi bi-chevron-up" id="chevronIcon"></i>
               </div>`;
+    const closeIcons = document.querySelectorAll(".close-section");
+
+    closeIcons.forEach(icon => {
+      icon.addEventListener("click", function () {
+        const sectionToClose = this.closest(".section-container");
+        if (sectionToClose) {
+          sectionToClose.classList.add("d-none");
+        }
+      });
+    });
   }
 
   profileName.className =

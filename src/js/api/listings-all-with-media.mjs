@@ -20,8 +20,8 @@ export async function fetchAllListingsWithMedia() {
   const desiredListingsCount = 12; // The number of listings you want to display
   const limit = globalLimit > 0 ? globalLimit : 100; // Use globalLimit if set, else default to 100
   let offset = 0;
-  const spinner2 = document.getElementById("spinner2");
-  spinner2.classList.remove("d-none");
+  const spinner = document.getElementById("spinner");
+  spinner.classList.remove("d-none");
 
   while (allListingsArray.length < desiredListingsCount) {
     const response = await doApiFetch(
@@ -49,8 +49,8 @@ export async function fetchAllListingsWithMedia() {
     offset += limit;
   }
 
+  spinner.classList.add("d-none");
   allListingsArray.sort((a, b) => new Date(b.created) - new Date(a.created));
   // console.log("Latest Listings with image gallery", allListingsArray);
-  spinner2.classList.add("d-none");
   return allListingsArray;
 }
