@@ -208,25 +208,19 @@ export function createListingCard(listing, query) {
 
   const titleH1 = document.createElement("h1");
   titleH1.className =
-    "py-1 my-2 border-bottom text-center fs-5 listing-title align-items-center text-primary ms-0 card-title";
+    "py-1 my-2 border-bottom text-center overflow-hidden fs-5 listing-title align-items-center text-primary ms-0 card-title";
   titleH1.style.width = "235px"; // Set the width of the container
   titleColDiv.appendChild(titleH1);
 
-  const titleText = document.createElement("span"); // Create a child span for the text
+  const titleText = document.createElement("span");
+  titleH1.appendChild(titleText);
+
   if (listing.title) {
-    // Use highlightQuery to highlight the query in the title
+    // Apply highlightQuery to the title
     titleText.innerHTML = highlightQuery(listing.title, query);
   } else {
     titleText.className = "text-danger";
     titleText.textContent = "Untitled Listing";
-  }
-  titleH1.appendChild(titleText);
-
-  // Assuming 'listing.title' contains the title text
-  if (listing.title.length > 20) {
-    titleText.textContent = listing.title.substring(0, 18) + "...";
-  } else {
-    titleText.textContent = listing.title;
   }
 
   // Description
