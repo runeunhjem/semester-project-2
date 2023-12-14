@@ -104,7 +104,40 @@ document.addEventListener("DOMContentLoaded", async () => {
       initializeAllCarousels();
     }, 2000);
   }
+  if (!loggedInUser) {
+    const profileLinkClass = document.querySelectorAll(".profile-link-class");
+    profileLinkClass.forEach(link => {
+      link.href = "/login.html";
+    });
+  }
 });
+
+const searchSection = document.getElementById("mobile-search");
+const searchIcon = document.getElementById("searchIcon");
+const menuText = document.querySelector(".menu-text");
+const menuProfile = document.querySelectorAll(".menu-profile");
+const profileContainer = document.getElementById("profileContainer");
+
+if (!loggedInUser) {
+  searchSection.classList.remove("d-none");
+  menuText.classList.remove("d-none");
+  searchSection.classList.add("d-md-none");
+  searchIcon.classList.add("d-none");
+  menuProfile.forEach(link => {
+    link.classList.add("d-none");
+  });
+  profileContainer.classList.add("d-none");
+}
+if (loggedInUser) {
+  searchSection.classList.add("d-none");
+  menuText.classList.add("d-none");
+  searchSection.classList.remove("d-md-none");
+  searchIcon.classList.remove("d-none");
+  menuProfile.forEach(link => {
+    link.classList.remove("d-none");
+  });
+  profileContainer.classList.remove("d-none");
+}
 
 /**
  * Add a "Back to Top" button to the page.
@@ -117,7 +150,7 @@ toTopButton();
 attachLogoutEvent();
 
 // Toggle Create New Listing
-const addListingLink = document.querySelector(".icon-add-listing");
+const addListingLink = document.querySelector(".icon-add-listing restricted");
 const addListingIcon = document.querySelector(".bi-plus-circle");
 const createListingDiv = document.getElementById("create-new-listing");
 const addListingText = document.querySelector(".add-listing");

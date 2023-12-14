@@ -12615,7 +12615,7 @@ header .bi:hover {
   }
 }
 
-.icon-add-listing,
+.icon-add-listing restricted,
 .icon-favorites {
   width: 110px !important;
 }
