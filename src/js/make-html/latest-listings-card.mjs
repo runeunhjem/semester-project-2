@@ -17,6 +17,7 @@ export function createListingCard(listing, query) {
   colDiv.setAttribute("data-post-sellerAvatar", listing.seller.avatar);
   colDiv.setAttribute("data-post-sellerWins", listing.seller.wins.length);
   colDiv.setAttribute("data-post-listingBids", listing._count.bids);
+  colDiv.setAttribute("data-post-endsAt", listing.endsAt);
   // Set data-category attribute based on tags
   const category =
     listing.tags && listing.tags.length > 0
@@ -295,14 +296,21 @@ export function createListingCard(listing, query) {
   endsRowDiv.appendChild(endsColDiv);
 
   // Create and append the countdown display element
+  const listingId = listing.id; // This should be the unique identifier for each listing
   const countdownDisplay = document.createElement("p");
   countdownDisplay.className = "countdown-display text-danger";
   endsColDiv.appendChild(countdownDisplay);
 
   // Update the countdown every second
   const countdownInterval = setInterval(() => {
-    updateCountdownDisplay(listing.endsAt, countdownDisplay, countdownInterval);
+    updateCountdownDisplay(
+      listing.endsAt,
+      countdownDisplay,
+      countdownInterval,
+      listingId
+    );
   }, 1000);
+  colDiv.setAttribute("data-countdown-interval", countdownInterval);
 
   // Listing ID
   const idColDiv = document.createElement("div");

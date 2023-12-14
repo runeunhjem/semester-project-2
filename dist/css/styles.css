@@ -12553,6 +12553,10 @@ body {
   display: none !important;
 }
 
+.shadow-danger {
+  box-shadow: 0 0 0 0.1rem var(--color-dark-red) !important;
+}
+
 main {
   border-bottom: 1px solid var(--color-primary);
   padding-bottom: 3em;

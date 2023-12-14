@@ -86,7 +86,7 @@ export async function currentProfileHistory() {
       if (!getListingResponse.ok) {
         const statusCode = getListingResponse.status;
         if (statusCode >= 400 || statusCode < 500) {
-          displayDeletedListing(container);
+          displayDeletedListing(container, winId);
         } else {
           throw new Error(`HTTP error! status: ${statusCode}`);
         }
@@ -97,7 +97,7 @@ export async function currentProfileHistory() {
       }
     } catch (error) {
       console.error("Error fetching listing data:", error);
-      displayDeletedListing(container);
+      displayDeletedListing(container, winId);
     }
   }
 
@@ -189,7 +189,7 @@ export async function currentProfileHistory() {
     container.prepend(entryDiv);
   }
 
-  function displayDeletedListing(container) {
+  function displayDeletedListing(container, deletedListingId) {
     // Main entry div
     const entryDiv = document.createElement("div");
     entryDiv.className =
@@ -218,7 +218,7 @@ export async function currentProfileHistory() {
 
     const idRow = document.createElement("div");
     idRow.className = "win-id text-dark text-left ms-0 ps-0";
-    idRow.textContent = `ID: N/A`;
+    idRow.textContent = `ID: ${deletedListingId || "N/A"}`; // Use the ID or 'N/A' if ID is not provided
     titleIdCol.appendChild(idRow);
     outerDiv.appendChild(titleIdCol);
 
