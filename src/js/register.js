@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         registerButton.classList.add("btn-success", "text-light", "fw-bold");
         setTimeout(() => {
           window.location.reload();
-        }, 2000);
+        }, 1200);
       } else {
         console.log("Registration failed!");
         alert("Registration failed! Please try again.");

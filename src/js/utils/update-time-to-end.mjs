@@ -11,8 +11,8 @@ export function updateCountdownDisplay(
   if (timeLeft <= 0) {
     // Use the listing ID to select the specific card
     const cardElement = document.querySelector(`[data-post-id="${listingId}"]`);
-    console.log("Listing ID:", listingId);
-    console.log("Card Element:", cardElement);
+    // console.log("Listing ID:", listingId);
+    // console.log("Card Element:", cardElement);
     if (cardElement) {
       const card = cardElement.querySelector(".card");
       card.classList.add("shadow-danger");

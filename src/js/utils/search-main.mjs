@@ -3,6 +3,7 @@ import { fetchForSearchMain } from "../api/fetch-for-search-main.mjs";
 import { createListingCard } from "../make-html/latest-listings-card.mjs";
 import { highlightQuery } from "./highlight-search-term.mjs";
 import { toggleSectionsVisibility } from "./toggle-sections-visibility.mjs";
+import { initializeAllCarousels } from "./initialize-carousel.mjs";
 
 // let totalFetched = 0;
 let query = "";
@@ -36,7 +37,7 @@ async function handleSearch(query) {
  * @param {Array} results - The search results to display.
  * @param {string} query - The search query.
  */
-function displaySearchResults(results, query) {
+async function displaySearchResults(results, query) {
   const searchResultsContainer = document.getElementById("search-auctions");
   searchResultsContainer.innerHTML = "";
 
@@ -71,6 +72,7 @@ function displaySearchResults(results, query) {
   } else {
     searchCountElement.textContent = `No results for "${query}"`;
   }
+  await initializeAllCarousels();
 }
 
 // Function to initialize search functionality
@@ -86,6 +88,7 @@ export function initializeSearch() {
     if (query) {
       handleSearch(query);
     }
+    searchInput.value = "";
   };
 
   // Attach event listeners to both search forms

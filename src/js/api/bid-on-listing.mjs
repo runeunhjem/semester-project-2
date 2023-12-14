@@ -10,7 +10,7 @@ export async function bidOnListing(bidAmount, id) {
   if (!id) {
     return;
   }
-  const bidData = { amount: parseInt(bidAmount, 10) }; // Convert bid amount to a number
+  const bidData = { amount: parseInt(bidAmount, 10) };
 
   const response = await doApiFetch(
     `${API_BASE_URL}${listingsUrl}/${id}/bids`,

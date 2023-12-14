@@ -80,10 +80,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     const elements = document.querySelectorAll(".categories-container");
     elements.forEach(el => loopScroll(el, 1));
 
-    setTimeout(() => {
-      // Wait for images to load
-      initializeAllCarousels();
-    }, 4000);
+    // setTimeout(() => {
+    // Wait for images to load
+    // initializeAllCarousels();
+    // }, 4000);
   }
 
   if (window.location.href.includes("profile")) {
@@ -91,18 +91,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     await currentProfile();
     await currentProfileHistory();
 
-    setTimeout(() => {
-      // Wait for images to load
-      initializeAllCarousels();
-    }, 2000);
+    // setTimeout(() => {
+    // Wait for images to load
+    // initializeAllCarousels();
+    // }, 2000);
   }
 
   if (window.location.href.includes("listing")) {
     await displayListingDetails();
-    setTimeout(() => {
-      // Wait for images to load
-      initializeAllCarousels();
-    }, 2000);
+    // setTimeout(() => {
+    // Wait for images to load
+    // initializeAllCarousels();
+    // }, 2000);
   }
   if (!loggedInUser) {
     const profileLinkClass = document.querySelectorAll(".profile-link-class");
@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       link.href = "/login.html";
     });
   }
+  await initializeAllCarousels();
 });
 
 const searchSection = document.getElementById("mobile-search");
