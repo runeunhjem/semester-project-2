@@ -8,8 +8,11 @@ export async function populateCategories(listingsData, containerId) {
   const processListing = listing => {
     if (listing.tags && listing.tags.length > 0) {
       listing.tags.forEach(tagString => {
-        // Splitting tags by commas and spaces, and filtering out empty strings
-        const tags = tagString.split(/[\s,]+/).filter(tag => tag.trim() !== "");
+        // Splitting tags by commas only
+        const tags = tagString
+          .split(",")
+          .map(tag => tag.trim())
+          .filter(tag => tag !== "");
         tags.forEach(tag => {
           tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
         });

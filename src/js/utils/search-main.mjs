@@ -44,7 +44,7 @@ function displaySearchResults(results, query) {
   searchResultsContent.innerHTML = "";
   if (results.length === 0) {
     searchResultsContainer.innerHTML =
-      '<p class="d-flex justify-content-center bg-warning rounded shadow-sm fs-2 px-3 py-1 mt-2">No results found.</p>';
+      '<p class="d-flex justify-content-center bg-warning rounded shadow-sm fs-2 px-3 py-1 mt-2">No results.</p>';
     searchResultsContent.className =
       "d-flex justify-content-center w-100 mx-auto";
   } else {
@@ -67,9 +67,9 @@ function displaySearchResults(results, query) {
   // Update UI elements like search count, etc.
   const searchCountElement = document.getElementById("search-count");
   if (results.length >= 1) {
-    searchCountElement.textContent = `${results.length} results found for "${query}"`;
+    searchCountElement.textContent = `${results.length} results for "${query}"`;
   } else {
-    searchCountElement.textContent = `No results found for "${query}"`;
+    searchCountElement.textContent = `No results for "${query}"`;
   }
 }
 
