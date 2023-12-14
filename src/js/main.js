@@ -151,13 +151,14 @@ toTopButton();
 attachLogoutEvent();
 
 // Toggle Create New Listing
-const addListingLink = document.querySelector(".icon-add-listing restricted");
+const addListingLink = document.querySelector(".icon-add-listing");
 const addListingIcon = document.querySelector(".bi-plus-circle");
 const createListingDiv = document.getElementById("create-new-listing");
 const addListingText = document.querySelector(".add-listing");
 
 if (addListingLink && createListingDiv) {
   addListingLink.addEventListener("click", event => {
+    console.log("Add listing link clicked.");
     if (!loggedInUser) {
       console.log("User is not logged in.");
       window.location.href = "/login.html";
