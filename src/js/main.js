@@ -20,6 +20,10 @@ import { loadFavorites } from "./make-html/create-favorites.mjs";
 import { displayEndsSoonListings } from "./utils/create-ends-soon-listings.mjs";
 import { initializeSearch } from "./utils/search-main.mjs";
 import { loopScroll } from "./utils/auto-scrolling-content.mjs";
+import {
+  updateButtonStyles,
+  checkListingDisplay,
+} from "./utils/update-button-styles.mjs";
 
 const loggedInUserProfileLink = document.querySelectorAll(".menu-profile a");
 
@@ -111,6 +115,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
   await initializeAllCarousels();
+  updateButtonStyles();
+  checkListingDisplay();
 });
 
 const searchSection = document.getElementById("mobile-search");
