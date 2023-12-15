@@ -62,8 +62,19 @@ export async function displayListingDetails() {
 
     // Update the current bid and the name of the highest bidder
     if (currentBidElement) currentBidElement.textContent = highestBid;
-    if (currentLeaderElement)
-      currentLeaderElement.textContent = highestBidderName;
+    if (currentLeaderElement) {
+      // Clear previous content
+      currentLeaderElement.textContent = "";
+
+      // Create a link to the bidder's profile
+      const bidderProfileLink = document.createElement("a");
+      bidderProfileLink.href = `/src/html/profile/index.html?profile=${highestBidderName}`; // Adjust URL as needed
+      bidderProfileLink.textContent = highestBidderName;
+      bidderProfileLink.className = "profile-link-class"; // Add any classes for styling
+
+      // Append the link to the currentLeaderElement
+      currentLeaderElement.appendChild(bidderProfileLink);
+    }
 
     // Create and display countdown
     const countdownContainer = document.getElementById("countdown-container");
@@ -227,9 +238,13 @@ export async function displayListingDetails() {
           profileContainer.className = "d-flex align-items-center";
 
           const sellerLink = document.createElement("a");
-          sellerLink.href = `/src/html/profile/index.html?profile=${seller.name}`;
+          if (loggedInUser) {
+            sellerLink.href = `/src/html/profile/index.html?profile=${seller.name}`;
+          } else {
+            sellerLink.href = "/login.html";
+          }
           sellerLink.textContent = `${seller.name} | View Profile`;
-          sellerLink.className = "fw-bold seller-name";
+          sellerLink.className = "fw-bold seller-name viewProfileLink";
           profileContainer.appendChild(sellerLink);
 
           specEntry.children[1].appendChild(profileContainer);

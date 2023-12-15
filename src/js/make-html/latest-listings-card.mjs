@@ -17,6 +17,7 @@ export function createListingCard(listing, query) {
   colDiv.setAttribute("data-post-sellerAvatar", listing.seller.avatar);
   colDiv.setAttribute("data-post-sellerWins", listing.seller.wins.length);
   colDiv.setAttribute("data-post-listingBids", listing._count.bids);
+  colDiv.setAttribute("data-post-endsAt", listing.endsAt);
   // Set data-category attribute based on tags
   const category =
     listing.tags && listing.tags.length > 0
@@ -73,14 +74,20 @@ export function createListingCard(listing, query) {
 
     // Event listener for edit action
     editButton.addEventListener("click", function (event) {
-      event.stopPropagation(); // Prevent triggering any click events on parent elements
+      event.stopPropagation();
       console.log("Editing listing", listing.id);
       editListingForm(listing.id, listing);
 
-      // Scroll to the top of the edit form
       const editForm = document.getElementById("edit-listing");
       if (editForm) {
-        editForm.scrollIntoView({ behavior: "smooth", block: "start" });
+        try {
+          // Alternative approach
+          window.scrollTo({ top: editForm.offsetTop, behavior: "smooth" });
+        } catch (error) {
+          console.error("Scrolling error:", error);
+        }
+      } else {
+        console.error("Edit form not found");
       }
     });
 
@@ -208,23 +215,19 @@ export function createListingCard(listing, query) {
 
   const titleH1 = document.createElement("h1");
   titleH1.className =
-    "py-1 my-2 border-bottom text-center fs-5 listing-title align-items-center text-primary ms-0 card-title";
+    "py-1 my-2 border-bottom text-center overflow-hidden fs-5 listing-title align-items-center text-primary ms-0 card-title";
   titleH1.style.width = "235px"; // Set the width of the container
   titleColDiv.appendChild(titleH1);
 
-  const titleText = document.createElement("span"); // Create a child span for the text
+  const titleText = document.createElement("span");
+  titleH1.appendChild(titleText);
+
   if (listing.title) {
-    // Use highlightQuery to highlight the query in the title
+    // Apply highlightQuery to the title
     titleText.innerHTML = highlightQuery(listing.title, query);
   } else {
     titleText.className = "text-danger";
     titleText.textContent = "Untitled Listing";
-  }
-  titleH1.appendChild(titleText);
-
-  // Check if title character count is too long
-  if (listing.title.length > 24) {
-    titleText.classList.add("scrolling-text");
   }
 
   // Description
@@ -299,14 +302,21 @@ export function createListingCard(listing, query) {
   endsRowDiv.appendChild(endsColDiv);
 
   // Create and append the countdown display element
+  const listingId = listing.id; // This should be the unique identifier for each listing
   const countdownDisplay = document.createElement("p");
   countdownDisplay.className = "countdown-display text-danger";
   endsColDiv.appendChild(countdownDisplay);
 
   // Update the countdown every second
   const countdownInterval = setInterval(() => {
-    updateCountdownDisplay(listing.endsAt, countdownDisplay, countdownInterval);
+    updateCountdownDisplay(
+      listing.endsAt,
+      countdownDisplay,
+      countdownInterval,
+      listingId
+    );
   }, 1000);
+  colDiv.setAttribute("data-countdown-interval", countdownInterval);
 
   // Listing ID
   const idColDiv = document.createElement("div");

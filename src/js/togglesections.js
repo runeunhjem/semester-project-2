@@ -1,3 +1,5 @@
+import { updateButtonStyles } from "./utils/update-button-styles.mjs";
+
 (function initializeToggleButtons() {
   function setupToggleButton(toggleButtonId, targetSelectors, chevronIconId) {
     const toggleButton = document.getElementById(toggleButtonId);
@@ -26,6 +28,9 @@
         chevronIcon.classList.remove("bi-chevron-down");
         chevronIcon.classList.add("bi-chevron-up");
       }
+
+      // Update button styles after toggling
+      updateButtonStyles();
     });
   }
 

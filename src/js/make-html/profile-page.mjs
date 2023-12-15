@@ -10,6 +10,7 @@ import {
   listingsInclude,
   bidsInclude,
 } from "../api/apiUrls.mjs";
+import { createAuctionTitle } from "./create-profile-listings.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);
 const currentProfileName = urlParams.get("profile");
@@ -47,21 +48,48 @@ export async function currentProfile() {
     "col-12 mx-0 profile-info d-flex flex-column align-items-md-start justify-content-start ps-md-5 ms-md-3";
 
   const profileName = document.createElement("h1");
-  const profileAuctionsTitle = document.getElementById("toggleProfileAuctions");
+  // const profileAuctionsTitle = document.getElementById("toggleProfileAuctions");
+  // if (loggedInUser === currentProfileName) {
+  //   profileAuctionsTitle.innerHTML = `All your auctions <div class="d-flex align-items-center">
+  //             <i class="bi bi-x-circle fs-5 close-section" id="closeSearchResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
+  //             <i class="bi bi-chevron-up" id="chevronIcon"></i>
+  //             </div>`;
+  //   const closeIcons = document.querySelectorAll(".close-section");
+
+  //   closeIcons.forEach(icon => {
+  //     icon.addEventListener("click", function () {
+  //       const sectionToClose = this.closest(".section-container");
+  //       if (sectionToClose) {
+  //         sectionToClose.classList.add("d-none");
+  //       }
+  //     });
+  //   });
+  // } else {
+  //   profileAuctionsTitle.innerHTML = `All ${currentProfileName}'s auctions <div class="d-flex align-items-center">
+  //             <i class="bi bi-x-circle fs-5 close-section" id="closeSearchResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
+  //             <i class="bi bi-chevron-up" id="chevronIcon"></i>
+  //             </div>`;
+  //   const closeIcons = document.querySelectorAll(".close-section");
+
+  //   closeIcons.forEach(icon => {
+  //     icon.addEventListener("click", function () {
+  //       const sectionToClose = this.closest(".section-container");
+  //       if (sectionToClose) {
+  //         sectionToClose.classList.add("d-none");
+  //       }
+  //     });
+  //   });
+  // }
+
+  // Usage
   if (loggedInUser === currentProfileName) {
-    profileAuctionsTitle.innerHTML = `All your auctions <div class="d-flex align-items-center">
-              <i class="bi bi-x-circle fs-5 close-section" id="closeSearchResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
-              <i class="bi bi-chevron-up" id="chevronIcon"></i>
-              </div>`;
+    createAuctionTitle(loggedInUser, currentProfileName);
   } else {
-    profileAuctionsTitle.innerHTML = `All ${currentProfileName}'s auctions <div class="d-flex align-items-center">
-              <i class="bi bi-x-circle fs-5 close-section" id="closeSearchResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
-              <i class="bi bi-chevron-up" id="chevronIcon"></i>
-              </div>`;
+    createAuctionTitle(loggedInUser, currentProfileName);
   }
 
   profileName.className =
-    "profile-name text-primary d-flex justify-content-center";
+    "profile-name text-dark d-flex justify-content-center";
 
   // Create the 'Change Avatar' label element
   const changeLabel = document.createElement("label");

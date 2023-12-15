@@ -6,6 +6,8 @@ export async function latestListings() {
   }
   try {
     const spinner = document.getElementById("spinner");
+    const latestListingsContainer = document.getElementById("latest-auctions");
+    latestListingsContainer.classList.remove("flex-nowrap", "d-flex");
     spinner.classList.remove("d-none");
     let allListingsArray = await fetchAllListingsWithMedia();
 
@@ -23,8 +25,9 @@ export async function latestListings() {
 
     // Get only the latest 12 listings
     const latest12Listings = listingsWithValidMedia.slice(0, 12);
-    spinner.classList.add("d-none");
     // console.log("Latest Listings with media", latest12Listings);
+    spinner.classList.add("d-none");
+    latestListingsContainer.classList.add("flex-nowrap", "d-flex");
     return latest12Listings;
   } catch (error) {
     console.error("Error fetching and sorting listings:", error);

@@ -3,6 +3,7 @@ import { fetchForSearchMain } from "../api/fetch-for-search-main.mjs";
 import { createListingCard } from "../make-html/latest-listings-card.mjs";
 import { highlightQuery } from "./highlight-search-term.mjs";
 import { toggleSectionsVisibility } from "./toggle-sections-visibility.mjs";
+import { initializeAllCarousels } from "./initialize-carousel.mjs";
 
 // let totalFetched = 0;
 let query = "";
@@ -36,7 +37,7 @@ async function handleSearch(query) {
  * @param {Array} results - The search results to display.
  * @param {string} query - The search query.
  */
-function displaySearchResults(results, query) {
+async function displaySearchResults(results, query) {
   const searchResultsContainer = document.getElementById("search-auctions");
   searchResultsContainer.innerHTML = "";
 
@@ -44,7 +45,7 @@ function displaySearchResults(results, query) {
   searchResultsContent.innerHTML = "";
   if (results.length === 0) {
     searchResultsContainer.innerHTML =
-      '<p class="d-flex justify-content-center bg-warning rounded shadow-sm fs-2 px-3 py-1 mt-2">No results found.</p>';
+      '<p class="d-flex justify-content-center bg-warning rounded shadow-sm fs-2 px-3 py-1 mt-2">No results.</p>';
     searchResultsContent.className =
       "d-flex justify-content-center w-100 mx-auto";
   } else {
@@ -67,10 +68,11 @@ function displaySearchResults(results, query) {
   // Update UI elements like search count, etc.
   const searchCountElement = document.getElementById("search-count");
   if (results.length >= 1) {
-    searchCountElement.textContent = `${results.length} results found for "${query}"`;
+    searchCountElement.textContent = `${results.length} results for "${query}"`;
   } else {
-    searchCountElement.textContent = `No results found for "${query}"`;
+    searchCountElement.textContent = `No results for "${query}"`;
   }
+  await initializeAllCarousels();
 }
 
 // Function to initialize search functionality
@@ -86,6 +88,7 @@ export function initializeSearch() {
     if (query) {
       handleSearch(query);
     }
+    searchInput.value = "";
   };
 
   // Attach event listeners to both search forms

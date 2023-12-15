@@ -12,6 +12,7 @@ import {
   convertToShortDateFormat,
   timeSince,
 } from "../utils/date-converter.mjs";
+import { isValidImage } from "../utils/validate-image.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);
 const currentProfileName = urlParams.get("profile");
@@ -44,7 +45,7 @@ export async function currentProfileHistory() {
     historyTitle.textContent = `${type} History`;
 
     const list = document.createElement("div");
-    list.className = `container ${type.toLowerCase()}-entry`;
+    list.className = `container ${type.toLowerCase()}-entry px-0`;
 
     col.append(historyTitle, list);
     return { column: col, title: historyTitle, list: list };
@@ -56,6 +57,7 @@ export async function currentProfileHistory() {
     try {
       const winResponse = await doApiFetch(winsURL, "GET");
       const winHistoryData = await winResponse;
+      titleElement.classList.remove("text-primary");
       titleElement.textContent = `Win History (${winHistoryData.wins.length})`;
 
       for (const win of winHistoryData.wins) {
@@ -68,6 +70,10 @@ export async function currentProfileHistory() {
 
   async function processWinEntry(winId, container) {
     const getListingURL = `${API_BASE_URL}${listingsUrl}/${winId}${sellerInclude}${bidsInclude}`;
+    if (!winId) {
+      console.error("No win ID provided.");
+      return;
+    }
     try {
       const getListingResponse = await doApiFetch(
         getListingURL,
@@ -79,8 +85,8 @@ export async function currentProfileHistory() {
 
       if (!getListingResponse.ok) {
         const statusCode = getListingResponse.status;
-        if (statusCode === 404) {
-          displayDeletedListing(container);
+        if (statusCode >= 400 || statusCode < 500) {
+          displayDeletedListing(container, winId);
         } else {
           throw new Error(`HTTP error! status: ${statusCode}`);
         }
@@ -91,7 +97,7 @@ export async function currentProfileHistory() {
       }
     } catch (error) {
       console.error("Error fetching listing data:", error);
-      displayDeletedListing(container);
+      displayDeletedListing(container, winId);
     }
   }
 
@@ -105,11 +111,17 @@ export async function currentProfileHistory() {
     const imgCol = document.createElement("div");
     imgCol.className = "col-auto px-0";
     const img = document.createElement("img");
-    if (listingData.media.length === 0) {
-      img.src = "/images/404-not-found.jpg";
-    } else {
-      img.src = listingData.media[0];
-    }
+
+    isValidImage(listingData.media, isValid => {
+      if (isValid) {
+        // The URL is a valid image
+        img.src = listingData.media;
+      } else {
+        // The URL is not a valid image, use fallback
+        img.src = "/images/404-not-found.jpg";
+      }
+    });
+
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";
@@ -177,7 +189,7 @@ export async function currentProfileHistory() {
     container.prepend(entryDiv);
   }
 
-  function displayDeletedListing(container) {
+  function displayDeletedListing(container, deletedListingId) {
     // Main entry div
     const entryDiv = document.createElement("div");
     entryDiv.className =
@@ -206,7 +218,7 @@ export async function currentProfileHistory() {
 
     const idRow = document.createElement("div");
     idRow.className = "win-id text-dark text-left ms-0 ps-0";
-    idRow.textContent = `ID: N/A`;
+    idRow.textContent = `ID: ${deletedListingId || "N/A"}`; // Use the ID or 'N/A' if ID is not provided
     titleIdCol.appendChild(idRow);
     outerDiv.appendChild(titleIdCol);
 
@@ -241,12 +253,16 @@ export async function currentProfileHistory() {
     try {
       const bidResponse = await doApiFetch(bidsURL, "GET");
       const bidHistoryData = await bidResponse;
-      titleElement.textContent = `Bid History (${bidHistoryData.length})`;
+      // Filter bids for the current profile
+      const filteredBids = bidHistoryData.filter(
+        bid => bid.bidderName === currentProfileName
+      );
+      titleElement.classList.remove("text-primary");
+      titleElement.textContent = `Bid History (${filteredBids.length})`;
 
-      for (const bid of bidHistoryData) {
+      for (const bid of filteredBids) {
         const bidListingId = bid.listing.id;
         if (!processedListingIds.has(bidListingId)) {
-          // Check if the listing ID is already processed
           await processBidEntry(bid, bidsList);
           processedListingIds.add(bidListingId);
         }
@@ -260,19 +276,24 @@ export async function currentProfileHistory() {
     const {
       listing: { id: bidListingId },
     } = bid;
-    // console.log("Processing bid entry for listing ID:", bidListingId);
 
     const getListingURL = `${API_BASE_URL}${listingsUrl}/${bidListingId}${sellerInclude}${bidsInclude}`;
-    // console.log("Listing URL for bid entry:", getListingURL);
+    if (!bidListingId) {
+      console.error("No bid ID provided.");
+      return;
+    }
 
     try {
-      // console.log("Fetching listing data for bid entry...");
       const getListingResponse = await doApiFetch(getListingURL, "GET");
-      // console.log("getListingResponse (Goes wrong here?):", getListingResponse);
       const listingData = await getListingResponse;
-      // console.log("Listing data received for bid entry:", listingData);
 
-      displayBidEntry(bid, listingData, container);
+      // Filter the bids to only include those made by the current profile
+      const filteredBids = listingData.bids.filter(
+        b => b.bidderName === currentProfileName
+      );
+
+      // Now pass only the filtered bids to the displayBidEntry function
+      displayBidEntry(bid, { ...listingData, bids: filteredBids }, container);
     } catch (error) {
       console.error("Error fetching listing data for bid entry:", error);
       displayDeletedListing(container);
@@ -281,6 +302,7 @@ export async function currentProfileHistory() {
 
   async function displayBidEntry(bid, listingData, container) {
     const { created } = bid;
+    // eslint-disable-next-line no-unused-vars
     const { media, title, id: listingId, bids, endsAt } = listingData;
 
     // Check if the listing has ended
@@ -295,7 +317,16 @@ export async function currentProfileHistory() {
     const imgCol = document.createElement("div");
     imgCol.className = "col-auto";
     const img = document.createElement("img");
-    img.src = media.length === 0 ? "/images/404-not-found.jpg" : media[0];
+    // img.src = media.length === 0 ? "/images/404-not-found.jpg" : media[0];
+    isValidImage(listingData.media, isValid => {
+      if (isValid) {
+        // The URL is a valid image
+        img.src = listingData.media;
+      } else {
+        // The URL is not a valid image, use fallback
+        img.src = "/images/404-not-found.jpg";
+      }
+    });
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";
@@ -323,7 +354,7 @@ export async function currentProfileHistory() {
     idRow.className = "bid-id text-left ms-0 ps-0";
     idRow.textContent = `ID: ${listingId.substring(0, 15)}`;
 
-    // Apply bg-danger if the listing has ended
+    // Apply text-danger if the listing has ended
     if (hasEnded) {
       idRow.classList.add("text-danger");
       idRow.textContent = `Status: Ended`;
@@ -349,7 +380,9 @@ export async function currentProfileHistory() {
       "bid-all text-left text-nowrap ms-0 ps-0 d-flex flex-column-reverse";
     bidsDiv.textContent = `All bids (${bids.length}): `;
 
-    let highestBid = bids[0];
+    // Determine the highest bid amount for the listing
+    let highestBidAmount = Math.max(...bids.map(bid => bid.amount));
+    // console.log("highestBidAmount:", highestBidAmount);
 
     bids.forEach(bid => {
       const bidInfo = document.createElement("span");
@@ -357,11 +390,10 @@ export async function currentProfileHistory() {
       bidInfo.textContent = `$${bid.amount}.00 - ${bidDate}`;
       bidInfo.className = "my-1 border-bottom";
 
-      // Check if this bid is the highest and the auction has ended
+      // Check if the bid is the highest and made by currentProfileName
       if (
-        hasEnded &&
-        bid.bidderName === currentProfileName &&
-        bid.amount >= highestBid.amount
+        bid.amount === highestBidAmount &&
+        bid.bidderName === currentProfileName
       ) {
         bidInfo.classList.add("text-success", "fw-bold");
       }

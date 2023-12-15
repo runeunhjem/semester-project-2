@@ -22,7 +22,7 @@ export function createNewListingForm(parentElementId) {
 
   // Card title
   const cardTitle = document.createElement("h1");
-  cardTitle.className = "card-title fs-3 text-center mt-3 text-primary";
+  cardTitle.className = "card-title fs-3 text-center mt-3 text-dark";
   cardTitle.textContent = "Create new auction...";
   cardBodyDiv.appendChild(cardTitle);
 

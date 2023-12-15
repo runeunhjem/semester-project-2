@@ -12,9 +12,9 @@ export async function displayLatestListings() {
     // console.log("window.location.href: ", window.location.href);
     return;
   }
-  const spinner = document.getElementById("spinner");
-  if (!spinner) return; // Exit if the spinner is not found (e.g. on the login page
-  spinner.classList.remove("d-none");
+  // const spinner = document.getElementById("spinner");
+  // if (!spinner) return; // Exit if the spinner is not found (e.g. on the login page
+  // spinner.classList.remove("d-none");
   try {
     const listings = await fetchAllListingsWithMedia();
 
@@ -27,7 +27,7 @@ export async function displayLatestListings() {
       const listingCard = createListingCard(listing);
       latestAuctionsContainer.appendChild(listingCard);
     });
-    spinner.classList.add("d-none");
+    // spinner.classList.add("d-none");
   } catch (error) {
     console.error("Error displaying latest listings:", error);
   }

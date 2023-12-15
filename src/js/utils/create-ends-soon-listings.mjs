@@ -16,6 +16,7 @@ export async function displayEndsSoonListings() {
     if (!spinner3) return; // Exit if the spinner is not found (e.g. on the login page
     spinner3.classList.remove("d-none");
     const listings = await listingsEndsSoon();
+    // const listings = await listingsEndsSoon();
     // console.log("Listings that ends soon", listings);
 
     // Get the container where the listings should be displayed
@@ -23,7 +24,7 @@ export async function displayEndsSoonListings() {
       document.getElementById("ends-soon-auctions");
     if (!endsSoonAuctionsContainer) return; // Exit if the container is not found
     // Clear previous content (if necessary)
-    // endsSoonAuctionsContainer.innerHTML = "";
+    endsSoonAuctionsContainer.innerHTML = "";
 
     // Append each listing card to the container
     listings.forEach(listing => {
