@@ -12931,7 +12931,6 @@ header .profile-pic {
   object-fit: cover;
   -o-object-position: center;
   object-position: center;
-  opacity: 0.8;
 }
 
 .listing-title {
