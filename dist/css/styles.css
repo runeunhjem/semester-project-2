@@ -12933,6 +12933,13 @@ header .profile-pic {
   object-position: center;
 }
 
+.contact-picture {
+  height: auto;
+  max-width: 90%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
 .listing-title {
   font-size: 20px;
   font-weight: bold;
