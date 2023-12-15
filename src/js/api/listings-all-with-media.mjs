@@ -5,7 +5,7 @@ import {
   listingsUrl,
   sellerInclude,
   activeListings,
-} from "./apiUrls.mjs";
+} from "./apiurls.mjs";
 import { doApiFetch } from "./doFetch.mjs";
 
 export async function fetchAllListingsWithMedia() {
@@ -32,8 +32,33 @@ export async function fetchAllListingsWithMedia() {
     const listings = await response;
     if (listings.length === 0) break;
 
+    // Filter out listings with titles that contain any of the words in the wordsToFilterOut array
+    const wordsToFilterOut = [
+      "drizzy",
+      "test",
+      "tester",
+      "hei",
+      "title",
+      "crgoat",
+      "hhhh",
+      "ffedef",
+      "hsuwhduiw",
+      "heycrsiente",
+      "hello",
+      "ggggg",
+      "goatcr",
+      "cr7",
+    ];
+
+    const filteredListings = listings.filter(
+      listing =>
+        !wordsToFilterOut.some(word =>
+          listing.title.toLowerCase().includes(word.toLowerCase())
+        )
+    );
+
     // Adjust to the number of images I want the image gallery to contain
-    const listingsWithMedia = listings.filter(
+    const listingsWithMedia = filteredListings.filter(
       listing => listing.media && listing.media.length >= 2
     );
 

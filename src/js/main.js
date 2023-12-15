@@ -77,12 +77,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     !window.location.href.includes("contact") ||
     !window.location.href.includes("listing")
   ) {
-    await displayEndsSoonListings();
-    await displayLatestListings();
-    await displayAllListings();
-    // await autoScroll(element, speed);
     const elements = document.querySelectorAll(".categories-container");
     elements.forEach(el => loopScroll(el, 1));
+    await displayAllListings();
+    await displayEndsSoonListings();
+    await displayLatestListings();
 
     // setTimeout(() => {
     // Wait for images to load

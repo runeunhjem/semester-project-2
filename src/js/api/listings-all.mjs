@@ -4,7 +4,7 @@ import {
   listingsUrl,
   sellerInclude,
   activeListings,
-} from "./apiUrls.mjs";
+} from "./apiurls.mjs";
 import { doApiFetch } from "./doFetch.mjs";
 import {
   globalLimit,
@@ -42,9 +42,29 @@ export async function fetchAllListings() {
 
     if (listings.length === 0) break;
 
-    // Filter out listings with "Drizzy" in the title as there where so many of the same listing
+    // Filter out listings with titles that contain any of the words in the wordsToFilterOut array
+    const wordsToFilterOut = [
+      "drizzy",
+      "test",
+      "tester",
+      "hei",
+      "title",
+      "crgoat",
+      "hhhh",
+      "ffedef",
+      "hsuwhduiw",
+      "heycrsiente",
+      "hello",
+      "ggggg",
+      "goatcr",
+      "cr7",
+    ];
+
     const filteredListings = listings.filter(
-      listing => !listing.title.includes("Drizzy")
+      listing =>
+        !wordsToFilterOut.some(word =>
+          listing.title.toLowerCase().includes(word.toLowerCase())
+        )
     );
 
     allListingsArray = [...allListingsArray, ...filteredListings];
