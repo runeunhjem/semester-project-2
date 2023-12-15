@@ -45,7 +45,7 @@ export async function currentProfileHistory() {
     historyTitle.textContent = `${type} History`;
 
     const list = document.createElement("div");
-    list.className = `container ${type.toLowerCase()}-entry`;
+    list.className = `container ${type.toLowerCase()}-entry px-0`;
 
     col.append(historyTitle, list);
     return { column: col, title: historyTitle, list: list };
