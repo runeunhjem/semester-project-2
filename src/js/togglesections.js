@@ -1,4 +1,5 @@
 import { updateButtonStyles } from "./utils/update-button-styles.mjs";
+
 (function initializeToggleButtons() {
   function setupToggleButton(toggleButtonId, targetSelectors, chevronIconId) {
     const toggleButton = document.getElementById(toggleButtonId);

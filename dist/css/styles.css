@@ -12772,9 +12772,10 @@ header .bi:hover {
 .latest-auctions,
 .ends-soon-auctions,
 .profile-auctions,
+.search-auctions,
 .listing-details,
 .bid-details {
-  min-height: 460px;
+  min-height: 490px;
   min-width: 260px;
 }
 
