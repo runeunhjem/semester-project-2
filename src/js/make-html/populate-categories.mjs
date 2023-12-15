@@ -43,6 +43,16 @@ export async function populateCategories(listingsData, containerId) {
 function updateCategoriesHeader(tagCounts) {
   const totalCategories = tagCounts.size;
   categoriesHeader.textContent = `Categories (${totalCategories})`;
+
+  // Create a reset button
+  const resetButton = document.createElement("button");
+  resetButton.textContent = "Reset";
+  resetButton.className =
+    "btn btn-sm btn-outline-white ms-2 text-primary reset-categories";
+  resetButton.addEventListener("click", () => filterCardsByCategory("All"));
+
+  // Append the reset button next to the categories header
+  categoriesHeader.appendChild(resetButton);
 }
 
 function populateContainer(container, tagCounts) {

@@ -12629,6 +12629,14 @@ header .profile-pic {
   width: 110px !important;
 }
 
+.reset-categories {
+  transition: all 0.3s ease-in-out;
+}
+.reset-categories:hover {
+  color: var(--color-primary) !important;
+  transform: scale(1.2) !important;
+}
+
 .categories-container {
   height: 80px;
 }

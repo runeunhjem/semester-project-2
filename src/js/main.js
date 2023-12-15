@@ -163,7 +163,7 @@ const addListingText = document.querySelector(".add-listing");
 
 if (addListingLink && createListingDiv) {
   addListingLink.addEventListener("click", event => {
-    console.log("Add listing link clicked.");
+    // console.log("Add listing link clicked.");
     if (!loggedInUser) {
       console.log("User is not logged in.");
       window.location.href = "/login.html";
