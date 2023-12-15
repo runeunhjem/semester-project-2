@@ -42,7 +42,12 @@ export async function fetchAllListings() {
 
     if (listings.length === 0) break;
 
-    allListingsArray = [...allListingsArray, ...listings];
+    // Filter out listings with "Drizzy" in the title as there where so many of the same listing
+    const filteredListings = listings.filter(
+      listing => !listing.title.includes("Drizzy")
+    );
+
+    allListingsArray = [...allListingsArray, ...filteredListings];
     offset += limit;
     // console.log("allListingsArray.length", allListingsArray.length);
     if (allListingsArray.length > globalMaxTotalListings) {

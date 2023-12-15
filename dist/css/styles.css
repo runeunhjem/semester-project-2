@@ -12620,6 +12620,13 @@ header .bi:hover {
   width: 110px !important;
 }
 
+.categories-container {
+  height: 80px;
+}
+.categories-container button {
+  height: 40px;
+}
+
 @media screen and (min-width: 548px) {
   .categories-container {
     margin: 0 auto !important;

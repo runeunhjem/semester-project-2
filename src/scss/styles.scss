@@ -101,6 +101,12 @@ header {
   width: 110px !important;
 }
 
+.categories-container {
+  height: 80px;
+  button {
+    height: 40px;
+  }
+}
 @media screen and (min-width: 548px) {
   .categories-container {
     margin: 0 auto !important;
