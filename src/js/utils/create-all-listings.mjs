@@ -20,11 +20,11 @@ export async function displayAllListings() {
     const allAuctionsContainer = document.getElementById("all-auctions");
     // allAuctionsContainer.innerHTML = "";
     const listings = await fetchAllListings();
-    console.log("listings in create", listings);
+    // console.log("listings in create", listings);
 
     await populateCategories(listings, "categories");
 
-    // if (!allAuctionsContainer) return;
+    if (!allAuctionsContainer) return;
     // Append each listing card to the container
     listings.forEach(listing => {
       const listingCard = createListingCard(listing);

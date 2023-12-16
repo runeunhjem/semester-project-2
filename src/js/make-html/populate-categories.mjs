@@ -56,7 +56,7 @@ function updateCategoriesHeader(tagCounts) {
 function populateContainer(container, tagCounts) {
   container.innerHTML = "";
   let colorIndex = 0;
-  // get tags and sort alphabetically
+
   Array.from(tagCounts)
     .sort((a, b) => a[0].localeCompare(b[0]))
     .forEach(([tag, count]) => {
