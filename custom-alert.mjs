@@ -8,3 +8,4 @@ export function displayMessage(parent, messageType, message) {
 // displayMessage("#posts", "bg-danger", error.message);
 // displayMessage("#posts", "bg-success", "Successfully loaded posts");
 // displayMessage("#posts", "bg-warning", "No posts found");
+// Check later if this is needed
