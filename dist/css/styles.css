@@ -12984,4 +12984,11 @@ header .profile-pic {
 .danger {
   background-color: var(--color-info) !important;
   color: var(--color-danger) !important;
+}
+
+#categories-header {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch; /* for momentum scrolling on iOS */
 } /*# sourceMappingURL=styles.css.map */
