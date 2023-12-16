@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     !window.location.href.includes("listing")
   ) {
     const elements = document.querySelectorAll(".categories-container");
-    elements.forEach(el => loopScroll(el, 1));
+    elements.forEach(el => loopScroll(el, 0.5));
     await displayAllListings();
     await displayEndsSoonListings();
     await displayLatestListings();
