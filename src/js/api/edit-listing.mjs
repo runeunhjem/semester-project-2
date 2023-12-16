@@ -1,4 +1,4 @@
-import { API_BASE_URL, listingsUrl } from "./apiUrls.mjs";
+import { API_BASE_URL, listingsUrl } from "./apiurls.mjs";
 import { doApiFetch } from "./doFetch.mjs";
 
 export async function updateListing(id, listingData) {

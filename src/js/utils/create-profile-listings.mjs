@@ -1,4 +1,4 @@
-import { API_BASE_URL, listingsUrl, profilesInclude } from "../api/apiUrls.mjs";
+import { API_BASE_URL, listingsUrl, profilesInclude } from "../api/apiurls.mjs";
 import { doApiFetch } from "../api/doFetch.mjs";
 import { createListingCard } from "../make-html/latest-listings-card.mjs";
 import { populateCategories } from "../make-html/populate-categories.mjs";

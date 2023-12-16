@@ -1,6 +1,6 @@
 import { isLoggedIn, loggedInUser } from "../variables/constants.mjs";
 import { doApiFetch } from "../api/doFetch.mjs";
-import { API_BASE_URL, profilesInclude } from "../api/apiUrls.mjs";
+import { API_BASE_URL, profilesInclude } from "../api/apiurls.mjs";
 
 export async function updateProfileDisplay() {
   const profileContainer = document.getElementById("profileContainer");

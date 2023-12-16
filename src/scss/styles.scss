@@ -421,6 +421,13 @@ header {
   cursor: pointer;
 }
 
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // margin: 1em 0;
+}
+
 .about-images {
   max-height: 180px;
   width: 100%;

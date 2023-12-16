@@ -252,7 +252,16 @@
             <option value="price_high">Price high</option>
           </select>
         </form> -->
+        <!-- Pagination -->
+        <div class="container pagination-container d-flex pb-3 max-width-300">
+          <button class="btn btn-sm btn-white p-2 text-primary" id="prevPage">Previous</button>
+          <span id="currentPage" class="mx-2">1</span> / <span id="totalPages" class="mx-2"></span>
+          <button class="btn btn-sm btn-white p-2 text-primary" id="nextPage">Next</button>
+        </div>
+        <!-- End of pagination -->
         <div class="row-fluid d-flex flex-wrap overflow-hidden all-auctions bg-info rounded shadow-sm py-3 px-0" id="all-auctions">
+
+
           <!-- Spinner - Hide when loaded -->
           <div class="row d-flex mx-auto justify-content-center py-3 w-100" id="spinner2">
             <div class="spinner-border" role="status">
@@ -263,7 +272,6 @@
         </div>
       </div>
       <!-- End of All listings -->
-
 
     </main>
     <footer class="max-width-300">

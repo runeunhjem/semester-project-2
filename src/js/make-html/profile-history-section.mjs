@@ -5,7 +5,7 @@ import {
   profilesInclude,
   bidsInclude,
   sellerInclude,
-} from "../api/apiUrls.mjs";
+} from "../api/apiurls.mjs";
 // import { loggedInUser } from "../variables/constants.mjs";
 import { doApiFetch } from "../api/doFetch.mjs";
 import {

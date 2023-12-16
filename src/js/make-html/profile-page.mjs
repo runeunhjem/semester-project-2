@@ -9,7 +9,7 @@ import {
   profilesInclude,
   listingsInclude,
   bidsInclude,
-} from "../api/apiUrls.mjs";
+} from "../api/apiurls.mjs";
 import { createAuctionTitle } from "./create-profile-listings.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);

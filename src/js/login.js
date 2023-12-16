@@ -1,6 +1,6 @@
 import { API_BASE_URL, loginUrl } from "./api/apiurls.mjs";
 import { preFillFormFields, loginUser } from "./utils/login.mjs";
-
+import { displayMessage } from "./utils/custom-alert.mjs";
 /**
  * Get the login form element and pre-fill its fields if data is available.
  */
@@ -22,6 +22,7 @@ loginForm.addEventListener("submit", async event => {
      */
     await loginUser(loginURL, formDataObject);
   } catch (error) {
+    displayMessage("#posts", "danger", error.message);
     console.error(error);
   }
 });

@@ -12924,6 +12924,12 @@ header .profile-pic {
   cursor: pointer;
 }
 
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .about-images {
   max-height: 180px;
   width: 100%;
