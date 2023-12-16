@@ -129,7 +129,7 @@ export async function currentProfile() {
     );
     const data = await response;
     console.log("New Avatar", data);
-    profileImage.src = data.avatar;
+    profileImage.src = data.avatar ? data.avatar : "/images/profile.svg";
     profileImage.alt = `${currentProfileName}'s avatar.`;
   });
 
