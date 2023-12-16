@@ -476,3 +476,8 @@ header {
     color: var(--color-white) !important;
   }
 }
+
+.danger {
+  background-color: var(--color-info) !important;
+  color: var(--color-danger) !important;
+}

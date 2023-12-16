@@ -12979,4 +12979,9 @@ header .profile-pic {
 }
 .footer-nav a:hover {
   color: var(--color-white) !important;
+}
+
+.danger {
+  background-color: var(--color-info) !important;
+  color: var(--color-danger) !important;
 } /*# sourceMappingURL=styles.css.map */

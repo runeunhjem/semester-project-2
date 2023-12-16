@@ -24,6 +24,9 @@ import {
   updateButtonStyles,
   checkListingDisplay,
 } from "./utils/update-button-styles.mjs";
+// import { updatePaginationDisplay } from "./api/listings-all.mjs";
+// Initial call to fetch the first page of listings and update the pagination display
+// displayAllListings().then(updatePaginationDisplay);
 
 const loggedInUserProfileLink = document.querySelectorAll(".menu-profile a");
 
