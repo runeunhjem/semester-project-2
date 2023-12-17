@@ -9,9 +9,9 @@ export function loopScroll(element, speed) {
         element.scrollLeft = startPos;
         startPos += speed;
       } else {
-        startPos = 0; // Reset to start
+        startPos = 0;
         element.scrollLeft = startPos;
-        scrollEnd = element.scrollWidth - element.clientWidth; // Recalculate in case of dynamic content changes
+        scrollEnd = element.scrollWidth - element.clientWidth;
       }
     }
     requestAnimationFrame(step);

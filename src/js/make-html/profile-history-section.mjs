@@ -6,13 +6,11 @@ import {
   bidsInclude,
   sellerInclude,
 } from "../api/apiurls.mjs";
-// import { loggedInUser } from "../variables/constants.mjs";
 import { doApiFetch } from "../api/doFetch.mjs";
 import {
   convertToShortDateFormat,
   timeSince,
 } from "../utils/date-converter.mjs";
-// import { isValidImage } from "../utils/validate-image.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);
 const currentProfileName = urlParams.get("profile");
@@ -53,7 +51,6 @@ export async function currentProfileHistory() {
 
   async function displayWinHistory(winsList, profileName, titleElement) {
     const winsURL = `${API_BASE_URL}${profilesInclude}/${profileName}${listingsInclude}${bidsInclude}`;
-    // console.log("winsURL:", winsURL);
     try {
       const winResponse = await doApiFetch(winsURL, "GET");
       const winHistoryData = await winResponse;
@@ -81,7 +78,6 @@ export async function currentProfileHistory() {
         null,
         true
       );
-      // console.log("getListingResponse Status:", getListingResponse.status);
 
       if (!getListingResponse.ok) {
         const statusCode = getListingResponse.status;
@@ -92,7 +88,6 @@ export async function currentProfileHistory() {
         }
       } else {
         getListingData = getListingResponse.data;
-        // console.log("getListingData:", getListingData);
         displayWinEntry(getListingData, container);
       }
     } catch (error) {
@@ -115,16 +110,6 @@ export async function currentProfileHistory() {
       listingData.media.length === 0
         ? "/images/404-not-found.jpg"
         : listingData.media[0];
-    // isValidImage(listingData.media, isValid => {
-    //   if (isValid) {
-    //     // The URL is a valid image
-    //     img.src = listingData.media;
-    //   } else {
-    //     // The URL is not a valid image, use fallback
-    //     img.src = "/images/404-not-found.jpg";
-    //   }
-    // });
-
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";
@@ -148,8 +133,8 @@ export async function currentProfileHistory() {
     const titleLink = document.createElement("a");
     titleLink.className = "win-title text-primary fw-bold text-left ms-0 ps-0";
     titleLink.textContent = listingData.title;
-    titleLink.href = goToWinListingURL; // Set the link's destination
-    titleLink.style.textDecoration = "none"; // Optional: to remove underline from link
+    titleLink.href = goToWinListingURL;
+    titleLink.style.textDecoration = "none";
 
     // Append the title link to the column
     titleIdCol.appendChild(titleLink);
@@ -221,7 +206,7 @@ export async function currentProfileHistory() {
 
     const idRow = document.createElement("div");
     idRow.className = "win-id text-dark text-left ms-0 ps-0";
-    idRow.textContent = `ID: ${deletedListingId || "N/A"}`; // Use the ID or 'N/A' if ID is not provided
+    idRow.textContent = `ID: ${deletedListingId || "N/A"}`;
     titleIdCol.appendChild(idRow);
     outerDiv.appendChild(titleIdCol);
 
@@ -251,7 +236,7 @@ export async function currentProfileHistory() {
   // Bids History
   async function displayBidHistory(bidsList, profileName, titleElement) {
     const bidsURL = `${API_BASE_URL}${profilesInclude}/${profileName}/bids${listingsInclude}`;
-    const processedListingIds = new Set(); // Set to track processed listing IDs
+    const processedListingIds = new Set();
 
     try {
       const bidResponse = await doApiFetch(bidsURL, "GET");
@@ -295,7 +280,7 @@ export async function currentProfileHistory() {
         b => b.bidderName === currentProfileName
       );
 
-      // Now pass only the filtered bids to the displayBidEntry function
+      // Pass only the filtered bids to the displayBidEntry function
       displayBidEntry(bid, { ...listingData, bids: filteredBids }, container);
     } catch (error) {
       console.error("Error fetching listing data for bid entry:", error);
@@ -321,15 +306,6 @@ export async function currentProfileHistory() {
     imgCol.className = "col-auto";
     const img = document.createElement("img");
     img.src = media.length === 0 ? "/images/404-not-found.jpg" : media[0];
-    // isValidImage(listingData.media, isValid => {
-    //   if (isValid) {
-    //     // The URL is a valid image
-    //     img.src = listingData.media;
-    //   } else {
-    //     // The URL is not a valid image, use fallback
-    //     img.src = "/images/404-not-found.jpg";
-    //   }
-    // });
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";
@@ -385,7 +361,6 @@ export async function currentProfileHistory() {
 
     // Determine the highest bid amount for the listing
     let highestBidAmount = Math.max(...bids.map(bid => bid.amount));
-    // console.log("highestBidAmount:", highestBidAmount);
 
     bids.forEach(bid => {
       const bidInfo = document.createElement("span");

@@ -4,7 +4,7 @@ import { API_BASE_URL, profilesInclude } from "../api/apiurls.mjs";
 
 export async function updateProfileDisplay() {
   const profileContainer = document.getElementById("profileContainer");
-  if (!profileContainer) return; // Exit if the container is not found
+  if (!profileContainer) return;
 
   // Create elements
   const colProfileInfo = document.createElement("div");
@@ -41,17 +41,13 @@ export async function updateProfileDisplay() {
     profileImageLink.href = `/src/html/profile/index.html?profile=${loggedInUser}`;
   }
 
-  profileNameLink.appendChild(profileName); // Wrap the profileName element
-  profileImageLink.appendChild(profileImage); // Wrap the profileImage element
-
-  // Append the anchor elements instead of the direct elements
+  profileNameLink.appendChild(profileName);
+  profileImageLink.appendChild(profileImage);
 
   // Append elements
-  // colProfileInfo.appendChild(profileName);
   colProfileInfo.appendChild(profileNameLink);
   colProfileInfo.appendChild(profileListings);
   colProfileInfo.appendChild(profileCredits);
-  // colProfilePic.appendChild(profileImage);
   colProfilePic.appendChild(profileImageLink);
   profileContainer.appendChild(colProfileInfo);
   profileContainer.appendChild(colProfilePic);
@@ -65,8 +61,6 @@ export async function updateProfileDisplay() {
     const data = await response;
     const loggedInUserData = JSON.stringify(data);
     localStorage.setItem("loggedInUserData", loggedInUserData);
-
-    // console.log("Logged in user data", data);
 
     profileName.textContent = loggedInUser;
     profileListings.textContent = `Listings: ${data._count.listings}`;

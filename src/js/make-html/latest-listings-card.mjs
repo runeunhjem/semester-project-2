@@ -6,9 +6,9 @@ import { loadFavorites } from "./create-favorites.mjs";
 import { editListingForm } from "../make-html/create-edit-listing.mjs";
 import { deleteListing } from "../api/delete-listing.mjs";
 import { highlightQuery } from "../utils/highlight-search-term.mjs";
-// import { convertToShortDateFormat } from "../utils/date-converter.mjs";
 
 export function createListingCard(listing, query) {
+
   // Create the main column div
   const colDiv = document.createElement("div");
   colDiv.className = "col ms-1 my-3 p-0 latest-auctions-card listing-card";
@@ -18,6 +18,7 @@ export function createListingCard(listing, query) {
   colDiv.setAttribute("data-post-sellerWins", listing.seller.wins.length);
   colDiv.setAttribute("data-post-listingBids", listing._count.bids);
   colDiv.setAttribute("data-post-endsAt", listing.endsAt);
+
   // Set data-category attribute based on tags
   const category =
     listing.tags && listing.tags.length > 0
@@ -30,6 +31,7 @@ export function createListingCard(listing, query) {
   colDiv.addEventListener("click", () => {
     window.location.href = `/src/html/auction/listing.html?id=${listing.id}`;
   });
+
   // Create container div
   const containerDiv = document.createElement("div");
   containerDiv.className = "container listings";
@@ -66,7 +68,7 @@ export function createListingCard(listing, query) {
     editButton.style.top = "10px";
     editButton.style.left = "10px";
     editButton.style.cursor = "pointer";
-    editButton.textContent = "Edit"; // Adding text to the button
+    editButton.textContent = "Edit";
     editButton.setAttribute("data-bs-toggle", "collapse");
     editButton.setAttribute("data-bs-target", "#edit-listing");
     editButton.setAttribute("aria-expanded", "false");
@@ -81,7 +83,6 @@ export function createListingCard(listing, query) {
       const editForm = document.getElementById("edit-listing");
       if (editForm) {
         try {
-          // Alternative approach
           window.scrollTo({ top: editForm.offsetTop, behavior: "smooth" });
         } catch (error) {
           console.error("Scrolling error:", error);
@@ -103,7 +104,7 @@ export function createListingCard(listing, query) {
 
     // Event listener for delete action
     deleteButton.addEventListener("click", function (event) {
-      event.stopPropagation(); // Prevent triggering any click events on parent elements
+      event.stopPropagation();
       if (confirm("Are you sure you want to delete this listing?")) {
         deleteListing(listing.id);
       }
@@ -144,10 +145,10 @@ export function createListingCard(listing, query) {
         carouselItemDiv.appendChild(img);
       };
 
-      img.src = mediaUrl; // Set the src last to start loading the image
+      img.src = mediaUrl;
     });
   } else {
-    // Add default image or placeholder
+    // Put image if no media
     const carouselItemDiv = document.createElement("div");
     carouselItemDiv.className = "carousel-item active";
     carouselInnerDiv.appendChild(carouselItemDiv);
@@ -216,7 +217,7 @@ export function createListingCard(listing, query) {
   const titleH1 = document.createElement("h1");
   titleH1.className =
     "py-1 my-2 border-bottom text-center overflow-hidden fs-5 listing-title align-items-center text-primary ms-0 card-title";
-  titleH1.style.width = "235px"; // Set the width of the container
+  titleH1.style.width = "235px";
   titleColDiv.appendChild(titleH1);
 
   const titleText = document.createElement("span");
@@ -243,15 +244,15 @@ export function createListingCard(listing, query) {
   descP.className =
     "text-start lh-sm px-2 mb-1 listing-description card-description";
   if (listing.description) {
-    // Use highlightQuery to highlight the query in the description
+    // Highlight the query in the description
     descP.innerHTML = highlightQuery(listing.description, query);
   } else {
-    descP.textContent = "No description provided."; // Default text if no description
+    descP.textContent = "No description provided.";
   }
   descColDiv.appendChild(descP);
 
   // Bid and ID info
-  // Create container for bid and ending info
+  // Container for bid and ending info
   const infoContainerDiv = document.createElement("div");
   infoContainerDiv.className = "container px-0 border-top";
   cardDiv.appendChild(infoContainerDiv);
@@ -272,12 +273,11 @@ export function createListingCard(listing, query) {
     listing.currentBid = currentBid.amount;
   } else {
     listing.currentBid = 0;
-    // console.log("No bids available");
   }
 
   const currentBidP = document.createElement("p");
   currentBidP.className = "text-primary text-start ps-2 mb-0 current-bid";
-  currentBidP.innerHTML = `Current Bid: <span class="current-bid">${listing.currentBid}</span>`; // Use listings newest bid
+  currentBidP.innerHTML = `Current Bid: <span class="current-bid">${listing.currentBid}</span>`;
   currentBidColDiv.appendChild(currentBidP);
 
   // Number of bids
@@ -287,7 +287,7 @@ export function createListingCard(listing, query) {
 
   const numberOfBidsP = document.createElement("p");
   numberOfBidsP.className = "text-primary text-end pe-2 mb-0";
-  numberOfBidsP.innerHTML = `Bids: <span class="number-of-bids">${listing.bids.length}</span>`; // Use listings bids length
+  numberOfBidsP.innerHTML = `Bids: <span class="number-of-bids">${listing.bids.length}</span>`;
   numberOfBidsColDiv.appendChild(numberOfBidsP);
 
   // Second row for ends and listing ID
@@ -301,8 +301,8 @@ export function createListingCard(listing, query) {
     "col text-nowrap ends ps-3 d-flex justify-content-between";
   endsRowDiv.appendChild(endsColDiv);
 
-  // Create and append the countdown display element
-  const listingId = listing.id; // This should be the unique identifier for each listing
+  // Countdown display element
+  const listingId = listing.id;
   const countdownDisplay = document.createElement("p");
   countdownDisplay.className = "countdown-display text-danger";
   endsColDiv.appendChild(countdownDisplay);
@@ -325,8 +325,8 @@ export function createListingCard(listing, query) {
 
   const idP = document.createElement("p");
   idP.className = "text-black fw-bold text-end pe-4 mb-1";
-  const shortId = listing.id.slice(0, 3); // Extracts first 3 characters of the ID
-  idP.innerHTML = `ID: <span class="listing-id">${shortId}</span>`; // Use shortened ID
+  const shortId = listing.id.slice(0, 3);
+  idP.innerHTML = `ID: <span class="listing-id">${shortId}</span>`;
   idColDiv.appendChild(idP);
 
   return colDiv;
@@ -349,9 +349,4 @@ export async function handleListingCardClick(event) {
   localStorage.setItem("sellerAvatar", sellerAvatar);
   localStorage.setItem("sellerWins", sellerWins);
 
-  // if (authorName !== loggedInUser) {
-  //   localStorage.setItem("isLoggedIn", false);
-  // } else if (authorName === loggedInUser) {
-  //   localStorage.setItem("isLoggedIn", true);
-  // }
 }

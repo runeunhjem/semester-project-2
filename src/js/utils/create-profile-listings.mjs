@@ -34,14 +34,13 @@ export async function displayProfileListings() {
     offset += limit;
 
     if (allListingsArray.length >= globalMaxTotalListings) {
-      allListingsArray = allListingsArray.slice(0, globalMaxTotalListings); // Truncate array to maximum size
+      allListingsArray = allListingsArray.slice(0, globalMaxTotalListings);
       break;
     }
   }
 
   const spinner = document.getElementById("spinner");
   if (spinner) spinner.classList.add("d-none");
-  // console.log("All profile Listings", allListingsArray);
 
   const profileAuctionsContainer = document.getElementById("profile-auctions");
   if (!profileAuctionsContainer) {

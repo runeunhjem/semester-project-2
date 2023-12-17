@@ -130,6 +130,7 @@ header {
 }
 
 .categories-container {
+  justify-content: center !important;
   height: 80px;
   button {
     height: 35px;
@@ -158,8 +159,8 @@ header {
 .dropdown-menu {
   background-color: var(--color-info); // Light blue background
   a:hover {
-    background-color: #cbe5ff; // Light blue background
-    color: #000000; /* Optional: Change text color if needed */
+    background-color: var(--color-info); // Light blue background
+    color: var(--color-black) !important;
   }
 }
 
@@ -173,7 +174,6 @@ header {
 
 .carousel-item {
   min-width: 100% !important;
-  // width: 200px;
   max-width: 100% !important;
   height: 200px !important;
   img {
@@ -219,7 +219,6 @@ header {
     border-radius: 50%;
     height: 200px;
     width: 200px;
-    // max-width: fit-content;
   }
 }
 
@@ -230,15 +229,14 @@ header {
   margin: 1em;
   -ms-overflow-style: none; /* Internet Explorer 10+ */
   scrollbar-width: none; /* Firefox */
-  // overflow-x: scroll;
-  // white-space: nowrap;
 }
 
+/* Hide scrollbar by default in Safari and Chrome */
 .categories-container::-webkit-scrollbar,
 .latest-auctions::-webkit-scrollbar,
 .ends-soon-auctions::-webkit-scrollbar,
 .profile-auctions::-webkit-scrollbar {
-  display: none; /* Hide scrollbar by default in Safari and Chrome */
+  display: none;
 }
 
 /* Show scrollbar on hover in WebKit browsers */
@@ -257,7 +255,7 @@ header {
   scrollbar-width: auto;
 }
 
-/* Optional: Add styles for the scrollbar thumb for better visibility */
+/* Styles for the scrollbar thumb */
 .categories-container::-webkit-scrollbar-thumb,
 .latest-auctions::-webkit-scrollbar-thumb,
 .ends-soon-auctions::-webkit-scrollbar-thumb,
@@ -316,21 +314,6 @@ header {
   }
 }
 
-// .scrolling-text {
-//   display: inline-block;
-//   white-space: nowrap;
-//   animation: scrollTitle 11s linear infinite;
-// }
-
-// @keyframes scrollTitle {
-//   0% {
-//     transform: translateX(100%);
-//   }
-//   100% {
-//     transform: translateX(-100%);
-//   }
-// }
-
 .listing-gallery {
   width: 90%;
   max-width: 800px;
@@ -359,9 +342,7 @@ header {
     max-width: 600px !important;
     height: 400px !important;
     img {
-      // height: 350px !important;
       width: 95% !important;
-      // max-height: 400px !important;
       object-fit: cover !important;
     }
   }
@@ -410,9 +391,6 @@ header {
   font-weight: bold;
 }
 
-// #toggleLatestAuctions,
-// #toggleEndsSoonAuctions,
-// #toggleProfileAuctions,
 .win-title,
 .bid-title {
   cursor: pointer;
@@ -422,7 +400,6 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  // margin: 1em 0;
 }
 
 .about-images {
@@ -485,9 +462,3 @@ header {
   white-space: nowrap;
   -webkit-overflow-scrolling: touch; /* for momentum scrolling on iOS */
 }
-// @media (max-width: 768px) {
-//   .category-button {
-//     padding: 10px; /* Example padding, adjust as needed */
-//     font-size: 16px; /* Example font size, adjust as needed */
-//   }
-// }

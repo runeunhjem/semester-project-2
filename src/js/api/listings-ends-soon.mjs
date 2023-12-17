@@ -25,7 +25,7 @@ export async function listingsEndsSoon() {
   try {
     let allListingsArray = [];
     let offset = 0;
-    const limit = globalLimit > 0 ? globalLimit : 100; // Use globalLimit if set, else default to 100
+    const limit = globalLimit > 0 ? globalLimit : 100;
 
     // eslint-disable-next-line no-constant-condition
     while (true) {
@@ -63,11 +63,9 @@ export async function listingsEndsSoon() {
       allListingsArray = [...allListingsArray, ...filteredListings];
       offset += limit;
       if (allListingsArray.length >= globalMaxTotalListings) {
-        allListingsArray = allListingsArray.slice(0, globalMaxTotalListings); // Truncate array to maximum size
+        allListingsArray = allListingsArray.slice(0, globalMaxTotalListings);
         break;
       }
-      // console.log("listings.length", listings.length);
-      // console.log("allListingsArray.length", allListingsArray.length);
     }
 
     // Ensure that listings with a defined 'endsAt' are considered
@@ -82,7 +80,6 @@ export async function listingsEndsSoon() {
 
     // Get only the first 12 listings
     const endsSoon12Listings = listingsWithEndDates.slice(0, 12);
-    // console.log("Listings that end soon", endsSoon12Listings);
 
     return endsSoon12Listings;
   } catch (error) {

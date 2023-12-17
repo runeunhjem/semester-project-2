@@ -10,7 +10,7 @@ export async function populateCategories(listingsData, containerId) {
       listing.tags.forEach(tagString => {
         const tags = tagString
           .split(",")
-          .map(tag => tag.trim().toLowerCase()) // Trim and convert to lowercase
+          .map(tag => tag.trim().toLowerCase())
           .filter(tag => tag !== "");
         tags.forEach(tag => {
           tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);

@@ -37,15 +37,15 @@ import { updateButtonStyles } from "./utils/update-button-styles.mjs";
   // Setup toggle for latest auctions
   setupToggleButton(
     "toggleLatestAuctions",
-    [".latest-auctions"], // Make sure this is the correct class for "Latest Auctions"
-    "chevronIcon" // Ensure this is the unique ID for the chevron in "Latest Auctions"
+    [".latest-auctions"],
+    "chevronIcon"
   );
 
   // Setup toggle for ends soon auctions
   setupToggleButton(
     "toggleEndsSoonAuctions",
-    [".ends-soon-auctions"], // Make sure this is the correct class for "Ends Soon Auctions"
-    "chevronIconEnds" // Ensure this is the unique ID for the chevron in "Ends Soon Auctions"
+    [".ends-soon-auctions"],
+    "chevronIconEnds"
   );
 
   // Setup toggle for profile auctions

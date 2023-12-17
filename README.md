@@ -114,9 +114,11 @@ In order to edit and work with the site locally, you need a code editor.
    ```sh
    git clone https://github.com/runeunhjem/semester-project-2.git
    ```
-3. Unstall dependencies
+3. Install dependencies and build the project
    ```sh
    npm install
+   ```
+   npm run build
    ```
 4. Start working
 
@@ -126,7 +128,7 @@ In order to edit and work with the site locally, you need a code editor.
 
 ## Usage
 
-A social media site where movielovers can share their thoughts about movies and series. The site is responsive and works on all devices.
+An auction site for anyone who wants to sell or buy items.
 
 Find the latest and greatest version of the site at [https://runeunhjem-sp2.netlify.app/](https://runeunhjem-sp2.netlify.app/)
 
@@ -139,7 +141,7 @@ Find the latest and greatest version of the site at [https://runeunhjem-sp2.netl
 - [ ] Header
 - [ ] Footer
 - [ ] Login page
-- [ ] Feed page
+- [ ] Auctions page
 - [ ] Profile page
 - [ ] Item page
 

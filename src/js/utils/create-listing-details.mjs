@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-// create-listing-details.mjs
 import { fetchSingleListingById } from "../api/listings-singel-id.mjs";
 import { createListingCard } from "../make-html/latest-listings-card.mjs";
 import { createImageGallery } from "../make-html/listing-image-gallery.mjs";
@@ -8,7 +7,6 @@ import { updateCountdownDisplay } from "../utils/update-time-to-end.mjs"; // Adj
 import { createBidEntry } from "../make-html/create-bid-history-entry.mjs";
 import { populateCategories } from "../make-html/populate-categories.mjs";
 import { loggedInUser } from "../variables/constants.mjs";
-// import { viewProfile } from "../utils/view-profile.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);
 const listingIdParam = urlParams.get("id");
@@ -20,7 +18,6 @@ export async function displayListingDetails() {
     const listing = await fetchSingleListingById(listingIdParam);
 
     await populateCategories(listing, "categories-listing");
-    // await populateCategories(listing);
 
     // Set the page title to the listing title
     if (window.location.pathname === "/src/html/auction/listing.html") {
@@ -68,9 +65,9 @@ export async function displayListingDetails() {
 
       // Create a link to the bidder's profile
       const bidderProfileLink = document.createElement("a");
-      bidderProfileLink.href = `/src/html/profile/index.html?profile=${highestBidderName}`; // Adjust URL as needed
+      bidderProfileLink.href = `/src/html/profile/index.html?profile=${highestBidderName}`;
       bidderProfileLink.textContent = highestBidderName;
-      bidderProfileLink.className = "profile-link-class"; // Add any classes for styling
+      bidderProfileLink.className = "profile-link-class";
 
       // Append the link to the currentLeaderElement
       currentLeaderElement.appendChild(bidderProfileLink);
@@ -115,7 +112,7 @@ export async function displayListingDetails() {
       );
 
       const showInitialBids = () => {
-        bidHistoryContainer.innerHTML = ""; // Clear the container
+        bidHistoryContainer.innerHTML = "";
         sortedBids.slice(0, 3).forEach(bid => {
           const bidEntry = createBidEntry(bid);
           bidHistoryContainer.appendChild(bidEntry);
@@ -151,7 +148,7 @@ export async function displayListingDetails() {
         }
       });
 
-      showInitialBids(); // Initially show the first 3 bids
+      showInitialBids();
     }
 
     // Specifications
@@ -170,7 +167,7 @@ export async function displayListingDetails() {
         specDiv.appendChild(specLabel);
 
         const specValue = document.createElement("span");
-        specValue.className = "d-flex align-items-center"; // Adjusted for flex layout
+        specValue.className = "d-flex align-items-center";
         if (isMedia) {
           const mediaDiv = document.createElement("div");
           mediaDiv.style.overflowX = "auto";
@@ -190,7 +187,6 @@ export async function displayListingDetails() {
         title,
         description,
         tags,
-        // media,
         created,
         updated,
         endsAt,
