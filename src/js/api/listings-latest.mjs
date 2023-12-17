@@ -11,7 +11,7 @@ export async function latestListings() {
     spinner.classList.remove("d-none");
     let allListingsArray = await fetchAllListingsWithMedia();
 
-    // Filter listings to include only those with valid media
+    // Filter listings to include only those with x number of media
     const listingsWithValidMedia = allListingsArray.filter(listing => {
       if (listing.media.length === 0) return false;
 
@@ -25,7 +25,6 @@ export async function latestListings() {
 
     // Get only the latest 12 listings
     const latest12Listings = listingsWithValidMedia.slice(0, 12);
-    // console.log("Latest Listings with media", latest12Listings);
     spinner.classList.add("d-none");
     latestListingsContainer.classList.add("flex-nowrap", "d-flex");
     return latest12Listings;

@@ -10,6 +10,7 @@ import {
   globalLimit,
   globalMaxTotalListings,
 } from "../variables/constants.mjs";
+
 let allListingsArray = [];
 
 export async function fetchAllListings() {
@@ -27,7 +28,7 @@ export async function fetchAllListings() {
     return;
   }
 
-  const limit = globalLimit > 0 ? globalLimit : 100; // Use globalLimit if set, else default to 100
+  const limit = globalLimit > 0 ? globalLimit : 100;
   let offset = 0;
   const spinner2 = document.getElementById("spinner2");
   spinner2.classList.remove("d-none");
@@ -69,18 +70,12 @@ export async function fetchAllListings() {
 
     allListingsArray = [...allListingsArray, ...filteredListings];
     offset += limit;
-    // console.log("allListingsArray.length", allListingsArray.length);
     if (allListingsArray.length > globalMaxTotalListings) {
-      allListingsArray = allListingsArray.slice(0, globalMaxTotalListings); // Truncate array to maximum size
+      allListingsArray = allListingsArray.slice(0, globalMaxTotalListings);
       break;
     }
   }
 
-  // // Sort by 'created' in descending order (newest first)
-  // allListingsArray.sort((a, b) => new Date(b.created) - new Date(a.created));
-  // console.log("allListingsArray.length", allListingsArray.length);
-  // console.log("globalMaxTotalListings", globalMaxTotalListings);
-  // console.log("All active Listings", allListingsArray);
   spinner2.classList.add("d-none");
   return allListingsArray;
 }
