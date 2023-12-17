@@ -25,6 +25,16 @@ export function updateCountdownDisplay(
       bidButton.remove();
     }
 
+    // Change leader to winner
+    const leaderElement = document.getElementById("current-leader");
+    if (leaderElement) {
+      leaderElement.textContent = "Winner:";
+    }
+    const winningBid = document.getElementById("winning-bid");
+    if (winningBid) {
+      winningBid.textContent = "Winning Bid:";
+    }
+
     clearInterval(countdownInterval);
   } else {
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
