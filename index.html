@@ -69,7 +69,7 @@
     </div>
   </header>
     <!-- Mobileview searchbar -->
-    <section class="container-fluid max-width-1200 mobile-search d-none border-bottom border-primary" id="mobile-search">
+    <div class="container-fluid max-width-1200 mobile-search d-none border-bottom border-primary" id="mobile-search">
       <div class="row">
         <div class="col py-2">
           <form class="d-flex justify-content-center mt-1" role="search" id="mobileSearchForm">
@@ -78,7 +78,7 @@
           </form>
         </div>
       </div>
-    </section>
+    </div>
     <!-- End Mobileview searchbar -->
     <!-- Create new auction -->
     <div class="container d-none collapse" id="create-new-listing">
@@ -150,7 +150,7 @@
 
       <!-- Categories -->
       <p class="fs-4 px-4 py-2 mt-2 mb-0 rounded d-flex justify-content-center flex-nowrap divider-title text-dark text-center max-width-300" id="categories-header">Categories</p>
-      <div class="categories-container container d-flex flex-nowrap pb-1 justify-content-start gap-3 overflow-x-auto max-width-300 my-0" id="categories"></div>
+      <div class="categories-container container d-flex flex-nowrap pb-1 justify-content-start gap-3 overflow-x-auto max-width-300 mx-auto my-0" id="categories"></div>
       <!-- End of categories -->
 
       <!-- Search listings -->
@@ -241,20 +241,7 @@
             </h1>
           </div>
         </div>
-        <!-- <form action="" class="sort py-2">
-          <label for="sortAll" class="visually-hidden">Sort by</label>
-          <select name="sortAll" id="sortAll" class="form-select form-select-sm p-2">
-            <option value="">Sort By</option>
-            <option value="ending_soon">Ending soon</option>
-            <option value="newest">Newest</option>
-            <option value="oldest">Oldest</option>
-            <option value="price_low">Price low</option>
-            <option value="price_high">Price high</option>
-          </select>
-        </form> -->
         <div class="row-fluid d-flex flex-wrap overflow-hidden all-auctions bg-info rounded shadow-sm py-3 px-0" id="all-auctions">
-
-
           <!-- Spinner - Hide when loaded -->
           <div class="row d-flex mx-auto justify-content-center py-3 w-100" id="spinner2">
             <div class="spinner-border" role="status">

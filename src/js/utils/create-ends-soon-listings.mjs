@@ -13,17 +13,14 @@ export async function displayEndsSoonListings() {
   }
   try {
     const spinner3 = document.getElementById("spinner3");
-    if (!spinner3) return; // Exit if the spinner is not found (e.g. on the login page
+    if (!spinner3) return;
     spinner3.classList.remove("d-none");
     const listings = await listingsEndsSoon();
-    // const listings = await listingsEndsSoon();
-    // console.log("Listings that ends soon", listings);
 
     // Get the container where the listings should be displayed
     const endsSoonAuctionsContainer =
       document.getElementById("ends-soon-auctions");
-    if (!endsSoonAuctionsContainer) return; // Exit if the container is not found
-    // Clear previous content (if necessary)
+    if (!endsSoonAuctionsContainer) return;
     endsSoonAuctionsContainer.innerHTML = "";
 
     // Append each listing card to the container

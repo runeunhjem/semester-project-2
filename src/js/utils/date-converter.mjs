@@ -1,5 +1,5 @@
 function getDaySuffix(day) {
-  if (day > 3 && day < 21) return "th"; // for numbers like 4th, 13th, or 19th
+  if (day > 3 && day < 21) return "th";
   switch (day % 10) {
     case 1:
       return "st";
@@ -30,7 +30,7 @@ export function convertToShortDateFormat(dateString) {
 
   const date = new Date(dateString);
   const year = date.getFullYear();
-  const monthIndex = date.getMonth(); // Months are 0-indexed
+  const monthIndex = date.getMonth();
   const day = date.getDate();
   const hours = date.getHours().toString().padStart(2, "0");
   const minutes = date.getMinutes().toString().padStart(2, "0");

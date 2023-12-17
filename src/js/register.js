@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
     registerForm.classList.add("was-validated");
     try {
-      const formData = new FormData(registerForm); // Create FormData object from the registerForm inputs
+      const formData = new FormData(registerForm);
 
       // Create an empty object to hold user data
       const userData = {};
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userData), // Convert userData object to JSON
+        body: JSON.stringify(userData),
       });
 
       const json = await response.json();

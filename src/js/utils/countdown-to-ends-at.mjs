@@ -25,5 +25,3 @@ export function startCountdown(endDate) {
   }, 1000);
 }
 
-// // Start the countdown
-// startCountdown("Dec 31, 2023 23:59:59");

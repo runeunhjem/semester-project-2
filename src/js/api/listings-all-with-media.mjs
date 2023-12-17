@@ -17,8 +17,8 @@ export async function fetchAllListingsWithMedia() {
     return;
   }
   let allListingsArray = [];
-  const desiredListingsCount = 12; // The number of listings you want to display
-  const limit = globalLimit > 0 ? globalLimit : 100; // Use globalLimit if set, else default to 100
+  const desiredListingsCount = 12;
+  const limit = globalLimit > 0 ? globalLimit : 100;
   let offset = 0;
   const spinner = document.getElementById("spinner");
   spinner.classList.remove("d-none");
@@ -76,6 +76,5 @@ export async function fetchAllListingsWithMedia() {
 
   spinner.classList.add("d-none");
   allListingsArray.sort((a, b) => new Date(b.created) - new Date(a.created));
-  // console.log("Latest Listings with image gallery", allListingsArray);
   return allListingsArray;
 }

@@ -1,6 +1,7 @@
 const profileAuctionsTitle = document.getElementById("toggleProfileAuctions");
+
 export function createAuctionTitle(user, profileName) {
-  // Clear existing content
+
   profileAuctionsTitle.innerHTML = "";
 
   // Create main text node

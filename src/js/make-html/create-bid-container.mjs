@@ -1,6 +1,5 @@
 // make-html/create-bid-container.mjs
 import { bidOnListing } from "../api/bid-on-listing.mjs";
-// import { loggedInUser } from "../variables/constants.mjs";
 
 export function createBidContainer(highestBid) {
   const bidContainer = document.getElementById("place-bid");
@@ -40,17 +39,6 @@ export function createBidContainer(highestBid) {
   submitButton.className = "btn btn-primary mx-2 place-bid";
   submitButton.style.width = "120px";
   submitButton.setAttribute("id", "bid-button");
-
-  // // Check if the user is the seller
-  // const sellerNameElement = document.querySelector(".seller-name");
-  // if (
-  //   sellerNameElement &&
-  //   sellerNameElement.textContent.includes(loggedInUser)
-  // ) {
-  //   submitButton.disabled = true;
-  //   submitButton.textContent = "You cannot bid on your own listing.";
-  // }
-
   submitButton.addEventListener("click", () => {
     const bidValue = parseFloat(amountInput.value);
     if (bidValue <= highestBid || bidValue <= 0) {

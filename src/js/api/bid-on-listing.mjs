@@ -1,8 +1,6 @@
 import {
   API_BASE_URL,
-  // bidsInclude,
   listingsUrl,
-  // sellerInclude,
 } from "./apiurls.mjs";
 import { doApiFetch } from "./doFetch.mjs";
 

@@ -3,7 +3,7 @@ export async function initializeAllCarousels() {
   carousels.forEach(carousel => {
     // eslint-disable-next-line no-undef
     new bootstrap.Carousel(carousel, {
-      interval: 2000, // Adjust as needed
+      interval: 2000,
       ride: "carousel",
     });
   });
