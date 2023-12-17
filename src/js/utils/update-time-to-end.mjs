@@ -19,6 +19,12 @@ export function updateCountdownDisplay(
       cardElement.classList.add("shadow-danger");
     }
 
+    // Remove the Place Bid button
+    const bidButton = document.querySelector(".place-bid");
+    if (bidButton) {
+      bidButton.remove();
+    }
+
     clearInterval(countdownInterval);
   } else {
     const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
