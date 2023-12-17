@@ -2,7 +2,7 @@ export function toggleSearchSection() {
   const searchIcon = document.getElementById("searchIcon");
   const mobileSearchInput = document.getElementById("mobileSearchInput");
 
-  if (!searchIcon || !mobileSearchInput) return; // Safeguard in case elements are not found
+  if (!searchIcon || !mobileSearchInput) return;
 
   searchIcon.addEventListener("click", function () {
     const searchSection = document.getElementById("mobile-search");

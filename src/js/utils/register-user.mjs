@@ -27,7 +27,7 @@ export async function registerUser(url, userData) {
       registerButton.textContent = "Registration successful!";
       registerButton.classList.add("btn-success", "text-light", "fw-bold");
       setTimeout(() => {
-        window.location.href = "/login.html"; // Redirect to login after successful registration
+        window.location.href = "/login.html";
       }, 1200);
     } else {
       console.error("Registration failed!");
