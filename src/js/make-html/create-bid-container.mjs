@@ -38,7 +38,7 @@ export function createBidContainer(highestBid) {
   submitButton.textContent = "Place Bid";
   submitButton.type = "submit";
   submitButton.className = "btn btn-primary mx-2 place-bid";
-  submitButton.style.width = "100px";
+  submitButton.style.width = "120px";
   submitButton.setAttribute("id", "bid-button");
 
   // // Check if the user is the seller
