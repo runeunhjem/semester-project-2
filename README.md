@@ -118,6 +118,7 @@ In order to edit and work with the site locally, you need a code editor.
    ```sh
    npm install
    ```
+   ```sh
    npm run build
    ```
 4. Start working
