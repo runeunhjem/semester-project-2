@@ -1,6 +1,6 @@
 import { isLoggedIn, loggedInUser } from "../variables/constants.mjs";
 import { doApiFetch } from "../api/doFetch.mjs";
-import { API_BASE_URL, profilesInclude } from "../api/apiUrls.mjs";
+import { API_BASE_URL, profilesInclude } from "../api/apiurls.mjs";
 
 export async function updateProfileDisplay() {
   const profileContainer = document.getElementById("profileContainer");
@@ -8,7 +8,7 @@ export async function updateProfileDisplay() {
 
   // Create elements
   const colProfileInfo = document.createElement("div");
-  colProfileInfo.className = "col-9 col-md-4 ms-md-2 text-md-end profile-info";
+  colProfileInfo.className = "col col-md-4 ms-md-2 text-md-end profile-info";
 
   const profileName = document.createElement("p");
   profileName.className = "p-0 m-0 profile-name d-flex text-nowrap";
@@ -21,7 +21,7 @@ export async function updateProfileDisplay() {
 
   const colProfilePic = document.createElement("div");
   colProfilePic.className =
-    "col-3 col-md-2 col-lg-2 d-flex justify-content-end profile-pic";
+    "col col-md-2 col-lg-2 d-flex justify-content-end profile-pic";
 
   const profileImage = document.createElement("img");
   profileImage.className = "header-profile-image rounded-circle shadow";

@@ -4,7 +4,7 @@ import {
   listingsUrl,
   sellerInclude,
   activeListings,
-} from "./apiUrls.mjs";
+} from "./apiurls.mjs";
 import { doApiFetch } from "./doFetch.mjs";
 import { globalLimit, maxSearchResults } from "../variables/constants.mjs";
 
@@ -31,7 +31,32 @@ export async function fetchForSearchMain() {
 
     if (listings.length === 0) break;
 
-    allListingsArray = [...allListingsArray, ...listings];
+    // Filter out listings with titles that contain any of the words in the wordsToFilterOut array
+    const wordsToFilterOut = [
+      "drizzy",
+      "test",
+      "tester",
+      "hei",
+      "title",
+      "crgoat",
+      "hhhh",
+      "ffedef",
+      "hsuwhduiw",
+      "heycrsiente",
+      "hello",
+      "ggggg",
+      "goatcr",
+      "cr7",
+    ];
+
+    const filteredListings = listings.filter(
+      listing =>
+        !wordsToFilterOut.some(word =>
+          listing.title.toLowerCase().includes(word.toLowerCase())
+        )
+    );
+
+    allListingsArray = [...allListingsArray, ...filteredListings];
     offset += limit;
 
     if (allListingsArray.length >= maxSearchResults) {

@@ -24,6 +24,9 @@ import {
   updateButtonStyles,
   checkListingDisplay,
 } from "./utils/update-button-styles.mjs";
+// import { updatePaginationDisplay } from "./api/listings-all.mjs";
+// Initial call to fetch the first page of listings and update the pagination display
+// displayAllListings().then(updatePaginationDisplay);
 
 const loggedInUserProfileLink = document.querySelectorAll(".menu-profile a");
 
@@ -77,12 +80,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     !window.location.href.includes("contact") ||
     !window.location.href.includes("listing")
   ) {
+    const elements = document.querySelectorAll(".categories-container");
+    elements.forEach(el => loopScroll(el, 0.5));
+    await displayAllListings();
     await displayEndsSoonListings();
     await displayLatestListings();
-    await displayAllListings();
-    // await autoScroll(element, speed);
-    const elements = document.querySelectorAll(".categories-container");
-    elements.forEach(el => loopScroll(el, 1));
 
     // setTimeout(() => {
     // Wait for images to load
@@ -164,7 +166,7 @@ const addListingText = document.querySelector(".add-listing");
 
 if (addListingLink && createListingDiv) {
   addListingLink.addEventListener("click", event => {
-    console.log("Add listing link clicked.");
+    // console.log("Add listing link clicked.");
     if (!loggedInUser) {
       console.log("User is not logged in.");
       window.location.href = "/login.html";

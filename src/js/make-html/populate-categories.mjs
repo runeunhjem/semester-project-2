@@ -8,17 +8,15 @@ export async function populateCategories(listingsData, containerId) {
   const processListing = listing => {
     if (listing.tags && listing.tags.length > 0) {
       listing.tags.forEach(tagString => {
-        // Splitting tags by commas only
         const tags = tagString
           .split(",")
-          .map(tag => tag.trim())
+          .map(tag => tag.trim().toLowerCase()) // Trim and convert to lowercase
           .filter(tag => tag !== "");
         tags.forEach(tag => {
           tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
         });
       });
     } else {
-      // Handle listings with no tags
       tagCounts.set("Uncategorized", (tagCounts.get("Uncategorized") || 0) + 1);
     }
   };
@@ -43,6 +41,16 @@ export async function populateCategories(listingsData, containerId) {
 function updateCategoriesHeader(tagCounts) {
   const totalCategories = tagCounts.size;
   categoriesHeader.textContent = `Categories (${totalCategories})`;
+
+  // Create a reset button
+  const resetButton = document.createElement("button");
+  resetButton.textContent = "Reset";
+  resetButton.className =
+    "btn btn-sm btn-outline-white ms-2 text-primary reset-categories";
+  resetButton.addEventListener("click", () => filterCardsByCategory("All"));
+
+  // Append the reset button next to the categories header
+  categoriesHeader.appendChild(resetButton);
 }
 
 function populateContainer(container, tagCounts) {
@@ -71,8 +79,13 @@ function populateContainer(container, tagCounts) {
 function filterCardsByCategory(category) {
   const allCards = document.querySelectorAll(".latest-auctions-card");
   allCards.forEach(card => {
-    const cardCategories = card.getAttribute("data-category").split(",");
-    if (cardCategories.includes(category) || category === "All") {
+    const cardCategories = card
+      .getAttribute("data-category")
+      .toLowerCase()
+      .split(",")
+      .map(tag => tag.trim());
+
+    if (cardCategories.includes(category.toLowerCase()) || category === "All") {
       card.style.display = "block";
     } else {
       card.style.display = "none";

@@ -9,11 +9,14 @@ export function updateCountdownDisplay(
   const timeLeft = endsAtDate - now;
 
   if (timeLeft <= 0) {
-    // Use the listing ID to select the specific card
     const cardElement = document.querySelector(`[data-post-id="${listingId}"]`);
-    // console.log("Listing ID:", listingId);
-    // console.log("Card Element:", cardElement);
     if (cardElement) {
+      const bidButton = cardElement.querySelector(".place-bid");
+      if (!bidButton) {
+        return;
+      }
+
+      bidButton.classList.add("d-none");
       const card = cardElement.querySelector(".card");
       card.classList.add("shadow-danger");
     }
@@ -22,13 +25,7 @@ export function updateCountdownDisplay(
     countdownElement.className =
       "countdown-display bg-warning rounded shadow-sm fw-bold py-2";
 
-    // Update the bid button inside the specific card
-    const bidButton = cardElement.querySelector(".place-bid");
-    if (bidButton) {
-      bidButton.classList.add("d-none");
-    }
-
-    clearInterval(countdownInterval); // Stop the interval
+    clearInterval(countdownInterval);
     return;
   }
 
@@ -44,18 +41,15 @@ export function updateCountdownDisplay(
     "countdown-display bg-warning rounded shadow-sm fw-bold py-2";
 }
 
-// Iterate over each listing card
 const listingCards = document.querySelectorAll(".listing-card");
 listingCards.forEach(card => {
-  // Extract the listing ID and other necessary data from the card
   const listingId = card.getAttribute("data-post-id");
   const countdownElement = card.querySelector(
     ".your-countdown-element-selector"
-  ); // Update selector as needed
-  const endsAt = card.getAttribute("data-post-endsAt"); // Determine how you get the endsAt value
-  const countdownInterval = card.getAttribute("data-countdown-interval"); // Determine how you set the countdownInterval
+  );
+  const endsAt = card.getAttribute("data-post-endsAt");
+  const countdownInterval = card.getAttribute("data-countdown-interval");
 
-  // Call the updateCountdownDisplay function for each card
   updateCountdownDisplay(
     endsAt,
     countdownElement,

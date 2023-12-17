@@ -5,14 +5,14 @@ import {
   profilesInclude,
   bidsInclude,
   sellerInclude,
-} from "../api/apiUrls.mjs";
+} from "../api/apiurls.mjs";
 // import { loggedInUser } from "../variables/constants.mjs";
 import { doApiFetch } from "../api/doFetch.mjs";
 import {
   convertToShortDateFormat,
   timeSince,
 } from "../utils/date-converter.mjs";
-import { isValidImage } from "../utils/validate-image.mjs";
+// import { isValidImage } from "../utils/validate-image.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);
 const currentProfileName = urlParams.get("profile");
@@ -111,16 +111,19 @@ export async function currentProfileHistory() {
     const imgCol = document.createElement("div");
     imgCol.className = "col-auto px-0";
     const img = document.createElement("img");
-
-    isValidImage(listingData.media, isValid => {
-      if (isValid) {
-        // The URL is a valid image
-        img.src = listingData.media;
-      } else {
-        // The URL is not a valid image, use fallback
-        img.src = "/images/404-not-found.jpg";
-      }
-    });
+    img.src =
+      listingData.media.length === 0
+        ? "/images/404-not-found.jpg"
+        : listingData.media[0];
+    // isValidImage(listingData.media, isValid => {
+    //   if (isValid) {
+    //     // The URL is a valid image
+    //     img.src = listingData.media;
+    //   } else {
+    //     // The URL is not a valid image, use fallback
+    //     img.src = "/images/404-not-found.jpg";
+    //   }
+    // });
 
     img.style.height = "100px";
     img.style.width = "100px";
@@ -317,16 +320,16 @@ export async function currentProfileHistory() {
     const imgCol = document.createElement("div");
     imgCol.className = "col-auto";
     const img = document.createElement("img");
-    // img.src = media.length === 0 ? "/images/404-not-found.jpg" : media[0];
-    isValidImage(listingData.media, isValid => {
-      if (isValid) {
-        // The URL is a valid image
-        img.src = listingData.media;
-      } else {
-        // The URL is not a valid image, use fallback
-        img.src = "/images/404-not-found.jpg";
-      }
-    });
+    img.src = media.length === 0 ? "/images/404-not-found.jpg" : media[0];
+    // isValidImage(listingData.media, isValid => {
+    //   if (isValid) {
+    //     // The URL is a valid image
+    //     img.src = listingData.media;
+    //   } else {
+    //     // The URL is not a valid image, use fallback
+    //     img.src = "/images/404-not-found.jpg";
+    //   }
+    // });
     img.style.height = "100px";
     img.style.width = "100px";
     img.style.objectPosition = "center";

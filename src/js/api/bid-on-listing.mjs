@@ -3,7 +3,7 @@ import {
   // bidsInclude,
   listingsUrl,
   // sellerInclude,
-} from "./apiUrls.mjs";
+} from "./apiurls.mjs";
 import { doApiFetch } from "./doFetch.mjs";
 
 export async function bidOnListing(bidAmount, id) {

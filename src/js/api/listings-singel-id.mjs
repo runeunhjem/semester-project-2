@@ -3,7 +3,7 @@ import {
   bidsInclude,
   listingsUrl,
   sellerInclude,
-} from "./apiUrls.mjs";
+} from "./apiurls.mjs";
 import { doApiFetch } from "./doFetch.mjs";
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -19,6 +19,7 @@ export async function fetchSingleListingById() {
     "GET"
   );
   const listing = await response;
+
   // console.log("Single Listing", listing);
   return listing;
 }

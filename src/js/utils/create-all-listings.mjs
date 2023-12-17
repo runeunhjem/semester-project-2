@@ -17,13 +17,14 @@ export async function displayAllListings() {
     const spinner2 = document.getElementById("spinner2");
     if (!spinner2) return; // Exit if the spinner is not found (e.g. on the login page
     spinner2.classList.remove("d-none");
+    const allAuctionsContainer = document.getElementById("all-auctions");
+    // allAuctionsContainer.innerHTML = "";
     const listings = await fetchAllListings();
+    // console.log("listings in create", listings);
 
     await populateCategories(listings, "categories");
 
-    const allAuctionsContainer = document.getElementById("all-auctions");
     if (!allAuctionsContainer) return;
-
     // Append each listing card to the container
     listings.forEach(listing => {
       const listingCard = createListingCard(listing);
