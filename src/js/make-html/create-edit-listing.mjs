@@ -31,6 +31,7 @@ export function editListingForm(id, listing) {
   form.setAttribute("novalidate", "");
 
   // Function to create input groups
+
   const createInputGroup = (
     labelText,
     inputType,
@@ -52,15 +53,15 @@ export function editListingForm(id, listing) {
       inputType === "textarea" ? "textarea" : "input"
     );
     if (inputId === "endsAt") {
-      input.disabled = true; // Disable the input field
-      input.type = "datetime-local"; // Change to 'datetime-local' to capture both date and time
+      input.disabled = true;
+      input.type = "datetime-local";
     }
     if (inputType !== "textarea") {
       input.type = inputType;
     }
     input.className = "form-control";
     input.id = inputId;
-    input.name = inputId; // 'name' attribute set to match 'id'
+    input.name = inputId;
     input.placeholder = placeholder;
     if (isRequired) {
       input.required = true;
@@ -68,7 +69,7 @@ export function editListingForm(id, listing) {
     if (inputType === "textarea") {
       input.rows = 4;
     }
-    input.value = value; // Set the value of the input
+    input.value = value;
 
     div.appendChild(input);
 
@@ -84,7 +85,7 @@ export function editListingForm(id, listing) {
       "Valid image URL",
       false
     );
-    form.insertBefore(newImageUrlDiv, addImageButton); // Insert before the 'Add Image' button
+    form.insertBefore(newImageUrlDiv, addImageButton);
   };
 
   // 'Add Image' button
@@ -112,8 +113,6 @@ export function editListingForm(id, listing) {
     true
   );
   form.appendChild(imageInputDiv);
-
-  // Append the 'Add Image' button after the image URL input
   form.appendChild(addImageButton);
 
   // Add end date input
@@ -152,38 +151,36 @@ export function editListingForm(id, listing) {
   mainDiv.appendChild(cardBodyDiv);
   parentElement.appendChild(mainDiv);
 
-  // Logic to pre-fill the form with listing data
+  // Pre-fill the form with listing data
   const prefillForm = () => {
     document.getElementById("title").value = listing.title || "";
     document.getElementById("description").value = listing.description || "";
     document.getElementById("tags").value = listing.tags?.join(", ") || "";
     if (listing.endsAt) {
-      // Convert the endsAt to a format suitable for a datetime-local input
       const endsAtValue = new Date(listing.endsAt).toISOString().slice(0, 16);
       document.getElementById("endsAt").value = endsAtValue;
     }
 
     // Handling image URLs
     if (listing.media && listing.media.length > 0) {
-      document.getElementById("media").value = listing.media[0]; // Set value for the first image URL
+      document.getElementById("media").value = listing.media[0];
 
       // Create additional image URL inputs for each additional image
       listing.media.slice(1).forEach(url => {
         const newImageUrlDiv = createInputGroup(
           "Additional Image URL",
           "url",
-          // `media-${Math.random()}`, // Unique ID for each input
-          "media", // Unique ID for each input
+          "media",
           "Valid image URL",
           false,
-          url // Pass the URL as the value
+          url
         );
         form.insertBefore(newImageUrlDiv, addImageButton);
       });
     }
   };
 
-  // Modify form submission logic for updating a listing
+  // Form submission logic for updating a listing
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -209,7 +206,7 @@ export function editListingForm(id, listing) {
     };
 
     // Call the API function to update the listing
-    updateListing(id, updatedListingData); // Pass the updated data and the listing's ID
+    updateListing(id, updatedListingData);
   });
 
   // Add a cancel button
@@ -221,9 +218,7 @@ export function editListingForm(id, listing) {
   cancelButton.setAttribute("data-bs-target", "#edit-listing");
   cancelButton.setAttribute("aria-expanded", "false");
   cancelButton.addEventListener("click", function () {
-    // Logic to handle cancel action, e.g., clear form or redirect
-    // window.location.href = '/some-redirect-url'; // Redirect to another page
-    form.reset(); // Or just reset the form
+    form.reset();
   });
 
   // Append both submit and cancel buttons to the form

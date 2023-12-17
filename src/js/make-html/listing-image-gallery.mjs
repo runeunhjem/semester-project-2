@@ -18,8 +18,7 @@ export function createImageGallery(listing) {
   const overlayDiv = document.createElement("div");
   overlayDiv.className =
     "overlay position-absolute top-0 start-50 translate-middle-x w-100 d-flex d-none justify-content-center align-items-center";
-  // overlayDiv.style.top = "-50px"; // Adjust the top position
-  imageGalleryContainer.appendChild(overlayDiv); // Append to the gallery container
+  imageGalleryContainer.appendChild(overlayDiv);
 
   // Create an img tag inside the overlay div
   const overlayImg = document.createElement("img");
@@ -31,13 +30,13 @@ export function createImageGallery(listing) {
   const leftArrow = document.createElement("button");
   leftArrow.className =
     "btn btn-secondary position-absolute top-50 start-0 translate-middle-y text-white mt-6 ms-2";
-  leftArrow.innerHTML = "&lt;"; // HTML code for left arrow
+  leftArrow.innerHTML = "&lt;";
   overlayDiv.appendChild(leftArrow);
 
   const rightArrow = document.createElement("button");
   rightArrow.className =
     "btn btn-secondary position-absolute top-50 end-0 translate-middle-y text-white mt-6 me-2";
-  rightArrow.innerHTML = "&gt;"; // HTML code for right arrow
+  rightArrow.innerHTML = "&gt;";
   overlayDiv.appendChild(rightArrow);
 
   // Current image index

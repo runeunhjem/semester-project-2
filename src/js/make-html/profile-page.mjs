@@ -1,7 +1,6 @@
 import {
   isLoggedIn,
   loggedInUser,
-  // currentProfileName,
 } from "../variables/constants.mjs";
 import { doApiFetch } from "../api/doFetch.mjs";
 import {
@@ -23,7 +22,7 @@ if (loggedInUser) {
 
 export async function currentProfile() {
   const currentProfileContainer = document.getElementById("current-profile");
-  if (!currentProfileContainer) return; // Exit if the container is not found
+  if (!currentProfileContainer) return;
 
   // Create elements
   const rowProfilePic = document.createElement("div");
@@ -48,39 +47,6 @@ export async function currentProfile() {
     "col-12 mx-0 profile-info d-flex flex-column align-items-md-start justify-content-start ps-md-5 ms-md-3";
 
   const profileName = document.createElement("h1");
-  // const profileAuctionsTitle = document.getElementById("toggleProfileAuctions");
-  // if (loggedInUser === currentProfileName) {
-  //   profileAuctionsTitle.innerHTML = `All your auctions <div class="d-flex align-items-center">
-  //             <i class="bi bi-x-circle fs-5 close-section" id="closeSearchResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
-  //             <i class="bi bi-chevron-up" id="chevronIcon"></i>
-  //             </div>`;
-  //   const closeIcons = document.querySelectorAll(".close-section");
-
-  //   closeIcons.forEach(icon => {
-  //     icon.addEventListener("click", function () {
-  //       const sectionToClose = this.closest(".section-container");
-  //       if (sectionToClose) {
-  //         sectionToClose.classList.add("d-none");
-  //       }
-  //     });
-  //   });
-  // } else {
-  //   profileAuctionsTitle.innerHTML = `All ${currentProfileName}'s auctions <div class="d-flex align-items-center">
-  //             <i class="bi bi-x-circle fs-5 close-section" id="closeSearchResults"><span class="fs-5 close-section align-items-center text-right me-3"> Close</span></i>
-  //             <i class="bi bi-chevron-up" id="chevronIcon"></i>
-  //             </div>`;
-  //   const closeIcons = document.querySelectorAll(".close-section");
-
-  //   closeIcons.forEach(icon => {
-  //     icon.addEventListener("click", function () {
-  //       const sectionToClose = this.closest(".section-container");
-  //       if (sectionToClose) {
-  //         sectionToClose.classList.add("d-none");
-  //       }
-  //     });
-  //   });
-  // }
-
   // Usage
   if (loggedInUser === currentProfileName) {
     createAuctionTitle(loggedInUser, currentProfileName);
@@ -95,20 +61,20 @@ export async function currentProfile() {
   const changeLabel = document.createElement("label");
   changeLabel.setAttribute("for", "avatarInput");
   changeLabel.textContent = "Change Avatar";
-  changeLabel.style.cursor = "pointer"; // Make it look clickable
-  changeLabel.className = "text-secondary d-block"; // Add class for styling if needed
-  changeLabel.style.display = "none"; // Initially hide the label
+  changeLabel.style.cursor = "pointer";
+  changeLabel.className = "text-secondary d-block";
+  changeLabel.style.display = "none";
 
   // Create the form
   const changeForm = document.createElement("form");
-  changeForm.style.display = "none"; // Initially hide the form
+  changeForm.style.display = "none";
   changeForm.className = "my-2";
 
   // Create the input field
   const imageInput = document.createElement("input");
   imageInput.id = "avatarInput";
   imageInput.type = "text";
-  imageInput.value = ""; // Initial value can be empty or set to the current image src
+  imageInput.value = "";
   changeForm.appendChild(imageInput);
 
   // Create the submit button
@@ -135,7 +101,6 @@ export async function currentProfile() {
 
   // Event listener to toggle the form visibility
   changeLabel.addEventListener("click", function () {
-    // changeText.addEventListener("click", function () {
     changeForm.style.display =
       changeForm.style.display === "none" ? "block" : "none";
     imageInput.value = profileImage.src;
@@ -159,7 +124,6 @@ export async function currentProfile() {
   // Append elements
   colProfileInfo.appendChild(profileName);
   if (loggedInUser === currentProfileName) {
-    // colProfileInfo.appendChild(changeText);
     colProfileInfo.appendChild(changeLabel);
   }
   colProfileInfo.appendChild(changeForm);
@@ -181,14 +145,11 @@ export async function currentProfile() {
     const currentProfileData = JSON.stringify(data);
     localStorage.setItem("currentProfileData", currentProfileData);
 
-    // console.log("Current Profile data", data);
-
     profileName.textContent = currentProfileName;
     profileContact.innerHTML = `Contact: <a href="mailto:${data.mail}">${data.email}</a>`;
     profileListings.textContent = `Listings: ${data._count.listings}`;
     profileCredits.innerHTML = `Balance: <i class="bi bi-currency-dollar"></i>${data.credits}`;
     profileWins.textContent = `Wins: ${data.wins.length}`;
-    // profileBids.textContent = `Bids: ${data.bids.length}`;
     if (data.avatar) {
       profileImage.src = data.avatar;
     } else {

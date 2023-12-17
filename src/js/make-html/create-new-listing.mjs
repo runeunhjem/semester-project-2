@@ -1,4 +1,3 @@
-// createNewListingForm.mjs
 import { createNewListing } from "../api/create-new-listing.mjs";
 
 export function createNewListingForm(parentElementId) {
@@ -54,14 +53,14 @@ export function createNewListingForm(parentElementId) {
       inputType === "textarea" ? "textarea" : "input"
     );
     if (inputId === "endsAt") {
-      input.type = "datetime-local"; // Change to 'datetime-local' to capture both date and time
+      input.type = "datetime-local";
     }
     if (inputType !== "textarea") {
       input.type = inputType;
     }
     input.className = "form-control";
     input.id = inputId;
-    input.name = inputId; // 'name' attribute set to match 'id'
+    input.name = inputId;
     input.placeholder = placeholder;
     if (isRequired) {
       input.required = true;
@@ -83,7 +82,7 @@ export function createNewListingForm(parentElementId) {
       "Valid image URL",
       false
     );
-    form.insertBefore(newImageUrlDiv, addImageButton); // Insert before the 'Add Image' button
+    form.insertBefore(newImageUrlDiv, addImageButton);
   };
 
   // 'Add Image' button
@@ -171,9 +170,9 @@ export function createNewListingForm(parentElementId) {
       media: formData.getAll("media"),
       endsAt: endsAt,
     };
-    console.log("Listing data", listingData);
-    // Call the API function to create a new listing
-    createNewListing(listingData); // Make sure this function is properly implemented to handle the API call
+
+    // Create a new listing
+    createNewListing(listingData);
     const createListingDiv = document.getElementById("create-new-listing");
     createListingDiv.classList.add("d-none");
   });
